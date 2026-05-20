@@ -2,7 +2,7 @@ import { Send, CheckCircle, XCircle, Clock, RotateCcw, AlertCircle } from 'lucid
 import { useComponentStore } from '../stores/componentStore';
 
 export function SubmitPanel() {
-  const { parsedSchemas, results, isSubmitting, submitAll, clearResults } = useComponentStore();
+  const { parsedSchemas, results, isSubmitting, submitAll, clearResults, addLog } = useComponentStore();
 
   const successCount = results.filter((r) => r.success).length;
   const failCount = results.filter((r) => !r.success).length;
@@ -46,7 +46,19 @@ export function SubmitPanel() {
           {failCount > 0 && ` Previous run had ${failCount} failures.`}
         </p>
         <button
-          onClick={submitAll}
+          onClick={() => {
+            addLog(`Submitting ${parsedSchemas.length} schema(s) to API...`, 'info');
+            submitAll().then(() => {
+              const { results } = useComponentStore.getState();
+              const ok = results.filter((r) => r.success).length;
+              const fail = results.filter((r) => !r.success).length;
+              if (fail > 0) {
+                addLog(`Submit complete: ${ok} created, ${fail} failed`, 'warn');
+              } else {
+                addLog(`Submit complete: ${ok} schema(s) created successfully`, 'success');
+              }
+            });
+          }}
           disabled={parsedSchemas.length === 0 || isSubmitting}
           className="ml-auto flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-500 disabled:bg-gray-400 text-white rounded-lg font-medium transition"
         >

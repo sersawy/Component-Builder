@@ -3,10 +3,15 @@
  * Outputs: JSON array of component schemas ready for the API.
  *
  * Usage:
- *   node scripts/read-schemas.cjs                        # defaults: headers + footers
- *   node scripts/read-schemas.cjs headers                 # headers only
- *   node scripts/read-schemas.cjs footers                # footers only
- *   node scripts/read-schemas.cjs /path/to/sections       # custom folder
+ *   node scripts/read-schemas.cjs                        # all categories
+ *   node scripts/read-schemas.cjs sections                # regular sections only
+ *   node scripts/read-schemas.cjs general                # general components only
+ *   node scripts/read-schemas.cjs funnels               # funnel components only
+ *   node scripts/read-schemas.cjs landing                # landing page components only
+ *   node scripts/read-schemas.cjs themes                # all theme components
+ *   node scripts/read-schemas.cjs headers               # theme headers only
+ *   node scripts/read-schemas.cjs footers               # theme footers only
+ *   node scripts/read-schemas.cjs theme1..theme5        # specific theme only
  */
 
 const fs = require('fs');
@@ -28,7 +33,6 @@ function parseValue(raw) {
   return t;
 }
 
-// Parse TypeScript object/array literals with unquoted keys
 function parseJSValue(raw, outerChar) {
   if (outerChar === '{') {
     const inner = raw.substring(1, raw.length - 1);
@@ -105,7 +109,6 @@ function getDefault(body) {
     }
     const raw = body.substring(start, end).trim();
     try { return JSON.parse(raw); } catch {
-      // Try JS parsing for unquoted keys (e.g., { label: '...', url: '/' })
       return parseJSValue(raw, ch);
     }
   }
@@ -132,7 +135,6 @@ function extractSubSchema(body, field) {
   }
   if (start >= body.length || body[start] !== '{') return undefined;
 
-  // Walk to matching closing brace
   let depth = 0, end = start;
   for (let j = start; j < body.length; j++) {
     if (body[j] === '{') depth++;
@@ -140,35 +142,7 @@ function extractSubSchema(body, field) {
   }
   const inner = body.substring(start + 1, end - 1);
 
-  const result = {};
-  let i = 0, len = inner.length;
-  while (i < len) {
-    const nameMatch = inner.substring(i).match(/^(\w+):\s*\{/);
-    if (!nameMatch) { i++; continue; }
-    const subName = nameMatch[1];
-    const bodyStart = i + nameMatch[0].length - 1;
-    let depth2 = 0, bodyEnd = bodyStart;
-    for (let j = bodyStart; j < len; j++) {
-      if (inner[j] === '{') depth2++;
-      else if (inner[j] === '}') { depth2--; if (depth2 === 0) { bodyEnd = j + 1; break; } }
-    }
-    const subBody = inner.substring(bodyStart, bodyEnd);
-    const sp = {};
-    const t = subBody.match(/type:\s*['"]([^'"]+)['"]/);
-    if (t) sp.type = t[1];
-    const l = subBody.match(/label:\s*["']([^"']+)["']/);
-    if (l) sp.label = l[1];
-    const la = subBody.match(/labelAr:\s*["']([^"']+)["']/);
-    if (la) sp.labelAr = la[1];
-    const d = subBody.match(/description:\s*["']([^"']+)["']/);
-    if (d) sp.description = d[1];
-    const da = subBody.match(/descriptionAr:\s*["']([^"']+)["']/);
-    if (da) sp.descriptionAr = da[1];
-    const def = getDefault(subBody);
-    if (def !== undefined) sp.default = def;
-    if (Object.keys(sp).length) result[subName] = sp;
-    i = bodyEnd;
-  }
+  const result = extractPropsFromInner(inner);
   return Object.keys(result).length ? result : undefined;
 }
 
@@ -177,8 +151,12 @@ function extractProps(propsContent) {
   let i = 0, len = propsContent.length;
 
   while (i < len) {
+    // Skip whitespace and line comments
+    while (i < len && /\s/.test(propsContent[i])) i++;
+    if (i >= len) break;
+    if (propsContent.substring(i, i + 2) === '//') { const nl = propsContent.indexOf('\n', i); if (nl === -1) break; i = nl + 1; continue; }
     const nameMatch = propsContent.substring(i).match(/^(\w+):\s*\{/);
-    if (!nameMatch) { i++; continue; }
+    if (!nameMatch || !nameMatch[1]) { i++; continue; }
     const propName = nameMatch[1];
     const bodyStart = i + nameMatch[0].length - 1;
     let depth = 0, bodyEnd = bodyStart;
@@ -222,9 +200,92 @@ function extractProps(propsContent) {
   return props;
 }
 
+function extractPropsFromBody(body) {
+  const props = {};
+
+  // Strategy: find the `props: {` that appears at the top level of the schema body
+  // (usually right after sectionSlugs/contexts). Extract its content using
+  // extractPropsFromInner. Skip any `props` field encountered in the second pass.
+  const re = /props:\s*\{/g;
+  let match;
+  // Only process the FIRST props: {} occurrence (the schema-level props block)
+  // Subsequent ones are nested inside object-type prop definitions
+  let first = true;
+  while ((match = re.exec(body)) !== null) {
+    if (!first) break;
+    first = false;
+    const start = match.index + match[0].length - 1;
+    let depth = 0, end = start;
+    for (let j = start; j < body.length; j++) {
+      if (body[j] === '{') depth++;
+      else if (body[j] === '}') { depth--; if (depth === 0) { end = j + 1; break; } }
+    }
+    const inner = body.substring(start + 1, end - 1);
+    Object.assign(props, extractPropsFromInner(inner));
+  }
+
+  return props;
+}
+
+function extractPropsFromInner(inner) {
+  const props = {};
+  let i = 0, len = inner.length;
+  while (i < len) {
+    while (i < len && /\s/.test(inner[i])) i++;
+    if (i >= len) break;
+    if (inner.substring(i, i + 2) === '//') { const nl = inner.indexOf('\n', i); if (nl === -1) break; i = nl + 1; continue; }
+    const nameMatch = inner.substring(i).match(/^(\w+):\s*\{/);
+    if (!nameMatch || !nameMatch[1]) { i++; continue; }
+    const propName = nameMatch[1];
+    const bodyStart = i + nameMatch[0].length - 1;
+    let depth = 0, bodyEnd = bodyStart;
+    for (let j = bodyStart; j < len; j++) {
+      if (inner[j] === '{') depth++;
+      else if (inner[j] === '}') { depth--; if (depth === 0) { bodyEnd = j + 1; break; } }
+    }
+    const propBody = inner.substring(bodyStart, bodyEnd);
+    const p = {};
+    const typeM = propBody.match(/type:\s*['"]([^'"]+)['"]/);
+    if (typeM) p.type = typeM[1];
+    const labelM = propBody.match(/label:\s*["']([^"']+)["']/);
+    if (labelM) p.label = labelM[1];
+    const labelArM = propBody.match(/labelAr:\s*["']([^"']+)["']/);
+    if (labelArM) p.labelAr = labelArM[1];
+    const descM = propBody.match(/description:\s*["']([^"']+)["']/);
+    if (descM) p.description = descM[1];
+    const descArM = propBody.match(/descriptionAr:\s*["']([^"']+)["']/);
+    if (descArM) p.descriptionAr = descArM[1];
+    const requiredM = propBody.match(/required:\s*(true|false)/);
+    if (requiredM) p.required = requiredM[1] === 'true';
+    const minM = propBody.match(/min:\s*(-?\d+(?:\.\d+)?)/);
+    if (minM) p.min = parseFloat(minM[1]);
+    const maxM = propBody.match(/max:\s*(-?\d+(?:\.\d+)?)/);
+    if (maxM) p.max = parseFloat(maxM[1]);
+    const stepM = propBody.match(/step:\s*(-?\d+(?:\.\d+)?)/);
+    if (stepM) p.step = parseFloat(stepM[1]);
+    const optionsM = propBody.match(/options:\s*\[\s*([^\]]+)\s*\]/);
+    if (optionsM) p.options = optionsM[1].split(',').map((s) => s.trim().replace(/['"]/g, ''));
+    const defVal = getDefault(propBody);
+    if (defVal !== undefined) p.default = defVal;
+    const itemSchema = extractSubSchema(propBody, 'itemSchema');
+    if (itemSchema) p.itemSchema = itemSchema;
+    const propertySchema = extractSubSchema(propBody, 'propertySchema');
+    if (propertySchema) p.propertySchema = propertySchema;
+    props[propName] = p;
+    i = bodyEnd;
+  }
+  return props;
+}
+
 function extractSchema(content) {
-  const match = content.match(/export\s+const\s+\w+Schema:\s*ComponentSchema\s*=\s*\{/);
-  if (!match) return null;
+  const hasComponentSchemaImport = content.includes('ComponentSchema')
+  const p1 = /export\s+const\s+\w+Schema(?:\d+)?:\s*ComponentSchema\s*=\s*\{/;
+  const p2 = /export\s+const\s+\w+\s*=\s*\{/;
+  const m1 = content.match(p1)
+  const m2 = content.match(p2)
+  if (!m1 && !(m2 && hasComponentSchemaImport)) return null
+  const match = m1 ? m1 : (m2 ? m2 : null)
+  if (!match) return null
   const startIdx = content.indexOf(match[0]) + match[0].length - 1;
   let depth = 0, endIdx = startIdx;
   for (let i = startIdx; i < content.length; i++) {
@@ -243,13 +304,12 @@ function extractSchema(content) {
   const contexts = getArray(body, 'contexts');
   const sectionSlugs = getArray(body, 'sectionSlugs');
 
-  const propsMatch = body.match(/props:\s*\{([\s\S]*)\n\s{2}\}/);
-  const props = propsMatch ? extractProps(propsMatch[1]) : {};
+  const props = extractPropsFromBody(body);
 
   return { componentKey, name, nameAr, description, descriptionAr, previewImage, region, contexts, sectionSlugs, props };
 }
 
-function scanDir(dir) {
+function scanDir(dir, logPrefix) {
   const results = [];
   if (!fs.existsSync(dir)) return results;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -259,51 +319,132 @@ function scanDir(dir) {
     try {
       const schema = extractSchema(fs.readFileSync(schemaPath, 'utf-8'));
       if (schema && schema.componentKey) {
-        console.log(`  ${schema.componentKey} (${schema.name || 'N/A'})`);
+        console.log(`  ${logPrefix}${entry.name} -> ${schema.componentKey}`);
         results.push(schema);
       } else {
-        console.warn(`  Skipped: ${entry.name}`);
+        console.warn(`  Skipped: ${logPrefix}${entry.name}`);
       }
     } catch (e) {
-      console.warn(`  Failed: ${entry.name} - ${e.message}`);
+      console.warn(`  Failed: ${logPrefix}${entry.name} - ${e.message}`);
     }
   }
   return results;
 }
 
-// Resolve the Orderlek-Store-Components root relative to this script
-const COMPONENTS_ROOT = path.resolve(__dirname, '../../Orderlek-Store/Orderlek-Store-Components/src/themes');
+function scanDirDeep(dir, logPrefix) {
+  const results = [];
+  if (!fs.existsSync(dir)) return results;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const schemaPath = path.join(dir, entry.name, 'schema.ts');
+    if (!fs.existsSync(schemaPath)) {
+      const subResults = scanDirDeep(path.join(dir, entry.name), logPrefix + entry.name + '/');
+      results.push(...subResults);
+    } else {
+      try {
+        const schema = extractSchema(fs.readFileSync(schemaPath, 'utf-8'));
+        if (schema && schema.componentKey) {
+          console.log(`  ${logPrefix}${entry.name} -> ${schema.componentKey}`);
+          results.push(schema);
+        } else {
+          console.warn(`  Skipped: ${logPrefix}${entry.name}`);
+        }
+      } catch (e) {
+        console.warn(`  Failed: ${logPrefix}${entry.name} - ${e.message}`);
+      }
+    }
+  }
+  return results;
+}
+
+// Resolve the Orderlek-Store-Components root
+const COMPONENTS_ROOT = path.resolve(__dirname, '../../Orderlek-Store/Orderlek-Store-Components/src');
 
 const arg = process.argv[2] || 'all';
 const schemas = [];
+const outDir = path.join(__dirname, '../public');
 
-if (arg === 'headers') {
-  console.log('\n=== Headers ===');
-  schemas.push(...scanDir(path.join(COMPONENTS_ROOT, 'headers', 'sections')));
+// Ensure output dir exists
+if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+
+const scanTargets = [];
+
+if (arg === 'all') {
+  console.log('=== All Components ===');
+  scanTargets.push(
+    { dir: path.join(COMPONENTS_ROOT, 'sections'), prefix: '[sections] ', deep: true },
+    { dir: path.join(COMPONENTS_ROOT, 'general'), prefix: '[general] ', deep: true },
+    { dir: path.join(COMPONENTS_ROOT, 'funnels'), prefix: '[funnels] ', deep: true },
+    { dir: path.join(COMPONENTS_ROOT, 'landingPages'), prefix: '[landing] ', deep: true },
+    { dir: path.join(COMPONENTS_ROOT, 'themes'), prefix: '[themes] ', deep: true },
+  );
+} else if (arg === 'sections') {
+  scanTargets.push({ dir: path.join(COMPONENTS_ROOT, 'sections'), prefix: '[sections] ', deep: true });
+} else if (arg === 'general') {
+  scanTargets.push({ dir: path.join(COMPONENTS_ROOT, 'general'), prefix: '[general] ', deep: true });
+} else if (arg === 'funnels') {
+  scanTargets.push(
+    { dir: path.join(COMPONENTS_ROOT, 'funnels'), prefix: '[funnels] ', deep: true },
+  );
+} else if (arg === 'landing') {
+  scanTargets.push(
+    { dir: path.join(COMPONENTS_ROOT, 'landingPages'), prefix: '[landing] ', deep: true },
+  );
+} else if (arg === 'themes') {
+  scanTargets.push(
+    { dir: path.join(COMPONENTS_ROOT, 'themes'), prefix: '[themes] ', deep: true },
+  );
+} else if (arg === 'headers') {
+  scanTargets.push(
+    { dir: path.join(COMPONENTS_ROOT, 'themes/headers/sections'), prefix: '[theme-headers] ' },
+    { dir: path.join(COMPONENTS_ROOT, 'funnels/headers/sections'), prefix: '[funnel-headers] ' },
+  );
 } else if (arg === 'footers') {
-  console.log('\n=== Footers ===');
-  schemas.push(...scanDir(path.join(COMPONENTS_ROOT, 'footers', 'sections')));
-} else if (fs.existsSync(arg)) {
-  // Treat arg as a directory path
-  console.log(`\n=== Custom: ${arg} ===`);
-  schemas.push(...scanDir(arg));
+  scanTargets.push(
+    { dir: path.join(COMPONENTS_ROOT, 'themes/footers/sections'), prefix: '[theme-footers] ' },
+    { dir: path.join(COMPONENTS_ROOT, 'funnels/footers/sections'), prefix: '[funnel-footers] ' },
+  );
+} else if (['theme1', 'theme2', 'theme3', 'theme4', 'theme5'].includes(arg)) {
+  const num = arg.replace('theme', '');
+  scanTargets.push({ dir: path.join(COMPONENTS_ROOT, `themes/theme-${num}/sections`), prefix: `[theme-${num}] ` });
+} else if (/^funnel-?\d+$/i.test(arg)) {
+  const num = arg.replace(/funnel-?/i, '');
+  scanTargets.push({ dir: path.join(COMPONENTS_ROOT, `funnels/funnel-${num}/sections`), prefix: `[funnel-${num}] ` });
+} else if (/^landing-?\d+$/i.test(arg)) {
+  const num = arg.replace(/landing-?/i, '');
+  scanTargets.push({ dir: path.join(COMPONENTS_ROOT, `landingPages/landingPage-${num}/sections`), prefix: `[landing-${num}] ` });
 } else {
-  // 'all' - scan headers and footers
-  console.log('\n=== Headers ===');
-  schemas.push(...scanDir(path.join(COMPONENTS_ROOT, 'headers', 'sections')));
-  console.log('\n=== Footers ===');
-  schemas.push(...scanDir(path.join(COMPONENTS_ROOT, 'footers', 'sections')));
+  console.error(`Unknown argument: ${arg}`);
+  console.log('Valid args: all, sections, general, funnels, landing, themes, headers, footers, theme1..5, funnel-1..10, landing-1..10');
+  process.exit(1);
+}
+
+for (const target of scanTargets) {
+  if (target.deep) {
+    const result = scanDirDeep(target.dir, target.prefix);
+    schemas.push(...result);
+  } else {
+    const result = scanDir(target.dir, target.prefix);
+    schemas.push(...result);
+  }
 }
 
 console.log(`\nTotal: ${schemas.length} schemas`);
 
-// Generate output filename
+// Generate output filename and write
 let outName;
-if (arg === 'headers') outName = 'headers';
+if (arg === 'sections') outName = 'sections';
+else if (arg === 'general') outName = 'general';
+else if (arg === 'funnels') outName = 'funnels';
+else if (arg === 'landing') outName = 'landing';
+else if (arg === 'themes') outName = 'themes';
+else if (arg === 'headers') outName = 'headers';
 else if (arg === 'footers') outName = 'footers';
-else if (fs.existsSync(arg)) outName = path.basename(arg);
+else if (/^theme\d$/.test(arg)) outName = arg;
+else if (/^funnel-?\d+$/i.test(arg)) outName = arg.replace(/funnel-?/i, 'funnel-');
+else if (/^landing-?\d+$/i.test(arg)) outName = arg.replace(/landing-?/i, 'landing-');
 else outName = 'all';
 
-const outPath = path.join(__dirname, `../public/extracted-schemas-${outName}.json`);
+const outPath = path.join(outDir, `extracted-schemas-${outName}.json`);
 fs.writeFileSync(outPath, JSON.stringify(schemas, null, 2));
-console.log(`Written to: ${outPath}`);
+console.log(`Written: ${schemas.length} schemas -> ${outPath}`);

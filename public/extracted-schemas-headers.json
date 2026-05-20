@@ -1058,6 +1058,7 @@
             "labelAr": "نص الزر",
             "description": "Button label text.",
             "descriptionAr": "نص الزر.",
+            "required": true,
             "default": "اشتري الآن"
           },
           "link": {
@@ -1066,6 +1067,7 @@
             "labelAr": "رابط الزر",
             "description": "URL or anchor for the button action.",
             "descriptionAr": "رابط أو مرجع لحدث الزر.",
+            "required": true,
             "default": "#"
           },
           "textColor": {
@@ -1074,6 +1076,7 @@
             "labelAr": "لون نص الزر",
             "description": "Color of the button text.",
             "descriptionAr": "لون نص الزر.",
+            "required": false,
             "default": "#FFF9F4"
           },
           "backgroundColor": {
@@ -1082,6 +1085,7 @@
             "labelAr": "لون خلفية الزر",
             "description": "Background color of the button.",
             "descriptionAr": "لون خلفية الزر.",
+            "required": false,
             "default": "#757A73"
           },
           "borderRadius": {
@@ -1090,6 +1094,10 @@
             "labelAr": "نصف قطر حدود الزر (بكسل)",
             "description": "Button border radius in pixels.",
             "descriptionAr": "نصف قطر حدود الزر بالبكسل.",
+            "required": false,
+            "min": 0,
+            "max": 50,
+            "step": 1,
             "default": 10
           },
           "borderTypeButton": {
@@ -1098,6 +1106,19 @@
             "labelAr": "نوع حدود الزر",
             "description": "Border style for the button.",
             "descriptionAr": "نمط حدود الزر.",
+            "required": false,
+            "options": [
+              "solid",
+              "dashed",
+              "dotted",
+              "double",
+              "groove",
+              "ridge",
+              "inset",
+              "outset",
+              "none",
+              "hidden"
+            ],
             "default": "solid"
           },
           "borderColorButton": {
@@ -1106,6 +1127,7 @@
             "labelAr": "لون حدود الزر",
             "description": "Color of the button border.",
             "descriptionAr": "لون حدود الزر.",
+            "required": false,
             "default": "#757A73"
           },
           "borderSizeButton": {
@@ -1114,6 +1136,10 @@
             "labelAr": "حجم حدود الزر (بكسل)",
             "description": "Border width of the button in pixels.",
             "descriptionAr": "عرض حدود الزر بالبكسل.",
+            "required": false,
+            "min": 0,
+            "max": 10,
+            "step": 0.5,
             "default": 2
           }
         }
@@ -1384,14 +1410,16 @@
             "label": "Button Text",
             "labelAr": "نص الزر",
             "description": "Label text displayed on the button",
-            "descriptionAr": "النص المعروض على الزر"
+            "descriptionAr": "النص المعروض على الزر",
+            "required": false
           },
           "linkButton": {
             "type": "string",
             "label": "Button Link",
             "labelAr": "رابط الزر",
             "description": "URL the button navigates to",
-            "descriptionAr": "رابط الوجهة الذي يؤدي إليه الزر"
+            "descriptionAr": "رابط الوجهة الذي يؤدي إليه الزر",
+            "required": false
           }
         }
       },
@@ -1478,7 +1506,8 @@
             "label": "Icon Name",
             "labelAr": "اسم الأيقونة",
             "description": "Identifier for the icon graphic",
-            "descriptionAr": "معرف الرسم للأيقونة"
+            "descriptionAr": "معرف الرسم للأيقونة",
+            "required": false
           }
         }
       },
@@ -2037,16 +2066,16 @@
   },
   {
     "componentKey": "navbarf4-theme",
-    "name": "Navbar4",
-    "nameAr": "Navbar4",
-    "description": "Navbar4 component",
-    "descriptionAr": "مكون Navbar4",
-    "region": "homepage",
+    "name": "Header with Navbar & Hero",
+    "nameAr": "هيدر مع شريط تنقل وبطل",
+    "description": "Full-width header: background, navbar with cart drawer, and hero content.",
+    "descriptionAr": "هيدر كامل: خلفية، شريط تنقل مع سلة، ومحتوى البطل.",
+    "previewImage": "https://i.postimg.cc/J7vd7T7t/Frame-1261153258.jpg",
     "contexts": [
       "theme"
     ],
     "sectionSlugs": [
-      "other"
+      "headers"
     ],
     "props": {
       "logoWidth": {
@@ -3630,6 +3659,7 @@
             "labelAr": "نص الزر",
             "description": "Text shown inside the navbar button.",
             "descriptionAr": "النص المعروض داخل زر شريط التنقل.",
+            "required": true,
             "default": "اشتري الآن"
           },
           "link": {
@@ -3638,6 +3668,7 @@
             "labelAr": "رابط الزر",
             "description": "URL the navbar button navigates to when clicked.",
             "descriptionAr": "الرابط الذي ينتقل إليه الزر عند النقر.",
+            "required": true,
             "default": "#checkout"
           }
         }
@@ -4236,14 +4267,16 @@
             "label": "Link Text",
             "labelAr": "نص الرابط",
             "description": "Visible text for the navigation link",
-            "descriptionAr": "النص الظاهر لرابط التنقل"
+            "descriptionAr": "النص الظاهر لرابط التنقل",
+            "required": true
           },
           "href": {
             "type": "string",
             "label": "Link URL",
             "labelAr": "رابط الرابط",
             "description": "URL destination for the link",
-            "descriptionAr": "وجهة الرابط (URL)"
+            "descriptionAr": "وجهة الرابط (URL)",
+            "required": true
           }
         }
       },
@@ -4824,7 +4857,25 @@
             "labelAr": "عناصر القائمة الفرعية",
             "description": "Nested submenu items for this navigation item",
             "descriptionAr": "عناصر القائمة المنسدلة الفرعية لعنصر التنقل هذا",
-            "default": []
+            "default": [],
+            "itemSchema": {
+              "label": {
+                "type": "string",
+                "label": "Link Text",
+                "labelAr": "اسم اللينك",
+                "description": "The text label for the submenu link",
+                "descriptionAr": "نص تسمية رابط القائمة الفرعية",
+                "default": ""
+              },
+              "url": {
+                "type": "string",
+                "label": "Link URL",
+                "labelAr": "رابط الصفحة",
+                "description": "The URL the submenu link points to",
+                "descriptionAr": "عنوان URL الذي يشير إليه رابط القائمة الفرعية",
+                "default": "/"
+              }
+            }
           }
         }
       },
@@ -5458,7 +5509,25 @@
             "labelAr": "عناصر القائمة الفرعية",
             "description": "Nested submenu items for this navigation item",
             "descriptionAr": "عناصر القائمة الفرعية التابعة لعنصر التنقل هذا",
-            "default": []
+            "default": [],
+            "itemSchema": {
+              "label": {
+                "type": "string",
+                "label": "Link Text",
+                "labelAr": "اسم اللينك",
+                "description": "The text label for the submenu link",
+                "descriptionAr": "النص الظاهر لرابط القائمة الفرعية",
+                "default": ""
+              },
+              "url": {
+                "type": "string",
+                "label": "Link URL",
+                "labelAr": "رابط الصفحة",
+                "description": "The URL the submenu link points to",
+                "descriptionAr": "عنوان URL الذي يشير إليه رابط القائمة الفرعية",
+                "default": "/"
+              }
+            }
           }
         }
       },
@@ -5765,14 +5834,16 @@
             "label": "Link Text",
             "labelAr": "نص الرابط",
             "description": "The display text for the navigation link",
-            "descriptionAr": "النص الظاهر لرابط التنقل"
+            "descriptionAr": "النص الظاهر لرابط التنقل",
+            "required": true
           },
           "href": {
             "type": "string",
             "label": "Link URL",
             "labelAr": "رابط URL",
             "description": "The destination URL for the navigation link",
-            "descriptionAr": "رابط الوجهة الخاص برابط التنقل"
+            "descriptionAr": "رابط الوجهة الخاص برابط التنقل",
+            "required": true
           }
         }
       },
@@ -6061,14 +6132,16 @@
             "label": "Link Text",
             "labelAr": "نص الرابط",
             "description": "The visible text for the navigation link.",
-            "descriptionAr": "النص الظاهر لعنصر رابط التنقل."
+            "descriptionAr": "النص الظاهر لعنصر رابط التنقل.",
+            "required": true
           },
           "href": {
             "type": "string",
             "label": "Link URL",
             "labelAr": "رابط URL",
             "description": "The URL/path the navigation link points to.",
-            "descriptionAr": "عنوان URL/المسار الذي يشير إليه رابط التنقل."
+            "descriptionAr": "عنوان URL/المسار الذي يشير إليه رابط التنقل.",
+            "required": true
           }
         }
       },
@@ -6406,14 +6479,16 @@
             "label": "Link Text",
             "labelAr": "نص الرابط",
             "description": "Visible text for the navigation link.",
-            "descriptionAr": "النص الظاهر لعنصر رابط التنقل."
+            "descriptionAr": "النص الظاهر لعنصر رابط التنقل.",
+            "required": true
           },
           "href": {
             "type": "string",
             "label": "Link URL",
             "labelAr": "رابط URL",
             "description": "URL or path the link points to.",
-            "descriptionAr": "عنوان URL أو المسار الذي يشير إليه الرابط."
+            "descriptionAr": "عنوان URL أو المسار الذي يشير إليه الرابط.",
+            "required": true
           }
         }
       },
@@ -6996,6 +7071,1584 @@
         "descriptionAr": "لون نص أزرار تصفح المنتجات/الدفع داخل السلة.",
         "required": false,
         "default": "#FFFFFF"
+      }
+    }
+  },
+  {
+    "componentKey": "navbartheme1-fl",
+    "name": "Classic Navigation Header with Search",
+    "nameAr": "رأس التنقل الكلاسيكي مع البحث",
+    "description": "Main navigation header with logo, menu items, search functionality, and shopping cart",
+    "descriptionAr": "رأس التنقل الرئيسي مع الشعار وعناصر القائمة ووظيفة البحث وسلة التسوق",
+    "previewImage": "https://i.postimg.cc/j296J65k/Frame-1000003378.jpg",
+    "contexts": [
+      "flow",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "headers"
+    ],
+    "props": {
+      "basicBackgroundColor": {
+        "type": "color",
+        "label": "Background Color",
+        "labelAr": "لون الخلفية",
+        "description": "Background color for the navigation header",
+        "descriptionAr": "لون الخلفية لرأس التنقل",
+        "default": "#fff"
+      },
+      "logoImage": {
+        "type": "image",
+        "label": "Logo Image",
+        "labelAr": "صورة الشعار",
+        "description": "Company logo displayed in the navbar",
+        "descriptionAr": "شعار الشركة المعروض في شريط التنقل",
+        "default": "https://cdn.orderlek.store/owner-uploads/images/1768675526084-Group_1-eb2ae753a57b72b8.svg"
+      },
+      "navItems": {
+        "type": "array",
+        "label": "Navigation Items",
+        "labelAr": "عناصر التنقل",
+        "description": "List of navigation menu items with links and colors",
+        "descriptionAr": "قائمة عناصر القائمة مع الروابط والألوان",
+        "default": [
+          {
+            "label": "الرئيسية",
+            "url": "/"
+          },
+          {
+            "label": "المتجر",
+            "url": "/products"
+          },
+          {
+            "label": "العروض الساخنة",
+            "url": "/hot-deals"
+          },
+          {
+            "label": "رجال",
+            "url": "/men"
+          },
+          {
+            "label": "نساء",
+            "url": "/women"
+          },
+          {
+            "label": "أطفال",
+            "url": "/kids"
+          }
+        ],
+        "itemSchema": {
+          "label": {
+            "type": "string",
+            "label": "Link Text",
+            "labelAr": "اسم اللينك",
+            "description": "Display text for the navigation item",
+            "descriptionAr": "نص العرض لعنصر التنقل"
+          },
+          "url": {
+            "type": "string",
+            "label": "Link URL",
+            "labelAr": "رابط الصفحة",
+            "description": "URL destination for the navigation link",
+            "descriptionAr": "عنوان URL للرابط"
+          }
+        }
+      },
+      "dynamicCategories": {
+        "type": "object",
+        "label": "Dynamic Categories",
+        "labelAr": "الأقسام الديناميكية",
+        "description": "Settings for categories fetched with showInHeader=true.",
+        "descriptionAr": "إعدادات الأقسام المجلوبة من الـ API عند showInHeader=true.",
+        "default": {
+          "enableDynamicHeaderCategories": true
+        },
+        "propertySchema": {
+          "enableDynamicHeaderCategories": {
+            "type": "boolean",
+            "label": "Show dynamic header categories",
+            "labelAr": "إظهار أقسام الهيدر الديناميكية",
+            "description": "Show categories fetched from API as a dropdown in navbar",
+            "descriptionAr": "عرض الأقسام القادمة من الـ API كقائمة منسدلة في شريط التنقل",
+            "default": true
+          }
+        }
+      },
+      "headerFeatures": {
+        "type": "object",
+        "label": "Header features",
+        "labelAr": "ميزات الهيدر",
+        "description": "Toggle favorites icon and account area. Defaults are on.",
+        "descriptionAr": "تفعيل أيقونة المفضلة ومنطقة الحساب. القيم الافتراضية مفعّلة.",
+        "default": {
+          "enableFavorites": true,
+          "enableAuth": true,
+          "enableSearch": true
+        },
+        "propertySchema": {
+          "enableFavorites": {
+            "type": "boolean",
+            "label": "Show favorites icon",
+            "labelAr": "إظهار أيقونة المفضلة",
+            "description": "Show or hide the heart / favorites link in the header.",
+            "descriptionAr": "إظهار أو إخفاء رابط المفضلة في الهيدر.",
+            "default": true
+          },
+          "enableAuth": {
+            "type": "boolean",
+            "label": "Show account / sign in",
+            "labelAr": "إظهار الحساب / تسجيل الدخول",
+            "description": "Show or hide the account menu and sign-in link.",
+            "descriptionAr": "إظهار أو إخفاء قائمة الحساب ورابط تسجيل الدخول.",
+            "default": true
+          },
+          "enableSearch": {
+            "type": "boolean",
+            "label": "Show search",
+            "labelAr": "إظهار البحث",
+            "description": "Show or hide search icon and search input in the header.",
+            "descriptionAr": "إظهار أو إخفاء أيقونة البحث وحقل البحث في الهيدر.",
+            "default": true
+          }
+        }
+      },
+      "cartSettings": {
+        "type": "object",
+        "label": "Cart Settings",
+        "labelAr": "إعدادات السلة",
+        "description": "Cart icon behavior and CTA button styling.",
+        "descriptionAr": "سلوك أيقونة السلة وتنسيق زر الإجراء.",
+        "options": [
+          "page",
+          "drawer"
+        ],
+        "default": {
+          "cartBehavior": "drawer",
+          "autoOpenCartOnAdd": false,
+          "enableCart": true
+        },
+        "propertySchema": {
+          "cartBehavior": {
+            "type": "select",
+            "label": "Cart action",
+            "labelAr": "سلوك سلة المشتريات",
+            "description": "Choose what happens when the cart icon is clicked",
+            "descriptionAr": "اختر ما يحدث عند الضغط على أيقونة السلة",
+            "options": [
+              "page",
+              "drawer"
+            ],
+            "default": "drawer"
+          },
+          "autoOpenCartOnAdd": {
+            "type": "boolean",
+            "label": "Auto-open cart on add",
+            "labelAr": "فتح السلة تلقائيا عند الإضافة",
+            "description": "Auto-open drawer when quantity increases",
+            "descriptionAr": "فتح السلة تلقائيا عند زيادة الكمية",
+            "default": false
+          },
+          "enableCart": {
+            "type": "boolean",
+            "label": "Enable cart icon",
+            "labelAr": "تفعيل أيقونة السلة",
+            "description": "Show or hide the cart icon in the navbar",
+            "descriptionAr": "إظهار أو إخفاء أيقونة السلة في شريط التنقل",
+            "default": true
+          }
+        }
+      },
+      "cartButtonBgColor": {
+        "type": "color",
+        "label": "Cart CTA button background color",
+        "labelAr": "لون زر إجراء السلة",
+        "default": "#111F2B"
+      },
+      "cartButtonTextColor": {
+        "type": "color",
+        "label": "Cart CTA button text color",
+        "labelAr": "لون نص زر إجراء السلة",
+        "default": "#FFFFFF"
+      },
+      "navLinkFontWeightBold": {
+        "type": "number",
+        "label": "Nav Link Font Weight",
+        "labelAr": "وزن خط روابط التنقل",
+        "description": "Font weight for navigation links",
+        "descriptionAr": "وزن خط روابط التنقل",
+        "min": 100,
+        "max": 900,
+        "step": 100,
+        "default": 700
+      },
+      "navLinkBorderColor": {
+        "type": "color",
+        "label": "Nav Link Border Color",
+        "labelAr": "لون حدود روابط التنقل",
+        "description": "Color of the navigation link border on hover",
+        "descriptionAr": "لون حدود روابط التنقل عند التحويم",
+        "default": "#0E305D"
+      },
+      "navLinkBorderSize": {
+        "type": "number",
+        "label": "Nav Link Border Size (px)",
+        "labelAr": "سمك حدود روابط التنقل (px)",
+        "description": "Thickness of the navigation link border in pixels",
+        "descriptionAr": "سمك حدود روابط التنقل بالبكسل",
+        "min": 0,
+        "max": 10,
+        "step": 0.5,
+        "default": 2
+      },
+      "navLinkBorderType": {
+        "type": "select",
+        "label": "Nav Link Border Type",
+        "labelAr": "نوع حدود روابط التنقل",
+        "description": "Style of the navigation link border",
+        "descriptionAr": "نمط حدود روابط التنقل",
+        "options": [
+          "solid",
+          "dashed",
+          "dotted",
+          "double",
+          "groove",
+          "ridge",
+          "inset",
+          "outset",
+          "none",
+          "hidden"
+        ],
+        "default": "solid"
+      },
+      "dynamicCategoriesOrder": {
+        "type": "string",
+        "label": "Dynamic categories order",
+        "labelAr": "ترتيب قائمة الأقسام الديناميكية",
+        "description": "Zero-based position among navbar links (0 = first, 1 = after first link, ...)",
+        "descriptionAr": "الموضع بين روابط التنقل ويبدأ من الصفر (0 = الأول، 1 = بعد أول رابط، ...)",
+        "default": "1"
+      },
+      "dynamicCategoriesNavItemColor": {
+        "type": "color",
+        "label": "Dynamic categories link color",
+        "labelAr": "لون رابط قائمة الأقسام الديناميكية",
+        "description": "Color of the dynamic categories dropdown trigger in navbar",
+        "descriptionAr": "لون رابط فتح قائمة الأقسام الديناميكية في شريط التنقل",
+        "default": "#000000"
+      }
+    }
+  },
+  {
+    "componentKey": "navbartheme2-fl",
+    "name": "Navbar — Top Navigation",
+    "nameAr": "شريط التنقل — علوي",
+    "description": "Top navigation bar with logo, navigation items and cart controls.",
+    "descriptionAr": "شريط تنقل علوي يحتوي على الشعار، عناصر التنقل وعناصر السلة.",
+    "previewImage": "https://i.postimg.cc/TwmR5wsS/Frame-3474165.jpg",
+    "contexts": [
+      "flow",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "headers"
+    ],
+    "props": {
+      "basicBackgroundColor": {
+        "type": "color",
+        "label": "Background Color",
+        "labelAr": "لون الخلفية",
+        "description": "Background color for the navbar area.",
+        "descriptionAr": "لون الخلفية لمنطقة شريط التنقل.",
+        "default": "#fff"
+      },
+      "logoImage": {
+        "type": "image",
+        "label": "Logo Image",
+        "labelAr": "صورة الشعار",
+        "description": "URL for the logo image shown in the navbar.",
+        "descriptionAr": "رابط صورة الشعار المعروضة في شريط التنقل.",
+        "default": "https://cdn.orderlek.store/owner-uploads/images/1772224643469-source_White_and_Red_Simple_Beauty_Cosmetic_Logo-22-9b2f599d2a2b9a6a.png"
+      },
+      "navItems": {
+        "type": "array",
+        "label": "Navigation Items",
+        "labelAr": "عناصر التنقل",
+        "description": "List of navigation items and their settings shown in the navbar.",
+        "descriptionAr": "قائمة عناصر التنقل وإعداداتها المعروضة في شريط التنقل.",
+        "default": [
+          {
+            "label": "Home",
+            "url": "/",
+            "navItemColor": "#2B0614"
+          },
+          {
+            "label": "Shop",
+            "url": "/products",
+            "navItemColor": "#2B0614"
+          },
+          {
+            "label": "Hot deals",
+            "url": "/hot-deals",
+            "navItemColor": "#2B0614"
+          },
+          {
+            "label": "Men",
+            "url": "/men",
+            "navItemColor": "#2B0614"
+          },
+          {
+            "label": "Women",
+            "url": "/women",
+            "navItemColor": "#2B0614"
+          },
+          {
+            "label": "Kids",
+            "url": "/kids",
+            "navItemColor": "#2B0614"
+          }
+        ],
+        "itemSchema": {
+          "label": {
+            "type": "string",
+            "label": "Link Text",
+            "labelAr": "اسم اللينك",
+            "description": "Visible text shown for this navigation link.",
+            "descriptionAr": "النص الظاهر لهذا رابط التنقل."
+          },
+          "url": {
+            "type": "string",
+            "label": "Link URL",
+            "labelAr": "رابط الصفحة",
+            "description": "Destination URL the navigation item points to.",
+            "descriptionAr": "رابط الوجهة الذي يشير إليه عنصر التنقل."
+          },
+          "navItemColor": {
+            "type": "color",
+            "label": "Navigation Item Color",
+            "labelAr": "لون عناصر التنقل",
+            "description": "Color override for this navigation item.",
+            "descriptionAr": "لون مخصص لهذا عنصر التنقل."
+          }
+        }
+      },
+      "dynamicCategories": {
+        "type": "object",
+        "label": "Dynamic Categories",
+        "labelAr": "الأقسام الديناميكية",
+        "description": "Settings for categories fetched with showInHeader=true.",
+        "descriptionAr": "إعدادات الأقسام المجلوبة من الـ API عند showInHeader=true.",
+        "default": {
+          "enableDynamicHeaderCategories": true
+        },
+        "propertySchema": {
+          "enableDynamicHeaderCategories": {
+            "type": "boolean",
+            "label": "Show dynamic header categories",
+            "labelAr": "إظهار أقسام الهيدر الديناميكية",
+            "default": true
+          }
+        }
+      },
+      "headerFeatures": {
+        "type": "object",
+        "label": "Header features",
+        "labelAr": "ميزات الهيدر",
+        "description": "Toggle favorites icon, account area, and the delivery block in this header. Defaults are on.",
+        "descriptionAr": "تفعيل أيقونة المفضلة ومنطقة الحساب وكتلة التوصيل في هذا الهيدر. القيم الافتراضية مفعّلة.",
+        "default": {
+          "enableFavorites": true,
+          "enableDelivery": true,
+          "enableAuth": true,
+          "enableSearch": true
+        },
+        "propertySchema": {
+          "enableFavorites": {
+            "type": "boolean",
+            "label": "Show favorites icon",
+            "labelAr": "إظهار أيقونة المفضلة",
+            "description": "Show or hide the heart / favorites link in the header.",
+            "descriptionAr": "إظهار أو إخفاء رابط المفضلة في الهيدر.",
+            "default": true
+          },
+          "enableDelivery": {
+            "type": "boolean",
+            "label": "Show delivery block",
+            "labelAr": "إظهار كتلة التوصيل",
+            "description": "Show or hide the delivery / address teaser in the header.",
+            "descriptionAr": "إظهار أو إخفاء معاينة التوصيل والعنوان في الهيدر.",
+            "default": true
+          },
+          "enableAuth": {
+            "type": "boolean",
+            "label": "Show account / sign in",
+            "labelAr": "إظهار الحساب / تسجيل الدخول",
+            "description": "Show or hide the account menu and sign-in link.",
+            "descriptionAr": "إظهار أو إخفاء قائمة الحساب ورابط تسجيل الدخول.",
+            "default": true
+          },
+          "enableSearch": {
+            "type": "boolean",
+            "label": "Show search",
+            "labelAr": "إظهار البحث",
+            "description": "Show or hide the search input in this header.",
+            "descriptionAr": "إظهار أو إخفاء حقل البحث في هذا الهيدر.",
+            "default": true
+          }
+        }
+      },
+      "cartSettings": {
+        "type": "object",
+        "label": "Cart Settings",
+        "labelAr": "إعدادات السلة",
+        "options": [
+          "page",
+          "drawer"
+        ],
+        "default": {
+          "cartBehavior": "drawer",
+          "autoOpenCartOnAdd": false,
+          "enableCart": true
+        },
+        "propertySchema": {
+          "cartBehavior": {
+            "type": "select",
+            "label": "Cart action",
+            "labelAr": "سلوك سلة المشتريات",
+            "options": [
+              "page",
+              "drawer"
+            ],
+            "default": "drawer"
+          },
+          "autoOpenCartOnAdd": {
+            "type": "boolean",
+            "label": "Auto-open cart on add",
+            "labelAr": "فتح السلة تلقائيا عند الإضافة",
+            "default": false
+          },
+          "enableCart": {
+            "type": "boolean",
+            "label": "Enable cart icon",
+            "labelAr": "تفعيل أيقونة السلة",
+            "default": true
+          }
+        }
+      },
+      "cartButtonBgColor": {
+        "type": "color",
+        "label": "Cart CTA button background color",
+        "labelAr": "لون زر إجراء السلة",
+        "default": "#111F2B"
+      },
+      "cartButtonTextColor": {
+        "type": "color",
+        "label": "Cart CTA button text color",
+        "labelAr": "لون نص زر إجراء السلة",
+        "default": "#FFFFFF"
+      },
+      "navLinkFontWeightBold": {
+        "type": "number",
+        "label": "Nav Link Font Weight",
+        "labelAr": "وزن خط روابط التنقل",
+        "min": 100,
+        "max": 900,
+        "step": 100,
+        "default": 700
+      },
+      "navLinkBorderColor": {
+        "type": "color",
+        "label": "Nav Link Border Color",
+        "labelAr": "لون حدود روابط التنقل",
+        "default": "#0E305D"
+      },
+      "navLinkBorderSize": {
+        "type": "number",
+        "label": "Nav Link Border Size (px)",
+        "labelAr": "سمك حدود روابط التنقل (px)",
+        "min": 0,
+        "max": 10,
+        "step": 0.5,
+        "default": 2
+      },
+      "navLinkBorderType": {
+        "type": "select",
+        "label": "Nav Link Border Type",
+        "labelAr": "نوع حدود روابط التنقل",
+        "options": [
+          "solid",
+          "dashed",
+          "dotted",
+          "double",
+          "groove",
+          "ridge",
+          "inset",
+          "outset",
+          "none",
+          "hidden"
+        ],
+        "default": "solid"
+      },
+      "dynamicCategoriesOrder": {
+        "type": "string",
+        "label": "Dynamic categories order",
+        "labelAr": "ترتيب قائمة الأقسام الديناميكية",
+        "min": 0,
+        "step": 1,
+        "default": "1"
+      },
+      "dynamicCategoriesNavItemColor": {
+        "type": "color",
+        "label": "Dynamic categories link color",
+        "labelAr": "لون رابط قائمة الأقسام الديناميكية",
+        "default": "#2B0614"
+      },
+      "colorSettings": {
+        "type": "object",
+        "label": "Color Settings",
+        "labelAr": "إعدادات الألوان",
+        "default": {},
+        "propertySchema": {
+          "primaryColor": {
+            "type": "color",
+            "label": "Primary Color",
+            "labelAr": "اللون الأساسي",
+            "default": "#2B0614"
+          },
+          "secondaryColor": {
+            "type": "color",
+            "label": "Secondary Color",
+            "labelAr": "اللون الثانوي",
+            "default": "#7C1039"
+          }
+        }
+      }
+    }
+  },
+  {
+    "componentKey": "navbartheme3-fl",
+    "name": "Navbar",
+    "nameAr": "شريط التنقل",
+    "description": "Primary site navigation bar with logo, search, and actions.",
+    "descriptionAr": "شريط التنقل الرئيسي للموقع يحتوي على الشعار وشريط البحث والإجراءات.",
+    "previewImage": "https://i.postimg.cc/02yLLjCC/Home-page-Header.jpg",
+    "contexts": [
+      "flow",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "headers"
+    ],
+    "props": {
+      "logoImage": {
+        "type": "image",
+        "label": "Logo image",
+        "labelAr": "صورة الشعار",
+        "description": "Image asset used for the site logo in the navbar.",
+        "descriptionAr": "الصورة المستخدمة لشعار الموقع في شريط التنقل.",
+        "default": "https://i.postimg.cc/hPmRzY2K/Component-1.png"
+      },
+      "logoWidth": {
+        "type": "number",
+        "label": "Logo width (px)",
+        "labelAr": "عرض الشعار (px)",
+        "description": "Width of the logo image in pixels.",
+        "descriptionAr": "عرض صورة الشعار بالبكسل.",
+        "min": 20,
+        "step": 5,
+        "default": 70
+      },
+      "logoHeight": {
+        "type": "number",
+        "label": "Logo height (px)",
+        "labelAr": "ارتفاع الشعار (px)",
+        "description": "Height of the logo image in pixels.",
+        "descriptionAr": "ارتفاع صورة الشعار بالبكسل.",
+        "min": 10,
+        "step": 5,
+        "default": 17
+      },
+      "brandText": {
+        "type": "string",
+        "label": "Brand text (left)",
+        "labelAr": "نص العلامة (يسار)",
+        "description": "Primary brand text shown beside the logo (left).",
+        "descriptionAr": "نص العلامة الأساسي المعروض بجانب الشعار (يسار).",
+        "required": true,
+        "default": "NEXT"
+      },
+      "brandAccentText": {
+        "type": "string",
+        "label": "Brand accent text (colored)",
+        "labelAr": "نص العلامة المميز (ملون)",
+        "description": "Accent portion of the brand text shown in a colored style.",
+        "descriptionAr": "الجزء المميز من نص العلامة المعروض بأسلوب ملون.",
+        "required": true,
+        "default": "PICK"
+      },
+      "brandUrl": {
+        "type": "string",
+        "label": "Brand URL",
+        "labelAr": "رابط العلامة",
+        "description": "Destination URL when the brand/logo is clicked.",
+        "descriptionAr": "رابط الوجهة عند النقر على الشعار/العلامة.",
+        "required": true,
+        "default": "/"
+      },
+      "categoriesLabel": {
+        "type": "string",
+        "label": "Categories label",
+        "labelAr": "عنوان التصنيفات",
+        "description": "Label shown for the categories dropdown.",
+        "descriptionAr": "النص المعروض لقائمة التصنيفات المنسدلة.",
+        "required": true,
+        "default": "All products"
+      },
+      "categories": {
+        "type": "array",
+        "label": "Categories (dropdown links)",
+        "labelAr": "التصنيفات (روابط منسدلة)",
+        "description": "Navigation links in the category dropdown (same idea as navbar items). Search does not use these for filtering—only the URL is followed.",
+        "descriptionAr": "روابط التنقل في القائمة المنسدلة (مثل عناصر شريط التنقل). البحث لا يستخدمها للتصفية—يُتبع الرابط فقط.",
+        "required": true,
+        "default": [
+          {
+            "label": "All products",
+            "url": "/products",
+            "value": "all"
+          },
+          {
+            "label": "Headphones",
+            "url": "/category/headphones",
+            "value": "headphones"
+          },
+          {
+            "label": "Speakers",
+            "url": "/category/speakers",
+            "value": "speakers"
+          },
+          {
+            "label": "Accessories",
+            "url": "/category/accessories",
+            "value": "accessories"
+          }
+        ],
+        "itemSchema": {
+          "label": {
+            "type": "string",
+            "label": "Link text",
+            "labelAr": "نص الرابط",
+            "description": "Visible label (like navbar link text).",
+            "descriptionAr": "النص الظاهر (مثل نص رابط التنقل).",
+            "required": true
+          },
+          "url": {
+            "type": "string",
+            "label": "Link URL",
+            "labelAr": "رابط الصفحة",
+            "description": "Destination path or URL (e.g. /products, /men, /category/slug). Same as other navbar links. If omitted, legacy behavior uses value: all → products page, else /category/{value}.",
+            "descriptionAr": "مسار أو عنوان الوجهة (مثل /products أو /men أو /category/slug). مثل روابط التنقل الأخرى. إذا تُرك فارغًا يُستدل من value كسلوك قديم.",
+            "required": false
+          },
+          "value": {
+            "type": "string",
+            "label": "Legacy id (optional)",
+            "labelAr": "معرف قديم (اختياري)",
+            "description": "Optional. Only used when Link URL is empty: builds /category/{value}, or treats ",
+            "descriptionAr": "اختياري. يُستخدم فقط إذا كان رابط الصفحة فارغًا: يُبنى /category/{value} أو يُعتبر «all» صفحة المنتجات.",
+            "required": false
+          }
+        }
+      },
+      "dynamicCategories": {
+        "type": "object",
+        "label": "Dynamic Categories",
+        "labelAr": "الأقسام الديناميكية",
+        "description": "When enabled and API categories exist, they appear under the main static list in the dropdown, not as the only items.",
+        "descriptionAr": "عند التفعيل ووجود أقسام من الـ API تُعرض أسفل القائمة الأساسية من الإعدادات وليست بديلًا لها.",
+        "default": {
+          "enableDynamicHeaderCategories": true
+        },
+        "propertySchema": {
+          "enableDynamicHeaderCategories": {
+            "type": "boolean",
+            "label": "Show dynamic header categories",
+            "labelAr": "إظهار أقسام الهيدر الديناميكية",
+            "description": "Adds API categories as a labeled subsection below the configured category links in the dropdown.",
+            "descriptionAr": "يضيف أقسام الـ API كقسم فرعي مسمى أسفل روابط التصنيفات المعرّفة في الإعدادات.",
+            "default": true
+          }
+        }
+      },
+      "headerFeatures": {
+        "type": "object",
+        "label": "Header features",
+        "labelAr": "ميزات الهيدر",
+        "description": "Toggle favorites icon and account link. Defaults are on.",
+        "descriptionAr": "تفعيل أيقونة المفضلة ورابط الحساب. القيم الافتراضية مفعّلة.",
+        "default": {
+          "enableFavorites": true,
+          "enableAuth": true,
+          "enableSearch": true
+        },
+        "propertySchema": {
+          "enableFavorites": {
+            "type": "boolean",
+            "label": "Show favorites icon",
+            "labelAr": "إظهار أيقونة المفضلة",
+            "description": "Show or hide the heart / favorites link in the header.",
+            "descriptionAr": "إظهار أو إخفاء رابط المفضلة في الهيدر.",
+            "default": true
+          },
+          "enableAuth": {
+            "type": "boolean",
+            "label": "Show account link",
+            "labelAr": "إظهار رابط الحساب",
+            "description": "Show or hide the account shortcut in the header.",
+            "descriptionAr": "إظهار أو إخفاء اختصار الحساب في الهيدر.",
+            "default": true
+          },
+          "enableSearch": {
+            "type": "boolean",
+            "label": "Show search",
+            "labelAr": "إظهار البحث",
+            "description": "Show or hide the search input in this header.",
+            "descriptionAr": "إظهار أو إخفاء حقل البحث في هذا الهيدر.",
+            "default": true
+          }
+        }
+      },
+      "searchPlaceholder": {
+        "type": "string",
+        "label": "Search placeholder",
+        "labelAr": "نص البحث",
+        "description": "Placeholder text shown inside the search input.",
+        "descriptionAr": "النص الافتراضي المعروض داخل حقل البحث.",
+        "required": true,
+        "default": "I'm searching for..."
+      },
+      "searchActionUrl": {
+        "type": "string",
+        "label": "Search action URL",
+        "labelAr": "رابط البحث",
+        "description": "URL where the search form will submit queries.",
+        "descriptionAr": "عنوان URL حيث سيتم إرسال طلبات البحث.",
+        "required": true,
+        "default": "/products"
+      },
+      "searchQueryParam": {
+        "type": "string",
+        "label": "Search query param",
+        "labelAr": "اسم باراميتر البحث",
+        "description": "Query parameter name used for search terms.",
+        "descriptionAr": "اسم باراميتر الاستعلام المستخدم لعبارات البحث.",
+        "required": true,
+        "default": "search"
+      },
+      "languages": {
+        "type": "array",
+        "label": "Languages (dropdown)",
+        "labelAr": "اللغات (قائمة)",
+        "description": "List of available languages for the site language selector.",
+        "descriptionAr": "قائمة اللغات المتاحة لمحدد لغة الموقع.",
+        "required": true,
+        "default": [
+          {
+            "label": "EN",
+            "value": "en"
+          },
+          {
+            "label": "AR",
+            "value": "ar"
+          }
+        ],
+        "itemSchema": {
+          "label": {
+            "type": "string",
+            "label": "Label",
+            "labelAr": "الاسم",
+            "description": "Visible short label for the language (e.g., EN).",
+            "descriptionAr": "النص المختصر المرئي للغة (مثل EN).",
+            "required": true
+          },
+          "value": {
+            "type": "string",
+            "label": "Value",
+            "labelAr": "القيمة",
+            "description": "Language code used by the site (e.g., en, ar).",
+            "descriptionAr": "رمز اللغة المستخدم في الموقع (مثل en، ar).",
+            "required": true
+          }
+        }
+      },
+      "defaultLanguage": {
+        "type": "string",
+        "label": "Default language",
+        "labelAr": "اللغة الافتراضية",
+        "description": "Default site language used when a visitor first arrives.",
+        "descriptionAr": "اللغة الافتراضية للموقع المستخدمة عند وصول الزائر لأول مرة.",
+        "required": true,
+        "default": "en"
+      },
+      "cartCount": {
+        "type": "number",
+        "label": "Cart count (badge)",
+        "labelAr": "عدد السلة (شارة)",
+        "description": "Numeric badge for items currently in the cart.",
+        "descriptionAr": "العدد الظاهر في شارة عدد عناصر السلة حالياً.",
+        "default": 0
+      },
+      "favCount": {
+        "type": "number",
+        "label": "Favorites count (badge)",
+        "labelAr": "عدد المفضلة (شارة)",
+        "description": "Numeric badge for number of favorite items.",
+        "descriptionAr": "العدد الظاهر في شارة عدد العناصر المفضلة.",
+        "default": 0
+      },
+      "cartSettings": {
+        "type": "object",
+        "label": "Cart Settings",
+        "labelAr": "إعدادات السلة",
+        "description": "Cart icon behavior and CTA button styling.",
+        "descriptionAr": "سلوك أيقونة السلة وتنسيق زر الإجراء.",
+        "options": [
+          "page",
+          "drawer"
+        ],
+        "default": {
+          "cartBehavior": "drawer",
+          "autoOpenCartOnAdd": false,
+          "enableCart": true
+        },
+        "propertySchema": {
+          "cartBehavior": {
+            "type": "select",
+            "label": "Cart action",
+            "labelAr": "سلوك سلة المشتريات",
+            "description": "Choose what happens when the cart icon is clicked",
+            "descriptionAr": "اختر ما يحدث عند الضغط على أيقونة السلة",
+            "options": [
+              "page",
+              "drawer"
+            ],
+            "default": "drawer"
+          },
+          "autoOpenCartOnAdd": {
+            "type": "boolean",
+            "label": "Auto-open cart on add",
+            "labelAr": "فتح السلة تلقائيا عند الإضافة",
+            "description": "When enabled and the cart drawer is active, it opens automatically after an item is added to cart",
+            "descriptionAr": "عند تفعيلها وعند استخدام سلة منبثقة، سيتم فتحها تلقائيا بعد إضافة منتج للسلة",
+            "default": false
+          },
+          "enableCart": {
+            "type": "boolean",
+            "label": "Enable cart icon",
+            "labelAr": "تفعيل أيقونة السلة",
+            "description": "Show or hide the cart icon in the navbar",
+            "descriptionAr": "إظهار أو إخفاء أيقونة السلة في شريط التنقل",
+            "default": true
+          },
+          "cartButtonBgColor": {
+            "type": "color",
+            "label": "Cart CTA button background color",
+            "labelAr": "لون زر إجراء السلة",
+            "description": "Background color for the cart call-to-action button.",
+            "descriptionAr": "لون خلفية زر إجراء السلة.",
+            "default": "#111F2B"
+          },
+          "cartButtonTextColor": {
+            "type": "color",
+            "label": "Cart CTA button text color",
+            "labelAr": "لون نص زر إجراء السلة",
+            "description": "Text color used inside the cart CTA button.",
+            "descriptionAr": "لون النص المستخدم داخل زر إجراء السلة.",
+            "default": "#FFFFFF"
+          }
+        }
+      },
+      "showMenuButton": {
+        "type": "boolean",
+        "label": "Show menu icon in category button",
+        "labelAr": "إظهار أيقونة القائمة بجانب التصنيفات",
+        "description": "Toggle to show a menu icon next to the categories button.",
+        "descriptionAr": "تبديل لإظهار أيقونة القائمة بجانب زر التصنيفات.",
+        "default": true
+      },
+      "maxWidth": {
+        "type": "number",
+        "label": "Max width (px)",
+        "labelAr": "أقصى عرض (px)",
+        "description": "Maximum content width for the navbar container in pixels.",
+        "descriptionAr": "الحد الأقصى لعرض محتوى حاوية شريط التنقل بالبكسل.",
+        "min": 320,
+        "max": 1920,
+        "step": 10,
+        "default": 1200
+      },
+      "horizontalPadding": {
+        "type": "number",
+        "label": "Horizontal padding (px)",
+        "labelAr": "مسافة أفقية (px)",
+        "description": "Horizontal padding inside the navbar container in pixels.",
+        "descriptionAr": "الحشو الأفقي داخل حاوية شريط التنقل بالبكسل.",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 16
+      },
+      "verticalPadding": {
+        "type": "number",
+        "label": "Vertical padding (px)",
+        "labelAr": "مسافة رأسية (px)",
+        "description": "Vertical padding inside the navbar container in pixels.",
+        "descriptionAr": "الحشو الرأسي داخل حاوية شريط التنقل بالبكسل.",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 12
+      },
+      "overlapWithNextSection": {
+        "type": "boolean",
+        "label": "Overlap with next section (hero under navbar)",
+        "labelAr": "جعل القسم التالي تحت شريط التنقل",
+        "description": "Whether the navbar should overlap the following hero section.",
+        "descriptionAr": "ما إذا كان شريط التنقل يجب أن يتداخل مع قسم البطل التالي.",
+        "default": true
+      },
+      "containerRadius": {
+        "type": "number",
+        "label": "Navbar radius (px)",
+        "labelAr": "استدارة شريط التنقل (px)",
+        "description": "Border radius applied to the navbar container in pixels.",
+        "descriptionAr": "نصف قطر الحافة المطبق على حاوية شريط التنقل بالبكسل.",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "default": 12
+      },
+      "containerBg": {
+        "type": "color",
+        "label": "Navbar background",
+        "labelAr": "خلفية شريط التنقل",
+        "description": "Color used for the navbar background.",
+        "descriptionAr": "لون CSS المستخدم لخلفية شريط التنقل.",
+        "default": "rgba(255, 255, 255, 0.72)"
+      },
+      "containerBorderColor": {
+        "type": "color",
+        "label": "Navbar border color",
+        "labelAr": "لون حدود شريط التنقل",
+        "description": "Color used for the navbar container border.",
+        "descriptionAr": "اللون المستخدم لحدود حاوية شريط التنقل.",
+        "default": "rgba(0, 0, 0, 0.08)"
+      },
+      "containerShadowOffsetX": {
+        "type": "number",
+        "label": "Shadow offset X (px)",
+        "description": "Horizontal offset of the navbar shadow in pixels.",
+        "descriptionAr": "الإزاحة الأفقية لظل شريط التنقل بالبكسل.",
+        "step": 1,
+        "default": 0
+      },
+      "containerShadowOffsetY": {
+        "type": "number",
+        "label": "Shadow offset Y (px)",
+        "description": "Vertical offset of the navbar shadow in pixels.",
+        "descriptionAr": "الإزاحة الرأسية لظل شريط التنقل بالبكسل.",
+        "min": 0,
+        "step": 1,
+        "default": 16
+      },
+      "containerShadowBlur": {
+        "type": "number",
+        "label": "Shadow blur (px)",
+        "description": "Blur radius of the navbar shadow in pixels.",
+        "descriptionAr": "نصف قطر ضبابية ظل شريط التنقل بالبكسل.",
+        "min": 0,
+        "step": 1,
+        "default": 40
+      },
+      "containerShadowSpread": {
+        "type": "number",
+        "label": "Shadow spread (px)",
+        "description": "Spread radius of the navbar shadow in pixels.",
+        "descriptionAr": "نصف قطر انتشار ظل شريط التنقل بالبكسل.",
+        "step": 1,
+        "default": 0
+      },
+      "containerShadowColor": {
+        "type": "color",
+        "label": "Shadow color",
+        "description": "Color of the navbar shadow.",
+        "descriptionAr": "لون ظل شريط التنقل.",
+        "default": "rgba(0, 0, 0, 0.12)"
+      },
+      "textColor": {
+        "type": "color",
+        "label": "Text color",
+        "labelAr": "لون النص",
+        "description": "Primary text color used inside the navbar.",
+        "descriptionAr": "لون النص الأساسي المستخدم داخل شريط التنقل.",
+        "default": "#111827"
+      },
+      "iconColor": {
+        "type": "color",
+        "label": "Icon color",
+        "labelAr": "لون الأيقونات",
+        "description": "Color used for icons in the navbar (cart, fav, menu).",
+        "descriptionAr": "اللون المستخدم للأيقونات في شريط التنقل (السلة، المفضلة، القائمة).",
+        "default": "rgba(17, 24, 39, 0.75)"
+      },
+      "accentColor": {
+        "type": "color",
+        "label": "Accent color (badges)",
+        "labelAr": "لون التمييز (الشارات)",
+        "description": "Accent color used for badges and highlights.",
+        "descriptionAr": "لون التمييز المستخدم للشارات والنقاط البارزة.",
+        "default": "#2563eb"
+      }
+    }
+  },
+  {
+    "componentKey": "navbartheme4-fl",
+    "name": "Navbar",
+    "nameAr": "شريط التنقل",
+    "description": "Primary site navigation bar with logo, search, and actions.",
+    "descriptionAr": "شريط التنقل الرئيسي للموقع يحتوي على الشعار وشريط البحث والإجراءات.",
+    "previewImage": "https://i.postimg.cc/sfwL9yRZ/Frame-6-(1).jpg",
+    "contexts": [
+      "flow",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "headers"
+    ],
+    "props": {
+      "logoText": {
+        "type": "string",
+        "label": "Logo Text",
+        "labelAr": "نص الشعار",
+        "description": "Text shown as the logo or brand name in the navbar.",
+        "descriptionAr": "النص المعروض كشعار أو اسم العلامة في شريط التنقل.",
+        "required": false,
+        "default": "SHOP.CO"
+      },
+      "logoHref": {
+        "type": "string",
+        "label": "Logo Link URL",
+        "labelAr": "رابط الشعار",
+        "description": "URL navigated to when the logo is clicked.",
+        "descriptionAr": "عنوان URL الذي يتم الانتقال إليه عند النقر على الشعار.",
+        "required": false,
+        "default": "/"
+      },
+      "navItems": {
+        "type": "array",
+        "label": "Navigation Items",
+        "labelAr": "عناصر التنقل",
+        "description": "List of primary navigation items shown in the navbar.",
+        "descriptionAr": "النص الظاهر لهذا الرابط في التنقل.",
+        "default": [
+          {
+            "label": "Shop",
+            "url": "/shop"
+          },
+          {
+            "label": "On Sale",
+            "url": "/sale"
+          },
+          {
+            "label": "New Arrivals",
+            "url": "/new"
+          },
+          {
+            "label": "Brands",
+            "url": "/brands"
+          }
+        ],
+        "itemSchema": {
+          "label": {
+            "type": "string",
+            "label": "Link Text",
+            "labelAr": "اسم اللينك",
+            "description": "Visible text for this navigation link.",
+            "descriptionAr": "النص الظاهر لهذا الرابط في التنقل."
+          },
+          "url": {
+            "type": "string",
+            "label": "Link URL",
+            "labelAr": "رابط الصفحة",
+            "description": "Target URL for this navigation item.",
+            "descriptionAr": "عنوان URL الهدف لهذا العنصر في التنقل."
+          },
+          "isDropdown": {
+            "type": "boolean",
+            "label": "Is Dropdown",
+            "labelAr": "قائمة منسدلة",
+            "description": "Whether this navigation item opens a dropdown menu.",
+            "descriptionAr": "ما إذا كان هذا العنصر في التنقل يفتح قائمة منسدلة.",
+            "default": false
+          },
+          "dropdownItems": {
+            "type": "array",
+            "label": "Dropdown Items",
+            "labelAr": "عناصر القائمة المنسدلة",
+            "description": "List of items shown inside the dropdown when enabled.",
+            "descriptionAr": "النص الظاهر لرابط القائمة المنسدلة.",
+            "default": [],
+            "itemSchema": {
+              "label": {
+                "type": "string",
+                "label": "Link Text",
+                "labelAr": "اسم اللينك",
+                "description": "Visible text for the dropdown link.",
+                "descriptionAr": "النص الظاهر لرابط القائمة المنسدلة."
+              },
+              "url": {
+                "type": "string",
+                "label": "Link URL",
+                "labelAr": "رابط الصفحة",
+                "description": "Target URL for the dropdown link.",
+                "descriptionAr": "عنوان URL الهدف لرابط القائمة المنسدلة."
+              }
+            }
+          }
+        }
+      },
+      "searchPlaceholder": {
+        "type": "string",
+        "label": "Search Placeholder",
+        "labelAr": "نص البحث",
+        "description": "Placeholder text displayed inside the search input.",
+        "descriptionAr": "النص الافتراضي المعروض داخل حقل البحث.",
+        "required": false,
+        "default": "Search for products..."
+      },
+      "searchActionUrl": {
+        "type": "string",
+        "label": "Search Action URL",
+        "labelAr": "رابط صفحة البحث",
+        "description": "URL where search queries are submitted.",
+        "descriptionAr": "العنوان الذي تُرسل إليه استعلامات البحث.",
+        "required": false,
+        "default": "/products"
+      },
+      "searchQueryParam": {
+        "type": "string",
+        "label": "Search Query Parameter",
+        "labelAr": "معامل استعلام البحث",
+        "description": "Query parameter name used to pass the search term.",
+        "descriptionAr": "اسم باراميتر الاستعلام المستخدم لتمرير نص البحث.",
+        "required": false,
+        "default": "search"
+      },
+      "dynamicCategories": {
+        "type": "object",
+        "label": "Dynamic Categories",
+        "labelAr": "الأقسام الديناميكية",
+        "description": "When enabled and API categories exist (showInHeader), a Categories dropdown is appended after your nav items—not replacing them.",
+        "descriptionAr": "عند التفعيل ووجود أقسام من الـ API تُضاف قائمة «أقسام» بعد عناصر التنقل ولا تستبدلها.",
+        "default": {
+          "enableDynamicHeaderCategories": true
+        },
+        "propertySchema": {
+          "enableDynamicHeaderCategories": {
+            "type": "boolean",
+            "label": "Show dynamic header categories",
+            "labelAr": "إظهار أقسام الهيدر الديناميكية",
+            "description": "Appends a dropdown with API categories after the configured navigation items.",
+            "descriptionAr": "يضيف قائمة منسدلة بأقسام الـ API بعد عناصر التنقل المعرّفة.",
+            "default": true
+          }
+        }
+      },
+      "headerFeatures": {
+        "type": "object",
+        "label": "Header features",
+        "labelAr": "ميزات الهيدر",
+        "description": "Toggle favorites icon and account link. Defaults are on.",
+        "descriptionAr": "تفعيل أيقونة المفضلة ورابط الحساب. القيم الافتراضية مفعّلة.",
+        "default": {
+          "enableFavorites": true,
+          "enableAuth": true,
+          "enableSearch": true
+        },
+        "propertySchema": {
+          "enableFavorites": {
+            "type": "boolean",
+            "label": "Show favorites icon",
+            "labelAr": "إظهار أيقونة المفضلة",
+            "description": "Show or hide the favorites link in the header.",
+            "descriptionAr": "إظهار أو إخفاء رابط المفضلة في الهيدر.",
+            "default": true
+          },
+          "enableAuth": {
+            "type": "boolean",
+            "label": "Show account link",
+            "labelAr": "إظهار رابط الحساب",
+            "description": "Show or hide the account shortcut in the header.",
+            "descriptionAr": "إظهار أو إخفاء اختصار الحساب في الهيدر.",
+            "default": true
+          },
+          "enableSearch": {
+            "type": "boolean",
+            "label": "Show search",
+            "labelAr": "إظهار البحث",
+            "description": "Show or hide the search input in this header.",
+            "descriptionAr": "إظهار أو إخفاء حقل البحث في هذا الهيدر.",
+            "default": true
+          }
+        }
+      },
+      "cartSettings": {
+        "type": "object",
+        "label": "Cart Settings",
+        "labelAr": "إعدادات السلة",
+        "description": "Cart icon behavior and CTA button styling.",
+        "descriptionAr": "سلوك أيقونة السلة وتنسيق زر الإجراء.",
+        "options": [
+          "page",
+          "drawer"
+        ],
+        "default": {
+          "cartBehavior": "drawer",
+          "autoOpenCartOnAdd": false,
+          "enableCart": true
+        },
+        "propertySchema": {
+          "cartBehavior": {
+            "type": "select",
+            "label": "Cart action",
+            "labelAr": "سلوك سلة المشتريات",
+            "description": "Choose what happens when the cart icon is clicked",
+            "descriptionAr": "اختر ما يحدث عند الضغط على أيقونة السلة",
+            "options": [
+              "page",
+              "drawer"
+            ],
+            "default": "drawer"
+          },
+          "autoOpenCartOnAdd": {
+            "type": "boolean",
+            "label": "Auto-open cart on add",
+            "labelAr": "فتح السلة تلقائيا عند الإضافة",
+            "description": "When enabled and the cart drawer is active, it opens automatically after an item is added to cart",
+            "descriptionAr": "عند تفعيلها وعند استخدام سلة منبثقة، سيتم فتحها تلقائيا بعد إضافة منتج للسلة",
+            "default": false
+          },
+          "enableCart": {
+            "type": "boolean",
+            "label": "Enable cart icon",
+            "labelAr": "تفعيل أيقونة السلة",
+            "description": "Show or hide the cart icon in the navbar",
+            "descriptionAr": "إظهار أو إخفاء أيقونة السلة في شريط التنقل",
+            "default": true
+          },
+          "cartButtonBgColor": {
+            "type": "color",
+            "label": "Cart CTA button background color",
+            "labelAr": "لون زر إجراء السلة",
+            "description": "Background color for the cart call-to-action button.",
+            "descriptionAr": "لون خلفية زر إجراء السلة.",
+            "default": "#111F2B"
+          },
+          "cartButtonTextColor": {
+            "type": "color",
+            "label": "Cart CTA button text color",
+            "labelAr": "لون نص زر إجراء السلة",
+            "description": "Text color used inside the cart CTA button.",
+            "descriptionAr": "لون النص المستخدم داخل زر إجراء السلة.",
+            "default": "#FFFFFF"
+          }
+        }
+      }
+    }
+  },
+  {
+    "componentKey": "navbartheme5-fl",
+    "name": "Navbar",
+    "nameAr": "شريط التنقل",
+    "description": "Responsive navigation bar with logo, menu items, and action icons",
+    "descriptionAr": "شريط تنقل متجاوب مع الشعار وعناصر القائمة وأيقونات الإجراءات",
+    "previewImage": "https://i.postimg.cc/3R3LmfSX/Rectangle-2.jpg",
+    "contexts": [
+      "flow",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "headers"
+    ],
+    "props": {
+      "brand": {
+        "type": "object",
+        "label": "Brand",
+        "labelAr": "العلامة",
+        "description": "Logo image and brand text shown in the navbar.",
+        "descriptionAr": "صورة الشعار ونص العلامة المعروضان في شريط التنقل.",
+        "required": false,
+        "default": {
+          "logoImage": "https://i.postimg.cc/pX1Q09j7/Meubel-House-Logos-05.png",
+          "brandText": "Furniro"
+        },
+        "propertySchema": {
+          "logoImage": {
+            "type": "image",
+            "label": "Logo Image",
+            "labelAr": "صورة الشعار",
+            "description": "Logo image displayed next to the brand text",
+            "descriptionAr": "صورة الشعار المعروضة بجانب نص العلامة التجارية",
+            "required": false,
+            "default": "https://i.postimg.cc/pX1Q09j7/Meubel-House-Logos-05.png"
+          },
+          "brandText": {
+            "type": "string",
+            "label": "Brand Text",
+            "labelAr": "نص العلامة التجارية",
+            "description": "Brand name text displayed next to the logo",
+            "descriptionAr": "نص اسم العلامة التجارية المعروض بجانب الشعار",
+            "required": false,
+            "default": "Furniro"
+          }
+        }
+      },
+      "navItems": {
+        "type": "array",
+        "label": "Navigation Items",
+        "labelAr": "عناصر التنقل",
+        "description": "List of navigation menu items. Category pages use singular paths, e.g. /category/your-slug.",
+        "descriptionAr": "قائمة عناصر التنقل. صفحات التصنيف تستخدم المسار المفرد مثل /category/your-slug.",
+        "required": true,
+        "default": [
+          {
+            "label": "Home",
+            "url": "/"
+          },
+          {
+            "label": "Shop",
+            "url": "/products"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          },
+          {
+            "label": "Contact",
+            "url": "/contact"
+          }
+        ],
+        "itemSchema": {
+          "label": {
+            "type": "string",
+            "label": "Link Text",
+            "labelAr": "نص الرابط",
+            "description": "Display text for the navigation item",
+            "descriptionAr": "نص العرض لعنصر التنقل",
+            "required": true
+          },
+          "url": {
+            "type": "string",
+            "label": "Link URL",
+            "labelAr": "رابط الصفحة",
+            "description": "URL destination for the navigation link (e.g. /products, /category/slug).",
+            "descriptionAr": "عنوان URL للرابط (مثل /products أو /category/slug).",
+            "required": true
+          },
+          "isDropdown": {
+            "type": "boolean",
+            "label": "Is Dropdown",
+            "labelAr": "قائمة منسدلة",
+            "description": "Whether this navigation item opens a dropdown menu.",
+            "descriptionAr": "ما إذا كان هذا العنصر يفتح قائمة منسدلة.",
+            "default": false
+          },
+          "dropdownItems": {
+            "type": "array",
+            "label": "Dropdown Items",
+            "labelAr": "عناصر القائمة المنسدلة",
+            "description": "Items inside the dropdown (e.g. links to /category/...).",
+            "descriptionAr": "النص الظاهر لرابط القائمة المنسدلة.",
+            "default": [],
+            "itemSchema": {
+              "label": {
+                "type": "string",
+                "label": "Link Text",
+                "labelAr": "نص الرابط",
+                "description": "Visible text for the dropdown link.",
+                "descriptionAr": "النص الظاهر لرابط القائمة المنسدلة."
+              },
+              "url": {
+                "type": "string",
+                "label": "Link URL",
+                "labelAr": "رابط الصفحة",
+                "description": "Target URL (e.g. /category/slug).",
+                "descriptionAr": "عنوان الوجهة (مثل /category/slug)."
+              }
+            }
+          }
+        }
+      },
+      "dynamicCategories": {
+        "type": "object",
+        "label": "Dynamic Categories",
+        "labelAr": "الأقسام الديناميكية",
+        "description": "When enabled and API categories exist (showInHeader), a Categories dropdown is appended after your nav items—not replacing them.",
+        "descriptionAr": "عند التفعيل ووجود أقسام من الـ API تُضاف قائمة «أقسام» بعد عناصر التنقل ولا تستبدلها.",
+        "default": {
+          "enableDynamicHeaderCategories": true
+        },
+        "propertySchema": {
+          "enableDynamicHeaderCategories": {
+            "type": "boolean",
+            "label": "Show dynamic header categories",
+            "labelAr": "إظهار أقسام الهيدر الديناميكية",
+            "description": "Appends a dropdown with API categories after the configured navigation items.",
+            "descriptionAr": "يضيف قائمة منسدلة بأقسام الـ API بعد عناصر التنقل المعرّفة.",
+            "default": true
+          }
+        }
+      },
+      "backgroundColor": {
+        "type": "color",
+        "label": "Background Color",
+        "labelAr": "لون الخلفية",
+        "description": "Background color for the navigation bar",
+        "descriptionAr": "لون الخلفية لشريط التنقل",
+        "required": false,
+        "default": "#ffffff"
+      },
+      "textColor": {
+        "type": "color",
+        "label": "Text Color",
+        "labelAr": "لون النص",
+        "description": "Text and icon color for navigation elements",
+        "descriptionAr": "لون النص والأيقونات لعناصر التنقل",
+        "required": false,
+        "default": "#000000"
+      },
+      "horizontalPadding": {
+        "type": "number",
+        "label": "Horizontal Padding (px)",
+        "labelAr": "الحشو الأفقي (px)",
+        "description": "Horizontal padding for the navigation container (responsive with clamp)",
+        "descriptionAr": "الحشو الأفقي لحاوية التنقل (متجاوب مع clamp)",
+        "required": false,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 24
+      },
+      "verticalPadding": {
+        "type": "number",
+        "label": "Vertical Padding (px)",
+        "labelAr": "الحشو العمودي (px)",
+        "description": "Vertical padding for the navigation container (responsive with clamp)",
+        "descriptionAr": "الحشو العمودي لحاوية التنقل (متجاوب مع clamp)",
+        "required": false,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 20
+      },
+      "headerFeatures": {
+        "type": "object",
+        "label": "Header features",
+        "labelAr": "ميزات الهيدر",
+        "description": "Toggle favorites icon and account link. Defaults are on.",
+        "descriptionAr": "تفعيل أيقونة المفضلة ورابط الحساب. القيم الافتراضية مفعّلة.",
+        "default": {
+          "enableFavorites": true,
+          "enableAuth": true,
+          "enableSearch": true
+        },
+        "propertySchema": {
+          "enableFavorites": {
+            "type": "boolean",
+            "label": "Show favorites icon",
+            "labelAr": "إظهار أيقونة المفضلة",
+            "description": "Show or hide the favorites link in the header.",
+            "descriptionAr": "إظهار أو إخفاء رابط المفضلة في الهيدر.",
+            "default": true
+          },
+          "enableAuth": {
+            "type": "boolean",
+            "label": "Show account dropdown",
+            "labelAr": "إظهار قائمة الحساب المنسدلة",
+            "description": "Show or hide the account dropdown menu in the header.",
+            "descriptionAr": "إظهار أو إخفاء قائمة الحساب المنسدلة في الهيدر.",
+            "default": true
+          },
+          "enableSearch": {
+            "type": "boolean",
+            "label": "Show search",
+            "labelAr": "إظهار البحث",
+            "description": "Show or hide the search input in this header.",
+            "descriptionAr": "إظهار أو إخفاء حقل البحث في هذا الهيدر.",
+            "default": true
+          }
+        }
+      },
+      "cartSettings": {
+        "type": "object",
+        "label": "Cart Settings",
+        "labelAr": "إعدادات السلة",
+        "description": "Cart icon behavior and CTA button styling.",
+        "descriptionAr": "سلوك أيقونة السلة وتنسيق زر الإجراء.",
+        "options": [
+          "page",
+          "drawer"
+        ],
+        "default": {
+          "cartBehavior": "drawer",
+          "autoOpenCartOnAdd": false,
+          "enableCart": true
+        },
+        "propertySchema": {
+          "cartBehavior": {
+            "type": "select",
+            "label": "Cart action",
+            "labelAr": "سلوك سلة المشتريات",
+            "description": "Choose what happens when the cart icon is clicked",
+            "descriptionAr": "اختر ما يحدث عند الضغط على أيقونة السلة",
+            "options": [
+              "page",
+              "drawer"
+            ],
+            "default": "drawer"
+          },
+          "autoOpenCartOnAdd": {
+            "type": "boolean",
+            "label": "Auto-open cart on add",
+            "labelAr": "فتح السلة تلقائيا عند الإضافة",
+            "description": "When enabled and the cart drawer is active, it opens automatically after an item is added to cart",
+            "descriptionAr": "عند تفعيلها وعند استخدام سلة منبثقة، سيتم فتحها تلقائيا بعد إضافة منتج للسلة",
+            "default": false
+          },
+          "enableCart": {
+            "type": "boolean",
+            "label": "Enable cart icon",
+            "labelAr": "تفعيل أيقونة السلة",
+            "description": "Show or hide the cart icon in the navbar",
+            "descriptionAr": "إظهار أو إخفاء أيقونة السلة في شريط التنقل",
+            "default": true
+          },
+          "cartButtonBgColor": {
+            "type": "color",
+            "label": "Cart CTA button background color",
+            "labelAr": "لون زر إجراء السلة",
+            "description": "Background color for the cart call-to-action button.",
+            "descriptionAr": "لون خلفية زر إجراء السلة.",
+            "default": "#111F2B"
+          },
+          "cartButtonTextColor": {
+            "type": "color",
+            "label": "Cart CTA button text color",
+            "labelAr": "لون نص زر إجراء السلة",
+            "description": "Text color used inside the cart CTA button.",
+            "descriptionAr": "لون النص المستخدم داخل زر إجراء السلة.",
+            "default": "#FFFFFF"
+          }
+        }
       }
     }
   }

@@ -4,6 +4,9 @@ import type {
   RefreshResponse,
   CreateComponentResponse,
   ComponentSchemaPayload,
+  ComponentsListResponse,
+  ExistingComponent,
+  UpdateResult,
 } from '../types';
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api.orderlek.com';
@@ -110,5 +113,62 @@ export async function createComponents(schemas: ComponentSchemaPayload[]) {
       errorCode: res.errorCode,
     });
   }
+  return results;
+}
+
+export async function getComponents(page = 1, limit = 50): Promise<ApiResponse<ComponentsListResponse>> {
+  return fetchWithAuth<ComponentsListResponse>(`/api/v1/owner/components?page=${page}&limit=${limit}`);
+}
+
+export async function getAllComponents(): Promise<ExistingComponent[]> {
+  const all: ExistingComponent[] = [];
+  let page = 1;
+  let totalPages = 1;
+
+  while (page <= totalPages) {
+    const res = await getComponents(page, 50);
+    if (res.success && res.data) {
+      all.push(...res.data.components);
+      totalPages = res.data.pagination.totalPages;
+      page++;
+    } else {
+      break;
+    }
+  }
+
+  return all;
+}
+
+export async function updateComponent(id: string, schema: ComponentSchemaPayload): Promise<ApiResponse<{ id: string }>> {
+  // Strip componentKey from the payload (as requested)
+  const { componentKey, ...updateBody } = schema;
+  return fetchWithAuth<{ id: string }>(`/api/v1/owner/components/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(updateBody),
+  });
+}
+
+export async function updateComponents(
+  updates: { id: string; schema: ComponentSchemaPayload }[],
+  delayMs = 0
+): Promise<UpdateResult[]> {
+  const results: UpdateResult[] = [];
+
+  for (let i = 0; i < updates.length; i++) {
+    const { id, schema } = updates[i];
+    const res = await updateComponent(id, schema);
+    results.push({
+      componentKey: schema.componentKey,
+      componentId: id,
+      success: res.success,
+      message: res.message,
+      errorCode: res.errorCode,
+    });
+
+    if (delayMs > 0 && i < updates.length - 1) {
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+    }
+  }
+
   return results;
 }

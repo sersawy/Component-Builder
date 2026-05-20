@@ -1,0 +1,2358 @@
+[
+  {
+    "componentKey": "--help-01",
+    "name": "Help",
+    "nameAr": "Help",
+    "description": "Help component",
+    "descriptionAr": "مكون Help",
+    "region": "homepage",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "other"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": true,
+        "default": "Help"
+      }
+    }
+  },
+  {
+    "componentKey": "banner-promo-01",
+    "name": "Promo Banner",
+    "nameAr": "بانر ترويجي",
+    "description": "Promotional banner section",
+    "descriptionAr": "قسم بانر ترويجي",
+    "region": "homepage",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "other"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "default": ""
+      },
+      "ctaLink": {
+        "type": "string",
+        "label": "CTA Link",
+        "labelAr": "رابط الزر",
+        "default": "/products"
+      },
+      "ctaText": {
+        "type": "string",
+        "label": "CTA Text",
+        "labelAr": "نص الزر",
+        "default": "تسوق الآن"
+      },
+      "subtitle": {
+        "type": "string",
+        "label": "Subtitle",
+        "labelAr": "العنوان الفرعي",
+        "default": ""
+      },
+      "backgroundColor": {
+        "type": "color",
+        "label": "Background Color",
+        "labelAr": "لون الخلفية",
+        "default": "#667eea"
+      }
+    }
+  },
+  {
+    "componentKey": "categories-grid-01",
+    "name": "Categories Grid",
+    "nameAr": "شبكة الفئات",
+    "description": "Categories grid section",
+    "descriptionAr": "قسم شبكة الفئات",
+    "region": "homepage",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "product"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "default": "الفئات"
+      },
+      "categories": {
+        "type": "array",
+        "label": "Categories",
+        "labelAr": "الفئات",
+        "default": []
+      }
+    }
+  },
+  {
+    "componentKey": "featured-products-01",
+    "name": "Featured Products",
+    "nameAr": "المنتجات المميزة",
+    "description": "Featured products section",
+    "descriptionAr": "قسم المنتجات المميزة",
+    "region": "homepage",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "product"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "default": "المنتجات المميزة"
+      },
+      "currency": {
+        "type": "string",
+        "label": "Currency",
+        "labelAr": "العملة",
+        "default": "SAR"
+      },
+      "products": {
+        "type": "array",
+        "label": "Products",
+        "labelAr": "المنتجات",
+        "default": []
+      }
+    }
+  },
+  {
+    "componentKey": "features-01",
+    "name": "Features Section",
+    "nameAr": "قسم المميزات",
+    "description": "Features showcase section",
+    "descriptionAr": "قسم عرض المميزات",
+    "region": "homepage",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "other"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "default": "المميزات"
+      },
+      "features": {
+        "type": "array",
+        "label": "Features",
+        "labelAr": "المميزات",
+        "default": []
+      }
+    }
+  },
+  {
+    "componentKey": "footer-classic-01",
+    "name": "Classic Footer",
+    "nameAr": "تذييل كلاسيكي",
+    "description": "A classic footer with links, social media, and newsletter",
+    "descriptionAr": "تذييل كلاسيكي مع روابط ووسائل التواصل والنشرة الإخبارية",
+    "region": "footer",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "footers"
+    ],
+    "props": {
+      "storeName": {
+        "type": "string",
+        "label": "Store Name",
+        "labelAr": "اسم المتجر",
+        "default": ""
+      },
+      "year": {
+        "type": "string",
+        "label": "Year",
+        "labelAr": "السنة"
+      },
+      "links": {
+        "type": "array",
+        "label": "Footer Links",
+        "labelAr": "روابط التذييل",
+        "default": [],
+        "itemSchema": {
+          "title": {
+            "type": "string",
+            "label": "Title",
+            "labelAr": "العنوان"
+          },
+          "links": {
+            "type": "array",
+            "label": "Links",
+            "labelAr": "الروابط",
+            "itemSchema": {
+              "url": {
+                "type": "string",
+                "label": "URL",
+                "labelAr": "الرابط"
+              },
+              "text": {
+                "type": "string",
+                "label": "Text",
+                "labelAr": "النص"
+              }
+            }
+          }
+        }
+      },
+      "columns": {
+        "type": "number",
+        "label": "Columns",
+        "labelAr": "عدد الأعمدة",
+        "min": 1,
+        "max": 6,
+        "default": 4
+      },
+      "showCopyright": {
+        "type": "boolean",
+        "label": "Show Copyright",
+        "labelAr": "إظهار حقوق النشر",
+        "default": true
+      },
+      "showNewsletter": {
+        "type": "boolean",
+        "label": "Show Newsletter",
+        "labelAr": "إظهار النشرة الإخبارية",
+        "default": true
+      },
+      "showSocialLinks": {
+        "type": "boolean",
+        "label": "Show Social Links",
+        "labelAr": "إظهار روابط التواصل",
+        "default": true
+      }
+    }
+  },
+  {
+    "componentKey": "footer-modern-01",
+    "name": "Modern Footer",
+    "nameAr": "تذييل عصري",
+    "description": "Modern footer with columns and social links",
+    "descriptionAr": "تذييل عصري مع أعمدة وروابط التواصل",
+    "region": "footer",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "footer"
+    ],
+    "props": {
+      "year": {
+        "type": "string",
+        "label": "Year",
+        "labelAr": "السنة",
+        "default": "2025"
+      },
+      "storeName": {
+        "type": "string",
+        "label": "Store Name",
+        "labelAr": "اسم المتجر",
+        "default": ""
+      },
+      "column1Links": {
+        "type": "array",
+        "label": "Column 1 Links",
+        "labelAr": "روابط العمود الأول",
+        "default": [],
+        "itemSchema": {
+          "url": {
+            "type": "string",
+            "label": "URL",
+            "labelAr": "الرابط"
+          },
+          "text": {
+            "type": "string",
+            "label": "Text",
+            "labelAr": "النص"
+          }
+        }
+      },
+      "column1Title": {
+        "type": "string",
+        "label": "Column 1 Title",
+        "labelAr": "عنوان العمود الأول",
+        "default": ""
+      },
+      "column2Links": {
+        "type": "array",
+        "label": "Column 2 Links",
+        "labelAr": "روابط العمود الثاني",
+        "default": [],
+        "itemSchema": {
+          "url": {
+            "type": "string",
+            "label": "URL",
+            "labelAr": "الرابط"
+          },
+          "text": {
+            "type": "string",
+            "label": "Text",
+            "labelAr": "النص"
+          }
+        }
+      },
+      "column2Title": {
+        "type": "string",
+        "label": "Column 2 Title",
+        "labelAr": "عنوان العمود الثاني",
+        "default": ""
+      }
+    }
+  },
+  {
+    "componentKey": "grid-child-1",
+    "name": "Grid Child 1",
+    "nameAr": "عنصر شبكة 1",
+    "description": "Test child component for slot layouts.",
+    "descriptionAr": "مكون ابن للتجربة داخل خانات التخطيط.",
+    "region": "homepage",
+    "contexts": [
+      "homepage",
+      "theme",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "test"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": false,
+        "default": "Grid Child 1"
+      },
+      "text": {
+        "type": "string",
+        "label": "Text",
+        "labelAr": "النص",
+        "required": false,
+        "default": "Hello from child 1"
+      }
+    }
+  },
+  {
+    "componentKey": "grid-child-2",
+    "name": "Grid Child 2",
+    "nameAr": "عنصر شبكة 2",
+    "description": "Test child component for slot layouts.",
+    "descriptionAr": "مكون ابن للتجربة داخل خانات التخطيط.",
+    "region": "homepage",
+    "contexts": [
+      "homepage",
+      "theme",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "test"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": false,
+        "default": "Grid Child 2"
+      },
+      "text": {
+        "type": "string",
+        "label": "Text",
+        "labelAr": "النص",
+        "required": false,
+        "default": "Hello from child 2"
+      }
+    }
+  },
+  {
+    "componentKey": "grid-child-3",
+    "name": "Grid Child 3",
+    "nameAr": "عنصر شبكة 3",
+    "description": "Test child component for slot layouts.",
+    "descriptionAr": "مكون ابن للتجربة داخل خانات التخطيط.",
+    "region": "homepage",
+    "contexts": [
+      "homepage",
+      "theme",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "test"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": false,
+        "default": "Grid Child 3"
+      },
+      "text": {
+        "type": "string",
+        "label": "Text",
+        "labelAr": "النص",
+        "required": false,
+        "default": "Hello from child 3"
+      }
+    }
+  },
+  {
+    "componentKey": "header-modern-01",
+    "name": "Modern Header",
+    "nameAr": "رأس عصري",
+    "description": "A modern header component with logo, menu, and cart",
+    "descriptionAr": "مكون رأس عصري مع شعار وقائمة وسلة",
+    "region": "header",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "headers"
+    ],
+    "props": {
+      "storeLogo": {
+        "type": "image",
+        "label": "Store Logo",
+        "labelAr": "شعار المتجر",
+        "required": true,
+        "default": ""
+      },
+      "storeName": {
+        "type": "string",
+        "label": "Store Name",
+        "labelAr": "اسم المتجر",
+        "required": true,
+        "default": ""
+      },
+      "menuItems": {
+        "type": "array",
+        "label": "Menu Items",
+        "labelAr": "عناصر القائمة",
+        "default": [],
+        "itemSchema": {
+          "url": {
+            "type": "string",
+            "label": "URL",
+            "labelAr": "الرابط"
+          },
+          "text": {
+            "type": "string",
+            "label": "Text",
+            "labelAr": "النص"
+          }
+        }
+      },
+      "cartCount": {
+        "type": "number",
+        "label": "Cart Count",
+        "labelAr": "عدد العناصر",
+        "default": 0
+      },
+      "showSearch": {
+        "type": "boolean",
+        "label": "Show Search",
+        "labelAr": "إظهار البحث",
+        "default": true
+      },
+      "showCart": {
+        "type": "boolean",
+        "label": "Show Cart",
+        "labelAr": "إظهار السلة",
+        "default": true
+      },
+      "showWishlist": {
+        "type": "boolean",
+        "label": "Show Wishlist",
+        "labelAr": "إظهار المفضلة",
+        "default": true
+      },
+      "showUserMenu": {
+        "type": "boolean",
+        "label": "Show User Menu",
+        "labelAr": "إظهار قائمة المستخدم",
+        "default": true
+      },
+      "stickyHeader": {
+        "type": "boolean",
+        "label": "Sticky Header",
+        "labelAr": "رأس ثابت",
+        "default": true
+      }
+    }
+  },
+  {
+    "componentKey": "header-minimal-01",
+    "name": "Minimal Header",
+    "nameAr": "رأس بسيط",
+    "description": "Minimal header with logo only",
+    "descriptionAr": "رأس بسيط مع شعار فقط",
+    "region": "header",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "header"
+    ],
+    "props": {
+      "storeLogo": {
+        "type": "image",
+        "label": "Store Logo",
+        "labelAr": "شعار المتجر",
+        "required": true,
+        "default": ""
+      },
+      "storeName": {
+        "type": "string",
+        "label": "Store Name",
+        "labelAr": "اسم المتجر",
+        "default": ""
+      }
+    }
+  },
+  {
+    "componentKey": "header-sticky-01",
+    "name": "Sticky Header",
+    "nameAr": "رأس لاصق",
+    "description": "Sticky header with navigation",
+    "descriptionAr": "رأس لاصق مع تنقل",
+    "region": "header",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "header"
+    ],
+    "props": {
+      "menuItems": {
+        "type": "array",
+        "label": "Menu Items",
+        "labelAr": "عناصر القائمة",
+        "default": [],
+        "itemSchema": {
+          "url": {
+            "type": "string",
+            "label": "URL",
+            "labelAr": "الرابط"
+          },
+          "text": {
+            "type": "string",
+            "label": "Text",
+            "labelAr": "النص"
+          }
+        }
+      },
+      "storeLogo": {
+        "type": "image",
+        "label": "Store Logo",
+        "labelAr": "شعار المتجر",
+        "required": true,
+        "default": ""
+      },
+      "storeName": {
+        "type": "string",
+        "label": "Store Name",
+        "labelAr": "اسم المتجر",
+        "default": ""
+      }
+    }
+  },
+  {
+    "componentKey": "hero-banner-01",
+    "name": "Hero Banner",
+    "nameAr": "بانر البطل",
+    "description": "A beautiful hero banner with title, subtitle, and CTA button",
+    "descriptionAr": "بانر جميل مع عنوان ونص فرعي وزر دعوة للعمل",
+    "region": "homepage",
+    "contexts": [
+      "homepage",
+      "landing",
+      "flow"
+    ],
+    "sectionSlugs": [
+      "hero-sections"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": true,
+        "default": "Welcome to Our Store"
+      },
+      "subtitle": {
+        "type": "string",
+        "label": "Subtitle",
+        "labelAr": "العنوان الفرعي",
+        "default": "Discover amazing products at great prices"
+      },
+      "backgroundImage": {
+        "type": "image",
+        "label": "Background Image",
+        "labelAr": "صورة الخلفية",
+        "default": ""
+      },
+      "buttonText": {
+        "type": "string",
+        "label": "Button Text",
+        "labelAr": "نص الزر",
+        "default": "Shop Now"
+      },
+      "buttonLink": {
+        "type": "string",
+        "label": "Button Link",
+        "labelAr": "رابط الزر",
+        "default": "/products"
+      },
+      "overlay": {
+        "type": "boolean",
+        "label": "Show Overlay",
+        "labelAr": "إظهار الطبقة",
+        "default": true
+      },
+      "overlayOpacity": {
+        "type": "number",
+        "label": "Overlay Opacity",
+        "labelAr": "شفافية الطبقة",
+        "min": 0,
+        "max": 1,
+        "default": 0.3
+      }
+    }
+  },
+  {
+    "componentKey": "hero-fullscreen-01",
+    "name": "Fullscreen Hero",
+    "nameAr": "بطل ملء الشاشة",
+    "description": "Fullscreen hero banner",
+    "descriptionAr": "بانر بطل ملء الشاشة",
+    "region": "homepage",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "hero"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": true,
+        "default": ""
+      },
+      "ctaLink": {
+        "type": "string",
+        "label": "CTA Link",
+        "labelAr": "رابط الزر",
+        "default": "/products"
+      },
+      "ctaText": {
+        "type": "string",
+        "label": "CTA Text",
+        "labelAr": "نص الزر",
+        "default": "تسوق الآن"
+      },
+      "subtitle": {
+        "type": "string",
+        "label": "Subtitle",
+        "labelAr": "العنوان الفرعي",
+        "default": ""
+      },
+      "backgroundImage": {
+        "type": "image",
+        "label": "Background Image",
+        "labelAr": "صورة الخلفية",
+        "default": ""
+      }
+    }
+  },
+  {
+    "componentKey": "hero-fullscreen-02",
+    "name": "Fullscreen Hero",
+    "nameAr": "بطل ملء الشاشة",
+    "description": "Fullscreen hero banner",
+    "descriptionAr": "بانر بطل ملء الشاشة",
+    "region": "homepage",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "hero"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": true,
+        "default": ""
+      },
+      "ctaLink": {
+        "type": "string",
+        "label": "CTA Link",
+        "labelAr": "رابط الزر",
+        "default": "/products"
+      },
+      "ctaText": {
+        "type": "string",
+        "label": "CTA Text",
+        "labelAr": "نص الزر",
+        "default": "تسوق الآن"
+      },
+      "subtitle": {
+        "type": "string",
+        "label": "Subtitle",
+        "labelAr": "العنوان الفرعي",
+        "default": ""
+      },
+      "backgroundImage": {
+        "type": "image",
+        "label": "Background Image",
+        "labelAr": "صورة الخلفية",
+        "default": ""
+      }
+    }
+  },
+  {
+    "componentKey": "newsletter-01",
+    "name": "Newsletter Signup",
+    "nameAr": "اشتراك النشرة",
+    "description": "Newsletter subscription section",
+    "descriptionAr": "قسم اشتراك النشرة الإخبارية",
+    "region": "homepage",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "other"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "default": "اشترك في النشرة"
+      },
+      "subtitle": {
+        "type": "string",
+        "label": "Subtitle",
+        "labelAr": "العنوان الفرعي",
+        "default": ""
+      },
+      "buttonText": {
+        "type": "string",
+        "label": "Button Text",
+        "labelAr": "نص الزر",
+        "default": "اشتراك"
+      },
+      "placeholder": {
+        "type": "string",
+        "label": "Placeholder",
+        "labelAr": "النص التوضيحي",
+        "default": "بريدك الإلكتروني"
+      }
+    }
+  },
+  {
+    "componentKey": "product-card-01",
+    "name": "Productcard",
+    "nameAr": "Productcard",
+    "description": "Productcard component",
+    "descriptionAr": "مكون Productcard",
+    "region": "homepage",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "other"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": true,
+        "default": "Productcard"
+      }
+    }
+  },
+  {
+    "componentKey": "product-card-test-01",
+    "name": "ProductCardTest",
+    "nameAr": "ProductCardTest",
+    "description": "ProductCardTest component",
+    "descriptionAr": "مكون ProductCardTest",
+    "region": "homepage",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "other"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": true,
+        "default": "ProductCardTest"
+      }
+    }
+  },
+  {
+    "componentKey": "product-carousel-01",
+    "name": "Product Carousel",
+    "nameAr": "عرض المنتجات",
+    "description": "Product carousel slider",
+    "descriptionAr": "عرض منزلق للمنتجات",
+    "region": "homepage",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "product"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "default": "المنتجات المميزة"
+      },
+      "currency": {
+        "type": "string",
+        "label": "Currency",
+        "labelAr": "العملة",
+        "default": "SAR"
+      },
+      "products": {
+        "type": "array",
+        "label": "Products",
+        "labelAr": "المنتجات",
+        "default": []
+      }
+    }
+  },
+  {
+    "componentKey": "product-grid-01",
+    "name": "Product Grid",
+    "nameAr": "شبكة المنتجات",
+    "description": "Product grid with cards",
+    "descriptionAr": "شبكة منتجات مع بطاقات",
+    "region": "homepage",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "product"
+    ],
+    "props": {
+      "columns": {
+        "type": "number",
+        "label": "Columns",
+        "labelAr": "عدد الأعمدة",
+        "min": 1,
+        "max": 6,
+        "default": 4
+      },
+      "products": {
+        "type": "array",
+        "label": "Products",
+        "labelAr": "المنتجات",
+        "default": []
+      },
+      "showPrice": {
+        "type": "boolean",
+        "label": "Show Price",
+        "labelAr": "إظهار السعر",
+        "default": true
+      }
+    }
+  },
+  {
+    "componentKey": "products-by-brand",
+    "name": "Products by Brand",
+    "nameAr": "المنتجات حسب العلامة التجارية",
+    "description": "Display products filtered by brand with brand information",
+    "descriptionAr": "عرض المنتجات المفلترة حسب العلامة التجارية مع معلومات العلامة",
+    "region": "homepage",
+    "contexts": [
+      "homepage",
+      "theme",
+      "landing",
+      "brand"
+    ],
+    "sectionSlugs": [
+      "product-sections",
+      "brand-pages"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": false,
+        "default": "Products by Brand"
+      },
+      "showBrandInfo": {
+        "type": "boolean",
+        "label": "Show Brand Information",
+        "labelAr": "إظهار معلومات العلامة التجارية",
+        "required": false,
+        "default": true
+      },
+      "gridColumns": {
+        "type": "number",
+        "label": "Grid Columns",
+        "labelAr": "عدد الأعمدة",
+        "required": false,
+        "min": 1,
+        "max": 6,
+        "default": 4
+      },
+      "dynamicData": {
+        "type": "object",
+        "label": "Dynamic Data Configuration",
+        "labelAr": "إعدادات البيانات الديناميكية",
+        "required": true,
+        "min": 1,
+        "max": 100,
+        "options": [
+          "products"
+        ],
+        "default": {
+          "dataType": "products",
+          "data": "[\n          {\n            type: 'products',\n            dataProducts: 'brand',\n            id: '',\n          },\n        ]",
+          "limit": 12
+        },
+        "itemSchema": {
+          "type": {
+            "type": "select",
+            "label": "Type",
+            "labelAr": "النوع",
+            "required": true,
+            "options": [
+              "products"
+            ],
+            "default": "products"
+          },
+          "dataProducts": {
+            "type": "select",
+            "label": "Products Mode",
+            "labelAr": "وضع المنتجات",
+            "required": true,
+            "options": [
+              "brand"
+            ],
+            "default": "brand"
+          },
+          "id": {
+            "type": "string",
+            "label": "Brand ID",
+            "labelAr": "معرف العلامة التجارية",
+            "required": true,
+            "default": ""
+          }
+        },
+        "propertySchema": {
+          "dataType": {
+            "type": "select",
+            "label": "Data Type",
+            "labelAr": "نوع البيانات",
+            "required": true,
+            "options": [
+              "products"
+            ],
+            "default": "products"
+          },
+          "data": {
+            "type": "array",
+            "label": "Data Sources",
+            "labelAr": "مصادر البيانات",
+            "required": true,
+            "options": [
+              "products"
+            ],
+            "default": [
+              {
+                "type": "products",
+                "dataProducts": "brand",
+                "id": ""
+              }
+            ],
+            "itemSchema": {
+              "type": {
+                "type": "select",
+                "label": "Type",
+                "labelAr": "النوع",
+                "required": true,
+                "options": [
+                  "products"
+                ],
+                "default": "products"
+              },
+              "dataProducts": {
+                "type": "select",
+                "label": "Products Mode",
+                "labelAr": "وضع المنتجات",
+                "required": true,
+                "options": [
+                  "brand"
+                ],
+                "default": "brand"
+              },
+              "id": {
+                "type": "string",
+                "label": "Brand ID",
+                "labelAr": "معرف العلامة التجارية",
+                "required": true,
+                "default": ""
+              }
+            }
+          },
+          "limit": {
+            "type": "number",
+            "label": "Limit",
+            "labelAr": "الحد الأقصى",
+            "min": 1,
+            "max": 100,
+            "default": 12
+          },
+          "page": {
+            "type": "number",
+            "label": "Page",
+            "labelAr": "الصفحة",
+            "min": 1,
+            "default": 1
+          }
+        }
+      }
+    }
+  },
+  {
+    "componentKey": "products-by-category",
+    "name": "Products by Category",
+    "nameAr": "المنتجات حسب الفئة",
+    "description": "Display products filtered by category with category information",
+    "descriptionAr": "عرض المنتجات المفلترة حسب الفئة مع معلومات الفئة",
+    "region": "homepage",
+    "contexts": [
+      "homepage",
+      "theme",
+      "landing",
+      "category"
+    ],
+    "sectionSlugs": [
+      "product-sections",
+      "category-pages"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": false,
+        "default": "Products by Category"
+      },
+      "showCategoryInfo": {
+        "type": "boolean",
+        "label": "Show Category Information",
+        "labelAr": "إظهار معلومات الفئة",
+        "required": false,
+        "default": true
+      },
+      "gridColumns": {
+        "type": "number",
+        "label": "Grid Columns",
+        "labelAr": "عدد الأعمدة",
+        "required": false,
+        "min": 1,
+        "max": 6,
+        "default": 4
+      },
+      "dynamicData": {
+        "type": "object",
+        "label": "Dynamic Data Configuration",
+        "labelAr": "إعدادات البيانات الديناميكية",
+        "required": true,
+        "min": 1,
+        "max": 100,
+        "options": [
+          "products"
+        ],
+        "default": {
+          "dataType": "products",
+          "data": "[\n          {\n            type: 'products',\n            dataProducts: 'category',\n            id: '',\n          },\n        ]",
+          "limit": 12
+        },
+        "itemSchema": {
+          "type": {
+            "type": "select",
+            "label": "Type",
+            "labelAr": "النوع",
+            "required": true,
+            "options": [
+              "products"
+            ],
+            "default": "products"
+          },
+          "dataProducts": {
+            "type": "select",
+            "label": "Products Mode",
+            "labelAr": "وضع المنتجات",
+            "required": true,
+            "options": [
+              "category"
+            ],
+            "default": "category"
+          },
+          "id": {
+            "type": "string",
+            "label": "Category ID",
+            "labelAr": "معرف الفئة",
+            "required": true,
+            "default": ""
+          }
+        },
+        "propertySchema": {
+          "dataType": {
+            "type": "select",
+            "label": "Data Type",
+            "labelAr": "نوع البيانات",
+            "required": true,
+            "options": [
+              "products"
+            ],
+            "default": "products"
+          },
+          "data": {
+            "type": "array",
+            "label": "Data Sources",
+            "labelAr": "مصادر البيانات",
+            "required": true,
+            "options": [
+              "products"
+            ],
+            "default": [
+              {
+                "type": "products",
+                "dataProducts": "category",
+                "id": ""
+              }
+            ],
+            "itemSchema": {
+              "type": {
+                "type": "select",
+                "label": "Type",
+                "labelAr": "النوع",
+                "required": true,
+                "options": [
+                  "products"
+                ],
+                "default": "products"
+              },
+              "dataProducts": {
+                "type": "select",
+                "label": "Products Mode",
+                "labelAr": "وضع المنتجات",
+                "required": true,
+                "options": [
+                  "category"
+                ],
+                "default": "category"
+              },
+              "id": {
+                "type": "string",
+                "label": "Category ID",
+                "labelAr": "معرف الفئة",
+                "required": true,
+                "default": ""
+              }
+            }
+          },
+          "limit": {
+            "type": "number",
+            "label": "Limit",
+            "labelAr": "الحد الأقصى",
+            "min": 1,
+            "max": 100,
+            "default": 12
+          },
+          "page": {
+            "type": "number",
+            "label": "Page",
+            "labelAr": "الصفحة",
+            "min": 1,
+            "default": 1
+          }
+        }
+      }
+    }
+  },
+  {
+    "componentKey": "products-by-collection",
+    "name": "Products by Collection",
+    "nameAr": "المنتجات حسب المجموعة",
+    "description": "Display products filtered by collection with collection information",
+    "descriptionAr": "عرض المنتجات المفلترة حسب المجموعة مع معلومات المجموعة",
+    "region": "homepage",
+    "contexts": [
+      "homepage",
+      "theme",
+      "landing",
+      "collection"
+    ],
+    "sectionSlugs": [
+      "product-sections",
+      "collection-pages"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": false,
+        "default": "Products by Collection"
+      },
+      "showCollectionInfo": {
+        "type": "boolean",
+        "label": "Show Collection Information",
+        "labelAr": "إظهار معلومات المجموعة",
+        "required": false,
+        "default": true
+      },
+      "gridColumns": {
+        "type": "number",
+        "label": "Grid Columns",
+        "labelAr": "عدد الأعمدة",
+        "required": false,
+        "min": 1,
+        "max": 6,
+        "default": 4
+      },
+      "dynamicData": {
+        "type": "object",
+        "label": "Dynamic Data Configuration",
+        "labelAr": "إعدادات البيانات الديناميكية",
+        "required": true,
+        "min": 1,
+        "max": 100,
+        "options": [
+          "products"
+        ],
+        "default": {
+          "dataType": "products",
+          "data": "[\n          {\n            type: 'products',\n            dataProducts: 'collection',\n            id: '',\n          },\n        ]",
+          "limit": 12
+        },
+        "itemSchema": {
+          "type": {
+            "type": "select",
+            "label": "Type",
+            "labelAr": "النوع",
+            "required": true,
+            "options": [
+              "products"
+            ],
+            "default": "products"
+          },
+          "dataProducts": {
+            "type": "select",
+            "label": "Products Mode",
+            "labelAr": "وضع المنتجات",
+            "required": true,
+            "options": [
+              "collection"
+            ],
+            "default": "collection"
+          },
+          "id": {
+            "type": "string",
+            "label": "Collection ID",
+            "labelAr": "معرف المجموعة",
+            "required": true,
+            "default": ""
+          }
+        },
+        "propertySchema": {
+          "dataType": {
+            "type": "select",
+            "label": "Data Type",
+            "labelAr": "نوع البيانات",
+            "required": true,
+            "options": [
+              "products"
+            ],
+            "default": "products"
+          },
+          "data": {
+            "type": "array",
+            "label": "Data Sources",
+            "labelAr": "مصادر البيانات",
+            "required": true,
+            "options": [
+              "products"
+            ],
+            "default": [
+              {
+                "type": "products",
+                "dataProducts": "collection",
+                "id": ""
+              }
+            ],
+            "itemSchema": {
+              "type": {
+                "type": "select",
+                "label": "Type",
+                "labelAr": "النوع",
+                "required": true,
+                "options": [
+                  "products"
+                ],
+                "default": "products"
+              },
+              "dataProducts": {
+                "type": "select",
+                "label": "Products Mode",
+                "labelAr": "وضع المنتجات",
+                "required": true,
+                "options": [
+                  "collection"
+                ],
+                "default": "collection"
+              },
+              "id": {
+                "type": "string",
+                "label": "Collection ID",
+                "labelAr": "معرف المجموعة",
+                "required": true,
+                "default": ""
+              }
+            }
+          },
+          "limit": {
+            "type": "number",
+            "label": "Limit",
+            "labelAr": "الحد الأقصى",
+            "min": 1,
+            "max": 100,
+            "default": 12
+          },
+          "page": {
+            "type": "number",
+            "label": "Page",
+            "labelAr": "الصفحة",
+            "min": 1,
+            "default": 1
+          }
+        }
+      }
+    }
+  },
+  {
+    "componentKey": "test-blogs",
+    "name": "Test Blogs",
+    "nameAr": "اختبار المدونات",
+    "description": "Test component for blogs (dynamicData: blogs)",
+    "descriptionAr": "مكون اختبار للمدونات",
+    "region": "homepage",
+    "contexts": [
+      "homepage",
+      "theme",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "test",
+      "content"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": false,
+        "default": "Test Blogs"
+      },
+      "dynamicData": {
+        "type": "object",
+        "label": "Dynamic Data Configuration",
+        "labelAr": "إعدادات البيانات الديناميكية",
+        "required": true,
+        "min": 1,
+        "max": 50,
+        "options": [
+          "products",
+          "blogs",
+          "cbc"
+        ],
+        "default": {
+          "dataType": "blogs",
+          "limit": 6,
+          "page": 1
+        },
+        "propertySchema": {
+          "dataType": {
+            "type": "select",
+            "label": "Data Type",
+            "labelAr": "نوع البيانات",
+            "required": true,
+            "options": [
+              "products",
+              "blogs",
+              "cbc"
+            ],
+            "default": "blogs"
+          },
+          "limit": {
+            "type": "number",
+            "label": "Limit",
+            "labelAr": "الحد الأقصى",
+            "min": 1,
+            "max": 50,
+            "default": 6
+          },
+          "page": {
+            "type": "number",
+            "label": "Page",
+            "labelAr": "الصفحة",
+            "min": 1,
+            "default": 1
+          }
+        }
+      }
+    }
+  },
+  {
+    "componentKey": "test-cbc-brand",
+    "name": "Test Brand (CBC)",
+    "nameAr": "اختبار العلامة التجارية (CBC)",
+    "description": "Test component for brand CBC (dynamicData: cbc, type: brand)",
+    "descriptionAr": "مكون اختبار للعلامة التجارية",
+    "region": "homepage",
+    "contexts": [
+      "homepage",
+      "theme",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "test",
+      "content"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": false,
+        "default": "Test Brand"
+      },
+      "dynamicData": {
+        "type": "object",
+        "label": "Dynamic Data Configuration",
+        "labelAr": "إعدادات البيانات الديناميكية",
+        "required": true,
+        "options": [
+          "products",
+          "blogs",
+          "cbc"
+        ],
+        "default": {
+          "dataType": "cbc"
+        },
+        "propertySchema": {
+          "dataType": {
+            "type": "select",
+            "label": "Data Type",
+            "labelAr": "نوع البيانات",
+            "required": true,
+            "options": [
+              "products",
+              "blogs",
+              "cbc"
+            ],
+            "default": "cbc"
+          },
+          "cbcType": {
+            "type": "select",
+            "label": "CBC Type",
+            "labelAr": "نوع CBC",
+            "required": true,
+            "options": [
+              "category",
+              "brand",
+              "collection"
+            ],
+            "default": "brand"
+          },
+          "id": {
+            "type": "string",
+            "label": "Brand ID",
+            "labelAr": "معرف العلامة التجارية",
+            "default": ""
+          },
+          "imageType": {
+            "type": "select",
+            "label": "Image Type",
+            "labelAr": "نوع الصورة",
+            "required": true,
+            "options": [
+              "source",
+              "custom"
+            ],
+            "default": "source"
+          },
+          "customImage": {
+            "type": "image",
+            "label": "Custom Image",
+            "labelAr": "صورة مخصصة",
+            "default": ""
+          }
+        }
+      }
+    }
+  },
+  {
+    "componentKey": "test-cbc-category",
+    "name": "Test Category (CBC)",
+    "nameAr": "اختبار الفئة (CBC)",
+    "description": "Test component for category CBC (dynamicData: cbc, type: category)",
+    "descriptionAr": "مكون اختبار للفئة",
+    "region": "homepage",
+    "contexts": [
+      "homepage",
+      "theme",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "test",
+      "content"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": false,
+        "default": "Test Category"
+      },
+      "dynamicData": {
+        "type": "object",
+        "label": "Dynamic Data Configuration",
+        "labelAr": "إعدادات البيانات الديناميكية",
+        "required": true,
+        "options": [
+          "products",
+          "blogs",
+          "cbc"
+        ],
+        "default": {
+          "dataType": "cbc"
+        },
+        "propertySchema": {
+          "dataType": {
+            "type": "select",
+            "label": "Data Type",
+            "labelAr": "نوع البيانات",
+            "required": true,
+            "options": [
+              "products",
+              "blogs",
+              "cbc"
+            ],
+            "default": "cbc"
+          },
+          "cbcType": {
+            "type": "select",
+            "label": "CBC Type",
+            "labelAr": "نوع CBC",
+            "required": true,
+            "options": [
+              "category",
+              "brand",
+              "collection"
+            ],
+            "default": "category"
+          },
+          "id": {
+            "type": "string",
+            "label": "Category ID",
+            "labelAr": "معرف الفئة",
+            "default": ""
+          },
+          "imageType": {
+            "type": "select",
+            "label": "Image Type",
+            "labelAr": "نوع الصورة",
+            "required": true,
+            "options": [
+              "source",
+              "custom"
+            ],
+            "default": "source"
+          },
+          "customImage": {
+            "type": "image",
+            "label": "Custom Image",
+            "labelAr": "صورة مخصصة",
+            "default": ""
+          }
+        }
+      }
+    }
+  },
+  {
+    "componentKey": "test-cbc-collection",
+    "name": "Test Collection (CBC)",
+    "nameAr": "اختبار المجموعة (CBC)",
+    "description": "Test component for collection CBC (dynamicData: cbc, type: collection)",
+    "descriptionAr": "مكون اختبار للمجموعة",
+    "region": "homepage",
+    "contexts": [
+      "homepage",
+      "theme",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "test",
+      "content"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": false,
+        "default": "Test Collection"
+      },
+      "dynamicData": {
+        "type": "object",
+        "label": "Dynamic Data Configuration",
+        "labelAr": "إعدادات البيانات الديناميكية",
+        "required": true,
+        "options": [
+          "products",
+          "blogs",
+          "cbc"
+        ],
+        "default": {
+          "dataType": "cbc"
+        },
+        "propertySchema": {
+          "dataType": {
+            "type": "select",
+            "label": "Data Type",
+            "labelAr": "نوع البيانات",
+            "required": true,
+            "options": [
+              "products",
+              "blogs",
+              "cbc"
+            ],
+            "default": "cbc"
+          },
+          "cbcType": {
+            "type": "select",
+            "label": "CBC Type",
+            "labelAr": "نوع CBC",
+            "required": true,
+            "options": [
+              "category",
+              "brand",
+              "collection"
+            ],
+            "default": "collection"
+          },
+          "id": {
+            "type": "string",
+            "label": "Collection ID",
+            "labelAr": "معرف المجموعة",
+            "default": ""
+          },
+          "imageType": {
+            "type": "select",
+            "label": "Image Type",
+            "labelAr": "نوع الصورة",
+            "required": true,
+            "options": [
+              "source",
+              "custom"
+            ],
+            "default": "source"
+          },
+          "customImage": {
+            "type": "image",
+            "label": "Custom Image",
+            "labelAr": "صورة مخصصة",
+            "default": ""
+          }
+        }
+      }
+    }
+  },
+  {
+    "componentKey": "test-component-01",
+    "name": "Test Component",
+    "nameAr": "مكون الاختبار",
+    "description": "A simple test component for development and testing",
+    "descriptionAr": "مكون اختبار بسيط للتطوير والاختبار",
+    "region": "homepage",
+    "contexts": [
+      "homepage",
+      "landing",
+      "flow"
+    ],
+    "sectionSlugs": [
+      "test-sections"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": true,
+        "default": "Test Component"
+      },
+      "description": {
+        "type": "string",
+        "label": "Description",
+        "labelAr": "الوصف",
+        "default": "This is a test component"
+      },
+      "backgroundColor": {
+        "type": "color",
+        "label": "Background Color",
+        "labelAr": "لون الخلفية",
+        "default": "#f3f4f6"
+      },
+      "textColor": {
+        "type": "color",
+        "label": "Text Color",
+        "labelAr": "لون النص",
+        "default": "#333"
+      },
+      "padding": {
+        "type": "string",
+        "label": "Padding",
+        "labelAr": "الحشو",
+        "default": "2rem"
+      }
+    }
+  },
+  {
+    "componentKey": "test-component2-01",
+    "name": "Testcomponent2",
+    "nameAr": "Testcomponent2",
+    "description": "Testcomponent2 component",
+    "descriptionAr": "مكون Testcomponent2",
+    "region": "homepage",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "other"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": true,
+        "default": "Testcomponent2"
+      }
+    }
+  },
+  {
+    "componentKey": "test-new-component-01",
+    "name": "Testnewcomponent",
+    "nameAr": "Testnewcomponent",
+    "description": "Testnewcomponent component",
+    "descriptionAr": "مكون Testnewcomponent",
+    "region": "homepage",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "other"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": true,
+        "default": "Testnewcomponent"
+      }
+    }
+  },
+  {
+    "componentKey": "test-products-all",
+    "name": "Test Products (All)",
+    "nameAr": "اختبار المنتجات (الكل)",
+    "description": "Test component for all products (dynamicData: products, dataProducts: all)",
+    "descriptionAr": "مكون اختبار لجميع المنتجات",
+    "region": "homepage",
+    "contexts": [
+      "homepage",
+      "theme",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "test",
+      "product-sections"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": false,
+        "default": "Test Products (All)"
+      },
+      "dynamicData": {
+        "type": "object",
+        "label": "Dynamic Data Configuration",
+        "labelAr": "إعدادات البيانات الديناميكية",
+        "required": true,
+        "min": 1,
+        "max": 100,
+        "options": [
+          "products",
+          "blogs",
+          "cbc"
+        ],
+        "default": {
+          "dataType": "products",
+          "dataProducts": "all",
+          "limit": 12,
+          "page": 1
+        },
+        "propertySchema": {
+          "dataType": {
+            "type": "select",
+            "label": "Data Type",
+            "labelAr": "نوع البيانات",
+            "required": true,
+            "options": [
+              "products",
+              "blogs",
+              "cbc"
+            ],
+            "default": "products"
+          },
+          "dataProducts": {
+            "type": "select",
+            "label": "Products Mode",
+            "labelAr": "وضع المنتجات",
+            "required": true,
+            "options": [
+              "custom",
+              "all",
+              "brand",
+              "category",
+              "collection"
+            ],
+            "default": "all"
+          },
+          "limit": {
+            "type": "number",
+            "label": "Limit",
+            "labelAr": "الحد الأقصى",
+            "min": 1,
+            "max": 100,
+            "default": 12
+          },
+          "page": {
+            "type": "number",
+            "label": "Page",
+            "labelAr": "الصفحة",
+            "min": 1,
+            "default": 1
+          }
+        }
+      }
+    }
+  },
+  {
+    "componentKey": "test-products-brand",
+    "name": "Test Products (By Brand)",
+    "nameAr": "اختبار المنتجات (حسب العلامة التجارية)",
+    "description": "Test component for products by brand (dynamicData: products, dataProducts: brand)",
+    "descriptionAr": "مكون اختبار للمنتجات حسب العلامة التجارية",
+    "region": "homepage",
+    "contexts": [
+      "homepage",
+      "theme",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "test",
+      "product-sections"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": false,
+        "default": "Test Products (By Brand)"
+      },
+      "brandId": {
+        "type": "string",
+        "label": "Brand ID",
+        "labelAr": "معرف العلامة التجارية",
+        "required": false,
+        "default": ""
+      },
+      "dynamicData": {
+        "type": "object",
+        "label": "Dynamic Data Configuration",
+        "labelAr": "إعدادات البيانات الديناميكية",
+        "required": true,
+        "min": 1,
+        "max": 100,
+        "options": [
+          "products",
+          "blogs",
+          "cbc"
+        ],
+        "default": {
+          "dataType": "products",
+          "dataProducts": "brand"
+        },
+        "propertySchema": {
+          "dataType": {
+            "type": "select",
+            "label": "Data Type",
+            "labelAr": "نوع البيانات",
+            "required": true,
+            "options": [
+              "products",
+              "blogs",
+              "cbc"
+            ],
+            "default": "products"
+          },
+          "dataProducts": {
+            "type": "select",
+            "label": "Products Mode",
+            "labelAr": "وضع المنتجات",
+            "required": true,
+            "options": [
+              "custom",
+              "all",
+              "brand",
+              "category",
+              "collection"
+            ],
+            "default": "brand"
+          },
+          "id": {
+            "type": "string",
+            "label": "Brand ID",
+            "labelAr": "معرف العلامة التجارية",
+            "default": ""
+          },
+          "limit": {
+            "type": "number",
+            "label": "Limit",
+            "labelAr": "الحد الأقصى",
+            "min": 1,
+            "max": 100,
+            "default": 12
+          }
+        }
+      }
+    }
+  },
+  {
+    "componentKey": "test-products-category",
+    "name": "Test Products (By Category)",
+    "nameAr": "اختبار المنتجات (حسب الفئة)",
+    "description": "Test component for products by category (dynamicData: products, dataProducts: category)",
+    "descriptionAr": "مكون اختبار للمنتجات حسب الفئة",
+    "region": "homepage",
+    "contexts": [
+      "homepage",
+      "theme",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "test",
+      "product-sections"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": false,
+        "default": "Test Products (By Category)"
+      },
+      "categoryId": {
+        "type": "string",
+        "label": "Category ID",
+        "labelAr": "معرف الفئة",
+        "required": false,
+        "default": ""
+      },
+      "dynamicData": {
+        "type": "object",
+        "label": "Dynamic Data Configuration",
+        "labelAr": "إعدادات البيانات الديناميكية",
+        "required": true,
+        "min": 1,
+        "max": 100,
+        "options": [
+          "products",
+          "blogs",
+          "cbc"
+        ],
+        "default": {
+          "dataType": "products",
+          "dataProducts": "category"
+        },
+        "propertySchema": {
+          "dataType": {
+            "type": "select",
+            "label": "Data Type",
+            "labelAr": "نوع البيانات",
+            "required": true,
+            "options": [
+              "products",
+              "blogs",
+              "cbc"
+            ],
+            "default": "products"
+          },
+          "dataProducts": {
+            "type": "select",
+            "label": "Products Mode",
+            "labelAr": "وضع المنتجات",
+            "required": true,
+            "options": [
+              "custom",
+              "all",
+              "brand",
+              "category",
+              "collection"
+            ],
+            "default": "category"
+          },
+          "id": {
+            "type": "string",
+            "label": "Category ID",
+            "labelAr": "معرف الفئة",
+            "default": ""
+          },
+          "limit": {
+            "type": "number",
+            "label": "Limit",
+            "labelAr": "الحد الأقصى",
+            "min": 1,
+            "max": 100,
+            "default": 12
+          }
+        }
+      }
+    }
+  },
+  {
+    "componentKey": "test-products-collection",
+    "name": "Test Products (By Collection)",
+    "nameAr": "اختبار المنتجات (حسب المجموعة)",
+    "description": "Test component for products by collection (dynamicData: products, dataProducts: collection)",
+    "descriptionAr": "مكون اختبار للمنتجات حسب المجموعة",
+    "region": "homepage",
+    "contexts": [
+      "homepage",
+      "theme",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "test",
+      "product-sections"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": false,
+        "default": "Test Products (By Collection)"
+      },
+      "collectionId": {
+        "type": "string",
+        "label": "Collection ID",
+        "labelAr": "معرف المجموعة",
+        "required": false,
+        "default": ""
+      },
+      "dynamicData": {
+        "type": "object",
+        "label": "Dynamic Data Configuration",
+        "labelAr": "إعدادات البيانات الديناميكية",
+        "required": true,
+        "min": 1,
+        "max": 100,
+        "options": [
+          "products",
+          "blogs",
+          "cbc"
+        ],
+        "default": {
+          "dataType": "products",
+          "dataProducts": "collection"
+        },
+        "propertySchema": {
+          "dataType": {
+            "type": "select",
+            "label": "Data Type",
+            "labelAr": "نوع البيانات",
+            "required": true,
+            "options": [
+              "products",
+              "blogs",
+              "cbc"
+            ],
+            "default": "products"
+          },
+          "dataProducts": {
+            "type": "select",
+            "label": "Products Mode",
+            "labelAr": "وضع المنتجات",
+            "required": true,
+            "options": [
+              "custom",
+              "all",
+              "brand",
+              "category",
+              "collection"
+            ],
+            "default": "collection"
+          },
+          "id": {
+            "type": "string",
+            "label": "Collection ID",
+            "labelAr": "معرف المجموعة",
+            "default": ""
+          },
+          "limit": {
+            "type": "number",
+            "label": "Limit",
+            "labelAr": "الحد الأقصى",
+            "min": 1,
+            "max": 100,
+            "default": 12
+          }
+        }
+      }
+    }
+  },
+  {
+    "componentKey": "test-products-custom",
+    "name": "Test Products (Custom IDs)",
+    "nameAr": "اختبار المنتجات (معرفات مخصصة)",
+    "description": "Test component for products with custom IDs (dynamicData: products, dataProducts: custom)",
+    "descriptionAr": "مكون اختبار للمنتجات بمعرفات مخصصة",
+    "region": "homepage",
+    "contexts": [
+      "homepage",
+      "theme",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "test",
+      "product-sections"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": false,
+        "default": "Test Products (Custom IDs)"
+      },
+      "dynamicData": {
+        "type": "object",
+        "label": "Dynamic Data Configuration",
+        "labelAr": "إعدادات البيانات الديناميكية",
+        "required": true,
+        "options": [
+          "products",
+          "blogs",
+          "cbc"
+        ],
+        "default": {
+          "dataType": "products",
+          "dataProducts": "custom"
+        },
+        "propertySchema": {
+          "dataType": {
+            "type": "select",
+            "label": "Data Type",
+            "labelAr": "نوع البيانات",
+            "required": true,
+            "options": [
+              "products",
+              "blogs",
+              "cbc"
+            ],
+            "default": "products"
+          },
+          "dataProducts": {
+            "type": "select",
+            "label": "Products Mode",
+            "labelAr": "وضع المنتجات",
+            "required": true,
+            "options": [
+              "custom",
+              "all",
+              "brand",
+              "category",
+              "collection"
+            ],
+            "default": "custom"
+          },
+          "ids": {
+            "type": "array",
+            "label": "Product IDs",
+            "labelAr": "معرفات المنتجات",
+            "default": []
+          }
+        }
+      }
+    }
+  },
+  {
+    "componentKey": "test-products-filtered",
+    "name": "Test Products (Filtered with Tabs)",
+    "nameAr": "اختبار المنتجات (مع فلاتر)",
+    "description": "Test component for products with filter tabs (category, brand, collection)",
+    "descriptionAr": "مكون اختبار للمنتجات مع فلاتر",
+    "region": "homepage",
+    "contexts": [
+      "homepage",
+      "theme",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "test",
+      "product-sections"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": false,
+        "default": "Filtered Products"
+      },
+      "dynamicData": {
+        "type": "object",
+        "label": "Dynamic Data Configuration",
+        "labelAr": "إعدادات البيانات الديناميكية",
+        "required": true,
+        "min": 1,
+        "max": 100,
+        "options": [
+          "products",
+          "blogs",
+          "cbc"
+        ],
+        "default": {
+          "dataType": "products"
+        },
+        "propertySchema": {
+          "dataType": {
+            "type": "select",
+            "label": "Data Type",
+            "labelAr": "نوع البيانات",
+            "required": true,
+            "options": [
+              "products",
+              "blogs",
+              "cbc"
+            ],
+            "default": "products"
+          },
+          "limit": {
+            "type": "number",
+            "label": "Limit",
+            "labelAr": "الحد الأقصى",
+            "min": 1,
+            "max": 100,
+            "default": 12
+          }
+        }
+      }
+    }
+  },
+  {
+    "componentKey": "test-section-component",
+    "name": "TestSectionComponent",
+    "nameAr": "TestSectionComponent",
+    "description": "TestSectionComponent component",
+    "descriptionAr": "مكون TestSectionComponent",
+    "region": "homepage",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "other"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "required": true,
+        "default": "TestSectionComponent"
+      }
+    }
+  },
+  {
+    "componentKey": "testimonials-01",
+    "name": "Testimonials",
+    "nameAr": "شهادات العملاء",
+    "description": "Customer testimonials section",
+    "descriptionAr": "قسم شهادات العملاء",
+    "region": "homepage",
+    "contexts": [
+      "homepage"
+    ],
+    "sectionSlugs": [
+      "other"
+    ],
+    "props": {
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "default": "شهادات العملاء"
+      },
+      "testimonials": {
+        "type": "array",
+        "label": "Testimonials",
+        "labelAr": "الشهادات",
+        "default": []
+      }
+    }
+  }
+]

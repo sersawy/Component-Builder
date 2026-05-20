@@ -30,6 +30,45 @@ export interface CreateComponentResponse {
   id: string;
 }
 
+export interface Section {
+  id: string;
+  slug: string;
+  name: string;
+  nameAr: string;
+  description: string;
+  sortOrder: number;
+  isActive: boolean;
+}
+
+export interface ExistingComponent {
+  id: string;
+  componentKey: string;
+  name: string;
+  nameAr: string;
+  description: string;
+  descriptionAr: string;
+  contexts: string[];
+  sectionSlugs: string[];
+  props: Record<string, PropDefinition>;
+  previewImage: string;
+  isActive: boolean;
+  isPublic: boolean;
+  isPremium: boolean;
+  sections: Section[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ComponentsListResponse {
+  components: ExistingComponent[];
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
+}
+
 export interface PropDefinition {
   type: 'string' | 'number' | 'boolean' | 'image' | 'color' | 'select' | 'array' | 'object' | 'date';
   label?: string;
@@ -65,4 +104,22 @@ export interface SubmitResult {
   message: string;
   id?: string;
   errorCode?: string;
+}
+
+export interface UpdateResult {
+  componentKey: string;
+  componentId: string;
+  success: boolean;
+  message: string;
+  errorCode?: string;
+}
+
+export type LogLevel = 'info' | 'success' | 'error' | 'warn';
+
+export interface LogEntry {
+  id: string;
+  timestamp: number;
+  message: string;
+  level: LogLevel;
+  detail?: string;
 }

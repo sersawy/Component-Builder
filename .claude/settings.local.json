@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node scripts/read-schemas.cjs landing])",
+      "Bash(node scripts/read-schemas.cjs all)"
+    ]
+  }
+}

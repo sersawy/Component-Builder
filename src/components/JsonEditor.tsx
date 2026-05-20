@@ -5,25 +5,30 @@ import { parseSchemaFile, parseSchemaFileMulti } from '../utils/tsParser';
 import type { ComponentSchemaPayload } from '../types';
 
 export function JsonEditor() {
-  const { rawJson, parsedSchemas, parseError, setRawJson, parseJson, loadFromFile } = useComponentStore();
+  const { rawJson, parsedSchemas, parseError, setRawJson, parseJson, loadFromFile, addLog } = useComponentStore();
   const [tsError, setTsError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   const quickLoads: { label: string; url: string }[] = [
-    { label: 'Headers (20)', url: '/extracted-schemas-headers.json' },
-    { label: 'Footers (20)', url: '/extracted-schemas-footers.json' },
-    { label: 'All (40)', url: '/extracted-schemas-all.json' },
+    { label: 'All (392)', url: '/api/schemas/all' },
+    { label: 'Sections (39)', url: '/api/schemas/sections' },
+    { label: 'General (50)', url: '/api/schemas/general' },
+    { label: 'Funnels (154)', url: '/api/schemas/funnels' },
+    { label: 'Landing (74)', url: '/api/schemas/landing' },
+    { label: 'Themes (94)', url: '/api/schemas/themes' },
   ];
 
   const loadUrl = async (url: string) => {
     setLoading(true);
+    addLog(`Loading schemas from ${url}...`, 'info');
     try {
       const res = await fetch(url);
-      if (!res.ok) throw new Error('Failed to fetch');
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data: ComponentSchemaPayload[] = await res.json();
+      addLog(`Loaded ${data.length} schema(s) from ${url}`, 'success');
       loadFromFile(data);
-    } catch {
-      // ignore
+    } catch (e) {
+      addLog(`Failed to load ${url}: ${(e as Error).message}`, 'error');
     } finally {
       setLoading(false);
     }
@@ -32,6 +37,7 @@ export function JsonEditor() {
   const handleJsonUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    addLog(`Loading JSON file: ${file.name}`, 'info');
     const reader = new FileReader();
     reader.onload = (ev) => {
       setRawJson(ev.target?.result as string || '');
@@ -44,6 +50,7 @@ export function JsonEditor() {
     const files = e.target.files;
     if (!files || files.length === 0) return;
     setTsError(null);
+    addLog(`Parsing ${files.length} .ts file(s)...`, 'info');
 
     if (files.length === 1) {
       const file = files[0];
@@ -53,13 +60,14 @@ export function JsonEditor() {
         const result = parseSchemaFile(content);
         if (result.error) {
           setTsError(result.error);
+          addLog(`Parse error: ${result.error}`, 'error');
         } else if (result.schemas) {
+          addLog(`Parsed ${result.schemas.length} schema(s) from ${file.name}`, 'success', result.schemas.map((s) => s.componentKey).join(', '));
           loadFromFile(result.schemas);
         }
       };
       reader.readAsText(file);
     } else {
-      // Multiple files — batch parse
       const readers: Promise<{ name: string; content: string }>[] = [];
       for (let i = 0; i < files.length; i++) {
         readers.push(
@@ -74,10 +82,23 @@ export function JsonEditor() {
         const schemas = parseSchemaFileMulti(fileData);
         if (schemas.length === 0) {
           setTsError('No schemas found in any of the selected files');
+          addLog('No schemas found in selected .ts files', 'error');
         } else {
+          addLog(`Parsed ${schemas.length} schema(s) from ${files.length} .ts files`, 'success', schemas.map((s) => s.componentKey).join(', '));
           loadFromFile(schemas);
         }
       });
+    }
+  };
+
+  const handleParseJson = () => {
+    const before = parsedSchemas.length;
+    parseJson();
+    const after = useComponentStore.getState().parsedSchemas.length;
+    if (after > before) {
+      addLog(`JSON parsed: ${after} schema(s)`, 'success', useComponentStore.getState().parsedSchemas.map((s) => s.componentKey).join(', '));
+    } else if (useComponentStore.getState().parseError) {
+      addLog(`JSON parse failed: ${useComponentStore.getState().parseError}`, 'error');
     }
   };
 
@@ -88,7 +109,7 @@ export function JsonEditor() {
           <FileCode className="w-5 h-5" />
           Component Schema Input
         </h2>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           {quickLoads.map((ql) => (
             <button
               key={ql.url}
@@ -101,7 +122,7 @@ export function JsonEditor() {
           ))}
           <label className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg cursor-pointer text-sm text-gray-700 dark:text-gray-300 transition">
             <FileCode className="w-4 h-4" />
-            Upload .ts
+            .ts
             <input
               type="file"
               accept=".ts"
@@ -111,7 +132,7 @@ export function JsonEditor() {
             />
           </label>
           <label className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg cursor-pointer text-sm text-gray-700 dark:text-gray-300 transition">
-            Upload .json
+            .json
             <input type="file" accept=".json" className="hidden" onChange={handleJsonUpload} />
           </label>
         </div>
@@ -158,7 +179,7 @@ export function JsonEditor() {
       )}
 
       <button
-        onClick={parseJson}
+        onClick={handleParseJson}
         className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-medium transition"
       >
         Parse JSON

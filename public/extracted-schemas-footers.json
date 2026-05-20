@@ -3016,35 +3016,144 @@
             "label": "Newsletter",
             "labelAr": "النشرة الإخبارية",
             "description": "Newsletter block content and texts.",
-            "descriptionAr": "محتوى ونصوص بلوك النشرة البريدية."
+            "descriptionAr": "محتوى ونصوص بلوك النشرة البريدية.",
+            "propertySchema": {
+              "title": {
+                "type": "string",
+                "label": "Title",
+                "labelAr": "العنوان"
+              },
+              "placeholder": {
+                "type": "string",
+                "label": "Placeholder",
+                "labelAr": "النص الافتراضي"
+              },
+              "buttonText": {
+                "type": "string",
+                "label": "Button Text",
+                "labelAr": "نص الزر"
+              }
+            }
           },
           "socialMedia": {
             "type": "object",
             "label": "Social Media",
             "labelAr": "وسائل التواصل الاجتماعي",
             "description": "Social media section title.",
-            "descriptionAr": "عنوان قسم وسائل التواصل الاجتماعي."
+            "descriptionAr": "عنوان قسم وسائل التواصل الاجتماعي.",
+            "propertySchema": {
+              "title": {
+                "type": "string",
+                "label": "Title",
+                "labelAr": "العنوان"
+              }
+            }
           },
           "pages": {
             "type": "object",
             "label": "Pages",
             "labelAr": "الصفحات",
             "description": "List of main site pages shown in the footer.",
-            "descriptionAr": "قائمة الصفحات الرئيسية المعروضة في الفوتر."
+            "descriptionAr": "قائمة الصفحات الرئيسية المعروضة في الفوتر.",
+            "itemSchema": {
+              "name": {
+                "type": "string",
+                "label": "Name",
+                "labelAr": "الاسم",
+                "description": "Link display name for the page.",
+                "descriptionAr": "اسم العرض لرابط الصفحة."
+              },
+              "url": {
+                "type": "string",
+                "label": "URL",
+                "labelAr": "الرابط",
+                "description": "Destination URL for the page link.",
+                "descriptionAr": "عنوان الوجهة لرابط الصفحة."
+              }
+            },
+            "propertySchema": {
+              "title": {
+                "type": "string",
+                "label": "Title",
+                "labelAr": "العنوان"
+              },
+              "links": {
+                "type": "array",
+                "label": "Links",
+                "labelAr": "الروابط",
+                "description": "Link display name for the page.",
+                "descriptionAr": "اسم العرض لرابط الصفحة.",
+                "itemSchema": {
+                  "name": {
+                    "type": "string",
+                    "label": "Name",
+                    "labelAr": "الاسم",
+                    "description": "Link display name for the page.",
+                    "descriptionAr": "اسم العرض لرابط الصفحة."
+                  },
+                  "url": {
+                    "type": "string",
+                    "label": "URL",
+                    "labelAr": "الرابط",
+                    "description": "Destination URL for the page link.",
+                    "descriptionAr": "عنوان الوجهة لرابط الصفحة."
+                  }
+                }
+              }
+            }
           },
           "copyright": {
             "type": "object",
             "label": "Copyright",
             "labelAr": "حقوق النشر",
             "description": "Copyright and powered-by block content.",
-            "descriptionAr": "محتوى حقوق النشر ونص المدعوم بواسطة."
+            "descriptionAr": "محتوى حقوق النشر ونص المدعوم بواسطة.",
+            "propertySchema": {
+              "poweredBy": {
+                "type": "string",
+                "label": "Powered By",
+                "labelAr": "مدعوم بواسطة",
+                "description": "Optional powered-by attribution text.",
+                "descriptionAr": "نص انتساب مدعوم بواسطة اختياري."
+              },
+              "text": {
+                "type": "string",
+                "label": "Text",
+                "labelAr": "النص",
+                "description": "Copyright or legal text shown in the footer.",
+                "descriptionAr": "نص حقوق النشر أو النص القانوني المعروض في الفوتر."
+              }
+            }
           },
           "instagramCard": {
             "type": "object",
             "label": "Instagram Card",
             "labelAr": "بطاقة الانستاجرام",
             "description": "Instagram callout card texts for desktop and mobile.",
-            "descriptionAr": "نصوص بطاقة الانستاجرام المعروضة على سطح المكتب والجوال."
+            "descriptionAr": "نصوص بطاقة الانستاجرام المعروضة على سطح المكتب والجوال.",
+            "propertySchema": {
+              "text": {
+                "type": "string",
+                "label": "Text",
+                "labelAr": "النص",
+                "description": "Desktop text for the Instagram card.",
+                "descriptionAr": "نص سطح المكتب لبطاقة الانستاجرام."
+              },
+              "mobileText": {
+                "type": "string",
+                "label": "Mobile Text",
+                "labelAr": "نص الجوال",
+                "description": "Mobile-friendly text for the Instagram card (may include line breaks).",
+                "descriptionAr": "نص مناسب للجوال لبطاقة الانستاجرام (قد يتضمن فواصل سطور)."
+              },
+              "url": {
+                "type": "string",
+                "label": "URL",
+                "labelAr": "الرابط",
+                "description": "URL for the Instagram card.",
+                "descriptionAr": "عنوان URL لبطاقة الانستاجرام."
+              }
+            }
           }
         }
       },
@@ -3545,14 +3654,16 @@
             "label": "Link Text",
             "labelAr": "نص الرابط",
             "description": "Visible text for the navigation link",
-            "descriptionAr": "النص الظاهر لرابط التنقل"
+            "descriptionAr": "النص الظاهر لرابط التنقل",
+            "required": true
           },
           "href": {
             "type": "string",
             "label": "Link URL",
             "labelAr": "رابط الرابط",
             "description": "URL destination for the navigation link",
-            "descriptionAr": "رابط وجهة لرابط التنقل"
+            "descriptionAr": "رابط وجهة لرابط التنقل",
+            "required": true
           }
         }
       },
@@ -3802,6 +3913,7 @@
             "labelAr": "التسمية",
             "description": "The display text for the footer link",
             "descriptionAr": "النص الظاهر لرابط التذييل",
+            "required": true,
             "default": "Link Label"
           },
           "url": {
@@ -3810,6 +3922,7 @@
             "labelAr": "الرابط",
             "description": "The URL the footer link points to",
             "descriptionAr": "عنوان URL الذي يشير إليه رابط التذييل",
+            "required": true,
             "default": "/"
           }
         }
@@ -4486,6 +4599,7 @@
             "labelAr": "التسمية",
             "description": "The display text of the footer link",
             "descriptionAr": "النص الظاهر لرابط التذييل",
+            "required": true,
             "default": "Link Label"
           },
           "url": {
@@ -4494,6 +4608,7 @@
             "labelAr": "الرابط",
             "description": "The destination URL of the footer link",
             "descriptionAr": "رابط الوجهة الخاص برابط التذييل",
+            "required": true,
             "default": "/"
           }
         }
@@ -4600,14 +4715,16 @@
             "label": "Link Text",
             "labelAr": "نص الرابط",
             "description": "The visible text label for the footer link",
-            "descriptionAr": "النص الظاهر لرابط التذييل"
+            "descriptionAr": "النص الظاهر لرابط التذييل",
+            "required": true
           },
           "href": {
             "type": "string",
             "label": "Link URL",
             "labelAr": "رابط URL",
             "description": "The destination URL of the footer link",
-            "descriptionAr": "رابط الوجهة الخاص برابط التذييل"
+            "descriptionAr": "رابط الوجهة الخاص برابط التذييل",
+            "required": true
           }
         }
       },
@@ -4935,14 +5052,16 @@
             "label": "Link Text",
             "labelAr": "نص الرابط",
             "description": "Displayed label for the navigation link.",
-            "descriptionAr": "التسمية المعروضة لرابط التنقل."
+            "descriptionAr": "التسمية المعروضة لرابط التنقل.",
+            "required": true
           },
           "href": {
             "type": "string",
             "label": "Link URL",
             "labelAr": "رابط URL",
             "description": "Target URL/path for the navigation link.",
-            "descriptionAr": "عنوان URL/المسار الهدف لرابط التنقل."
+            "descriptionAr": "عنوان URL/المسار الهدف لرابط التنقل.",
+            "required": true
           }
         }
       },
@@ -5234,14 +5353,16 @@
             "label": "Link Text",
             "labelAr": "نص الرابط",
             "description": "Displayed label for the navigation link.",
-            "descriptionAr": "التسمية المعروضة لرابط التنقل."
+            "descriptionAr": "التسمية المعروضة لرابط التنقل.",
+            "required": true
           },
           "href": {
             "type": "string",
             "label": "Link URL",
             "labelAr": "رابط URL",
             "description": "Target URL/path for the navigation link.",
-            "descriptionAr": "عنوان URL/المسار الهدف لرابط التنقل."
+            "descriptionAr": "عنوان URL/المسار الهدف لرابط التنقل.",
+            "required": true
           }
         }
       },
@@ -5537,6 +5658,1103 @@
         "description": "Color applied to social icons on hover",
         "descriptionAr": "اللون المطبق على أيقونات التواصل عند التحويم",
         "default": "#D063B7"
+      }
+    }
+  },
+  {
+    "componentKey": "footertheme1-fl",
+    "name": "Multi-Column Footer with Links",
+    "nameAr": "تذييل متعدد الأعمدة مع الروابط",
+    "description": "Footer section with multiple columns for company info, links, social media, and newsletter subscription",
+    "descriptionAr": "قسم التذييل مع أعمدة متعددة لمعلومات الشركة والروابط ومواقع التواصل الاجتماعي والاشتراك في النشرة الإخبارية",
+    "previewImage": "https://i.postimg.cc/1zQdtF8y/Footer-Web.jpg",
+    "contexts": [
+      "flow",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "footers"
+    ],
+    "props": {
+      "basicBackgroundColor": {
+        "type": "color",
+        "label": "Background Color",
+        "labelAr": "لون الخلفية",
+        "description": "Main background color for the footer section",
+        "descriptionAr": "لون الخلفية الرئيسي لقسم التذييل",
+        "default": "#111111"
+      },
+      "textColor": {
+        "type": "color",
+        "label": "Text Color",
+        "labelAr": "لون النص",
+        "description": "Color for all text elements in the footer",
+        "descriptionAr": "اللون المستخدم لجميع عناصر النص في التذييل",
+        "default": "#FFFFFF"
+      },
+      "title": {
+        "type": "string",
+        "label": "Title",
+        "labelAr": "العنوان",
+        "description": "Main title displayed in the footer",
+        "descriptionAr": "العنوان الرئيسي المعروض في التذييل",
+        "required": true,
+        "default": "Find Unique Items With Trendora"
+      },
+      "logoImage": {
+        "type": "image",
+        "label": "Logo Image",
+        "labelAr": "صورة الشعار",
+        "description": "Company logo image displayed in the footer",
+        "descriptionAr": "صورة شعار الشركة المعروضة في التذييل",
+        "default": "https://cdn.orderlek.store/owner-uploads/images/1773611338017-WhatsApp_Image_2026-03-15_at_10.48.31_PM-7337c7400575baa8.jpeg"
+      },
+      "footerLinks": {
+        "type": "array",
+        "label": "footer Links",
+        "labelAr": "روابط الفوتر",
+        "description": "Multiple columns of footer links organized by category",
+        "descriptionAr": "أعمدة متعددة من روابط التذييل منظمة حسب الفئة",
+        "default": [
+          {
+            "title": "Customer services",
+            "links": "[\n            { label: \"Track My Orders\", url: \"#\" },\n            { label: \"My Account\", url: \"#\" },\n          ]"
+          },
+          {
+            "title": "Customer services",
+            "links": "[\n            { label: \"Track My Orders\", url: \"#\" },\n            { label: \"My Account\", url: \"#\" },\n          ]"
+          },
+          {
+            "title": "Our Information",
+            "links": "[\n            { label: \"Privacy Policy\", url: \"#\" },\n            { label: \"Privacy Policy\", url: \"#\" },\n          ]"
+          },
+          {
+            "title": "contact information",
+            "links": "[\n            { label: \"+20 0112634666\", url: \"#\" },\n            { label: \"company@gmail.com\", url: \"#\" },\n          ]"
+          }
+        ],
+        "itemSchema": {
+          "title": {
+            "type": "string",
+            "label": "title",
+            "labelAr": "العنوان",
+            "description": "Title for the footer links column",
+            "descriptionAr": "العنوان لعمود روابط التذييل"
+          },
+          "links": {
+            "type": "array",
+            "label": "links",
+            "labelAr": "اللينكات",
+            "description": "Array of links in this column",
+            "descriptionAr": "مصفوفة من الروابط في هذا العمود",
+            "itemSchema": {
+              "label": {
+                "type": "string",
+                "label": "label",
+                "labelAr": "النص",
+                "description": "Display text for the link",
+                "descriptionAr": "النص المعروض للرابط"
+              },
+              "url": {
+                "type": "string",
+                "label": "url",
+                "labelAr": "اللينك ",
+                "description": "URL destination for the link",
+                "descriptionAr": "عنوان URL للرابط"
+              }
+            }
+          }
+        }
+      },
+      "poweredByLabel": {
+        "type": "string",
+        "label": "Powered By Label",
+        "labelAr": "تسمية مدعوم من",
+        "description": "Label text before the powered by reference",
+        "descriptionAr": "نص التسمية قبل مرجع مدعوم بواسطة",
+        "default": "Powered by"
+      },
+      "poweredBy": {
+        "type": "string",
+        "label": "poweredBy",
+        "labelAr": "مدعوم بواسطه",
+        "description": "Name of the service or platform providing the footer",
+        "descriptionAr": "اسم الخدمة أو المنصة التي توفر التذييل",
+        "default": " Orderlek.com"
+      },
+      "copyrightText": {
+        "type": "string",
+        "label": "Copyright Text",
+        "labelAr": "نص حقوق النشر",
+        "description": "Copyright notice displayed in the footer",
+        "descriptionAr": "إشعار حقوق النشر المعروض في التذييل",
+        "default": "© 2025, Trendora Fashion, All Rights Reserved."
+      },
+      "socialLinks": {
+        "type": "array",
+        "label": "Social Links",
+        "labelAr": "روابط التواصل الاجتماعي",
+        "description": "Social media platform links and icons",
+        "descriptionAr": "روابط المنصات الاجتماعية والأيقونات",
+        "default": [
+          {
+            "platform": "https://cdn.orderlek.store/owner-uploads/images/1768669757711-facebook-01-1cfd14274619ade8.svg",
+            "url": "https://facebook.com",
+            "name": "facebook"
+          },
+          {
+            "platform": "https://cdn.orderlek.store/owner-uploads/images/1768669792149-instagram-8fe75d171ebb1b7b.svg",
+            "url": "https://instagram.com",
+            "iconImage": "instagram"
+          },
+          {
+            "platform": "https://cdn.orderlek.store/owner-uploads/images/1768669844497-whatsapp-0a89d24b52de2565.svg",
+            "url": "https://whatsapp.com",
+            "iconImage": "whatsapp"
+          }
+        ],
+        "itemSchema": {
+          "platform": {
+            "type": "image",
+            "label": "Platform",
+            "labelAr": "المنصة",
+            "description": "Icon image for the social media platform",
+            "descriptionAr": "صورة الأيقونة لمنصة التواصل الاجتماعي"
+          },
+          "url": {
+            "type": "string",
+            "label": "URL",
+            "labelAr": "الرابط",
+            "description": "Social media profile URL",
+            "descriptionAr": "عنوان URL لملف التواصل الاجتماعي"
+          },
+          "name": {
+            "type": "string",
+            "label": "name",
+            "labelAr": "الأيقونة",
+            "description": "Name identifier for the social platform",
+            "descriptionAr": "معرّف الاسم لمنصة التواصل الاجتماعي"
+          }
+        }
+      },
+      "fontWeightBold": {
+        "type": "number",
+        "label": "Font Weight Bold",
+        "labelAr": "وزن الخط",
+        "description": "Font weight for bold text elements in the footer",
+        "descriptionAr": "وزن الخط لعناصر النص الغامق في التذييل",
+        "min": 100,
+        "max": 900,
+        "step": 100,
+        "default": 700
+      }
+    }
+  },
+  {
+    "componentKey": "footertheme2-fl",
+    "name": "Footer",
+    "nameAr": "الفوتر",
+    "description": "Footer section with logo, links, and social media.",
+    "descriptionAr": "قسم الفوتر يحتوي على الشعار والروابط ووسائل التواصل.",
+    "previewImage": "https://i.postimg.cc/BQFxZcNL/Frame-1000003373.jpg",
+    "contexts": [
+      "flow",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "footers"
+    ],
+    "props": {
+      "logoImage": {
+        "type": "image",
+        "label": "Logo Image",
+        "labelAr": "صورة الشعار",
+        "description": "Image used for the footer logo.",
+        "descriptionAr": "الصورة المستخدمة لشعار الفوتر.",
+        "default": "https://cdn.orderlek.store/owner-uploads/images/1772224643469-source_White_and_Red_Simple_Beauty_Cosmetic_Logo-22-9b2f599d2a2b9a6a.png"
+      },
+      "backgroundColor": {
+        "type": "color",
+        "label": "Background Color",
+        "labelAr": "لون الخلفية",
+        "description": "Background color of the footer area.",
+        "descriptionAr": "لون خلفية منطقة الفوتر.",
+        "default": "#FFFFFF"
+      },
+      "headingColor": {
+        "type": "color",
+        "label": "Heading Color",
+        "labelAr": "لون العناوين",
+        "description": "Color used for footer column headings.",
+        "descriptionAr": "اللون المستخدم لعناوين أعمدة الفوتر.",
+        "default": "#2B0614"
+      },
+      "textColor": {
+        "type": "color",
+        "label": "Text Color",
+        "labelAr": "لون النص",
+        "description": "Primary text color for footer content.",
+        "descriptionAr": "لون النص الأساسي لمحتوى الفوتر.",
+        "default": "#2B0614"
+      },
+      "mutedTextColor": {
+        "type": "color",
+        "label": "Muted Text Color",
+        "labelAr": "لون النص الفاتح",
+        "description": "Muted/secondary text color used for less prominent links.",
+        "descriptionAr": "لون النص الثانوي/الفاتح المستخدم للروابط الأقل بروزًا.",
+        "default": "#666666"
+      },
+      "borderColor": {
+        "type": "color",
+        "label": "Border Color",
+        "labelAr": "لون الحدود",
+        "description": "Color used for borders or separators in the footer.",
+        "descriptionAr": "اللون المستخدم للحدود أو الفواصل في الفوتر.",
+        "default": "#E5E5E5"
+      },
+      "footerLinks": {
+        "type": "array",
+        "label": "Footer Columns",
+        "labelAr": "أعمدة الفوتر",
+        "description": "Array of footer columns, each with a title and links.",
+        "descriptionAr": "مصفوفة أعمدة الفوتر، كل عمود يحتوي على عنوان وروابط.",
+        "default": [
+          {
+            "title": "Customer Services",
+            "links": "[\n            { label: 'Track My Orders', url: '/order-tracking' },\n            { label: 'My Account', url: '/accounts' },\n          ]"
+          },
+          {
+            "title": "Contact Information",
+            "links": "[\n            { label: '+20 0112634666', url: '#' },\n            { label: 'company@gmail.com', url: 'mailto:company@gmail.com' },\n          ]"
+          },
+          {
+            "title": "Our Information",
+            "links": "[\n            { label: 'Terms & Condition', url: '/terms' },\n            { label: 'Privacy Policy', url: '/privacy' },\n          ]"
+          }
+        ],
+        "itemSchema": {
+          "title": {
+            "type": "string",
+            "label": "Title",
+            "labelAr": "العنوان",
+            "description": "Column title displayed above the list of links.",
+            "descriptionAr": "عنوان العمود المعروض أعلى قائمة الروابط."
+          },
+          "links": {
+            "type": "array",
+            "label": "Links",
+            "labelAr": "الروابط",
+            "description": "List of links for this footer column.",
+            "descriptionAr": "قائمة الروابط لهذا العمود في الفوتر.",
+            "itemSchema": {
+              "label": {
+                "type": "string",
+                "label": "Label",
+                "labelAr": "النص",
+                "description": "Visible text for the link.",
+                "descriptionAr": "النص الظاهر للربط."
+              },
+              "url": {
+                "type": "string",
+                "label": "URL",
+                "labelAr": "الرابط",
+                "description": "Destination URL for the link.",
+                "descriptionAr": "عنوان URL الوجهة للربط."
+              }
+            }
+          }
+        }
+      },
+      "socialLinks": {
+        "type": "array",
+        "label": "Social Links",
+        "labelAr": "روابط التواصل الاجتماعي",
+        "description": "List of social media links to display in the footer.",
+        "descriptionAr": "قائمة روابط وسائل التواصل الاجتماعي المعروضة في الفوتر.",
+        "default": [
+          {
+            "platform": "facebook",
+            "url": "https://cdn.orderlek.store/owner-uploads/images/1774288004200-Icon_3_-95ae3d4257f52cb0.svg",
+            "name": "facebook"
+          },
+          {
+            "platform": "instagram",
+            "url": "https://cdn.orderlek.store/owner-uploads/images/1774288035451-Icon_4_-5ea224634be34745.svg",
+            "name": "instagram"
+          },
+          {
+            "platform": "tiktok",
+            "url": "https://cdn.orderlek.store/owner-uploads/images/1774288080789-Icon_5_-d5149d0329782ac6.svg",
+            "name": "tiktok"
+          }
+        ],
+        "itemSchema": {
+          "platform": {
+            "type": "string",
+            "label": "Platform (facebook, instagram, tiktok, ...)",
+            "labelAr": "المنصة (facebook, instagram, tiktok, ...)",
+            "description": "Social platform identifier (e.g., facebook).",
+            "descriptionAr": "معرّف منصة التواصل الاجتماعي (مثل facebook)."
+          },
+          "url": {
+            "type": "string",
+            "label": "URL",
+            "labelAr": "الرابط",
+            "description": "URL to the social profile or page.",
+            "descriptionAr": "رابط الملف الشخصي أو صفحة المنصة."
+          },
+          "name": {
+            "type": "string",
+            "label": "Name",
+            "labelAr": "الاسم",
+            "description": "Readable name for the social platform.",
+            "descriptionAr": "الاسم المقروء لمنصة التواصل الاجتماعي."
+          }
+        }
+      },
+      "copyrightText": {
+        "type": "string",
+        "label": "Copyright Text",
+        "labelAr": "نص حقوق النشر",
+        "description": "Text displayed at the bottom of the footer for copyright or credits.",
+        "descriptionAr": "النص المعروض في أسفل الفوتر لحقوق النشر أو الإشارات.",
+        "default": "©  All Rights Reserved. Made by orderlek"
+      }
+    }
+  },
+  {
+    "componentKey": "footertheme3-fl",
+    "name": "Footer",
+    "nameAr": "الفوتر",
+    "description": "Footer section with company info, links, and social media.",
+    "descriptionAr": "قسم الفوتر يحتوي على معلومات الشركة والروابط ووسائل التواصل الاجتماعي.",
+    "previewImage": "https://i.postimg.cc/FsS6L6NM/Footer.jpg",
+    "contexts": [
+      "flow",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "footers"
+    ],
+    "props": {
+      "companyName": {
+        "type": "string",
+        "label": "Company name",
+        "labelAr": "اسم الشركة",
+        "description": "The company name displayed in the footer.",
+        "descriptionAr": "اسم الشركة المعروض في الفوتر.",
+        "required": true,
+        "default": "NEXTPICK"
+      },
+      "addressLine1": {
+        "type": "string",
+        "label": "Address line 1",
+        "labelAr": "سطر العنوان الأول",
+        "description": "First address line shown in the footer contact details.",
+        "descriptionAr": "السطر الأول من العنوان المعروض في تفاصيل الاتصال بالفوتر.",
+        "default": "Damstraat 123"
+      },
+      "addressLine2": {
+        "type": "string",
+        "label": "Address line 2",
+        "labelAr": "سطر العنوان الثاني",
+        "description": "Second address line for the company address.",
+        "descriptionAr": "السطر الثاني من العنوان لعنوان الشركة.",
+        "default": "1012 AB Amsterdam"
+      },
+      "addressLine3": {
+        "type": "string",
+        "label": "Address line 3",
+        "labelAr": "سطر العنوان الثالث",
+        "description": "Third address line (country or additional info).",
+        "descriptionAr": "السطر الثالث من العنوان (البلد أو معلومات إضافية).",
+        "default": "The Netherlands"
+      },
+      "phone": {
+        "type": "string",
+        "label": "Phone",
+        "labelAr": "الهاتف",
+        "description": "Primary contact phone number displayed in the footer.",
+        "descriptionAr": "رقم الهاتف الرئيسي للتواصل المعروض في الفوتر.",
+        "default": "+31 20 123 4567"
+      },
+      "email": {
+        "type": "string",
+        "label": "Email",
+        "labelAr": "البريد الإلكتروني",
+        "description": "Support or contact email address.",
+        "descriptionAr": "عنوان البريد الإلكتروني للدعم أو الاتصال.",
+        "default": "support@nextpick.com"
+      },
+      "workingHours": {
+        "type": "array",
+        "label": "Working hours lines",
+        "labelAr": "ساعات العمل",
+        "description": "List of working hours lines to display in the footer.",
+        "descriptionAr": "قائمة أسطر ساعات العمل لعرضها في الفوتر.",
+        "default": [
+          "Monday to Friday: 09:00 - 18:00",
+          "Saturday: 10:00 - 16:00",
+          "Sunday: Closed"
+        ],
+        "itemSchema": {
+          "value": {
+            "type": "string",
+            "label": "Line",
+            "labelAr": "سطر",
+            "description": "Single line representing working hours (e.g., Monday: 9-18).",
+            "descriptionAr": "سطر واحد يمثل ساعات العمل (مثل الإثنين: 9-18)."
+          }
+        }
+      },
+      "aboutLinks": {
+        "type": "array",
+        "label": "About us links",
+        "labelAr": "روابط حولنا",
+        "description": "Links related to company information and corporate pages.",
+        "descriptionAr": "روابط متعلقة بمعلومات الشركة وصفحاتها المؤسسية.",
+        "default": [
+          {
+            "label": "Stores",
+            "url": "/stores"
+          },
+          {
+            "label": "Corporate website",
+            "url": "/corporate"
+          },
+          {
+            "label": "Exclusive Offers",
+            "url": "/exclusive-offers"
+          },
+          {
+            "label": "Career",
+            "url": "/career"
+          }
+        ],
+        "itemSchema": {
+          "label": {
+            "type": "string",
+            "label": "Label",
+            "labelAr": "النص",
+            "description": "Visible text for the about link.",
+            "descriptionAr": "النص الظاهر لرابط "
+          },
+          "url": {
+            "type": "string",
+            "label": "URL",
+            "labelAr": "الرابط",
+            "description": "Destination URL for the about link.",
+            "descriptionAr": "عنوان URL الوجهة لرابط "
+          }
+        }
+      },
+      "helpLinks": {
+        "type": "array",
+        "label": "Help & Support links",
+        "labelAr": "روابط المساعدة والدعم",
+        "description": "Customer help and support links (help center, returns, FAQ).",
+        "descriptionAr": "روابط مساعدة ودعم العملاء (مركز المساعدة، الإرجاع، الأسئلة الشائعة).",
+        "default": [
+          {
+            "label": "Help center",
+            "url": "/help"
+          },
+          {
+            "label": "Payments",
+            "url": "/payments"
+          },
+          {
+            "label": "Product returns",
+            "url": "/returns"
+          },
+          {
+            "label": "FAQ",
+            "url": "/faq"
+          }
+        ],
+        "itemSchema": {
+          "label": {
+            "type": "string",
+            "label": "Label",
+            "labelAr": "النص",
+            "description": "Visible text for the help link.",
+            "descriptionAr": "النص الظاهر لرابط المساعدة."
+          },
+          "url": {
+            "type": "string",
+            "label": "URL",
+            "labelAr": "الرابط",
+            "description": "Destination URL for the help link.",
+            "descriptionAr": "عنوان URL الوجهة لرابط المساعدة."
+          }
+        }
+      },
+      "newsletterTitle": {
+        "type": "string",
+        "label": "Newsletter title",
+        "labelAr": "عنوان النشرة البريدية",
+        "description": "Headline text encouraging users to sign up for the newsletter.",
+        "descriptionAr": "نص العنوان الذي يشجع المستخدمين على الاشتراك في النشرة البريدية.",
+        "default": "Sign up for exclusive offers and the latest news!"
+      },
+      "newsletterPlaceholder": {
+        "type": "string",
+        "label": "Newsletter placeholder",
+        "labelAr": "نص حقل البريد",
+        "description": "Placeholder shown inside the newsletter email input field.",
+        "descriptionAr": "النص الافتراضي المعروض داخل حقل إدخال البريد للنشرة.",
+        "default": "Your email..."
+      },
+      "socialLinks": {
+        "type": "array",
+        "label": "Social links",
+        "labelAr": "روابط التواصل الاجتماعي",
+        "description": "List of social media links to display in the footer.",
+        "descriptionAr": "قائمة روابط وسائل التواصل الاجتماعي المعروضة في الفوتر.",
+        "default": [
+          {
+            "platform": "facebook",
+            "url": "/facebook"
+          },
+          {
+            "platform": "instagram",
+            "url": "/instagram"
+          },
+          {
+            "platform": "twitter",
+            "url": "/twitter"
+          }
+        ],
+        "itemSchema": {
+          "platform": {
+            "type": "string",
+            "label": "Platform",
+            "labelAr": "المنصة",
+            "description": "Identifier of the social platform (facebook, instagram, etc.).",
+            "descriptionAr": "معرّف منصة التواصل الاجتماعي (facebook، instagram، إلخ)."
+          },
+          "url": {
+            "type": "string",
+            "label": "URL",
+            "labelAr": "الرابط",
+            "description": "URL to the social profile or page.",
+            "descriptionAr": "رابط الملف الشخصي أو صفحة المنصة."
+          }
+        }
+      },
+      "copyrightText": {
+        "type": "string",
+        "label": "Copyright text",
+        "labelAr": "نص حقوق النشر",
+        "description": "Copyright or credits text shown at the bottom of the footer.",
+        "descriptionAr": "نص حقوق النشر أو الإشارات المعروض في أسفل الفوتر.",
+        "default": "© 2024 NEXTPICK. All Rights Reserved."
+      },
+      "bottomLinks": {
+        "type": "array",
+        "label": "Bottom links",
+        "labelAr": "روابط أسفل الصفحة",
+        "description": "Small utility links displayed at the bottom of the footer.",
+        "descriptionAr": "روابط أداة صغيرة معروضة في أسفل الفوتر.",
+        "default": [
+          {
+            "label": "Privacy policy",
+            "url": "/privacy-policy"
+          },
+          {
+            "label": "Cookie settings",
+            "url": "/cookie-settings"
+          },
+          {
+            "label": "Terms and conditions",
+            "url": "/terms-and-conditions"
+          },
+          {
+            "label": "Imprint",
+            "url": "/imprint"
+          }
+        ],
+        "itemSchema": {
+          "label": {
+            "type": "string",
+            "label": "Label",
+            "labelAr": "النص",
+            "description": "Visible label for the bottom link.",
+            "descriptionAr": "النص الظاهر لرابط الأسفل."
+          },
+          "url": {
+            "type": "string",
+            "label": "URL",
+            "labelAr": "الرابط",
+            "description": "Destination URL for the bottom link.",
+            "descriptionAr": "عنوان URL الوجهة لرابط الأسفل."
+          }
+        }
+      }
+    }
+  },
+  {
+    "componentKey": "footertheme4-fl",
+    "name": "Footer",
+    "nameAr": "تذييل الصفحة",
+    "description": "Footer with newsletter subscription and navigation links",
+    "descriptionAr": "تذييل مع مربع الاشتراك وروابط التنقل",
+    "previewImage": "https://i.postimg.cc/6pwMG5Hc/Group-5.jpg",
+    "contexts": [
+      "flow",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "footers"
+    ],
+    "props": {
+      "brandName": {
+        "type": "string",
+        "label": "Brand Name",
+        "labelAr": "اسم العلامة التجارية",
+        "description": "Display name of the brand shown in the footer.",
+        "descriptionAr": "اسم العلامة التجارية المعروض في تذييل الصفحة.",
+        "required": false,
+        "default": "SHOP.CO"
+      },
+      "brandDescription": {
+        "type": "string",
+        "label": "Brand Description",
+        "labelAr": "وصف العلامة التجارية",
+        "description": "Short descriptive text about the brand shown in the footer.",
+        "descriptionAr": "نص وصفي قصير عن العلامة التجارية المعروض في التذييل.",
+        "required": false,
+        "default": "We have clothes that suits your style and which you're proud to wear. From women to men."
+      },
+      "newsletterTitle1": {
+        "type": "string",
+        "label": "Newsletter Title Line 1",
+        "labelAr": "عنوان النشرة الإخبارية السطر 1",
+        "description": "First line of the newsletter call-to-action title.",
+        "descriptionAr": "السطر الأول من عنوان دعوة الاشتراك في النشرة الإخبارية.",
+        "required": false,
+        "default": "STAY UPTO DATE ABOUT"
+      },
+      "newsletterTitle2": {
+        "type": "string",
+        "label": "Newsletter Title Line 2",
+        "labelAr": "عنوان النشرة الإخبارية السطر 2",
+        "description": "Second line of the newsletter call-to-action title.",
+        "descriptionAr": "السطر الثاني من عنوان دعوة الاشتراك في النشرة الإخبارية.",
+        "required": false,
+        "default": "OUR LATEST OFFERS"
+      },
+      "newsletterPlaceholder": {
+        "type": "string",
+        "label": "Newsletter Email Placeholder",
+        "labelAr": "نص حقل البريد الإلكتروني",
+        "description": "Placeholder text shown inside the newsletter email input.",
+        "descriptionAr": "النص الافتراضي المعروض داخل حقل بريد الاشتراك.",
+        "required": false,
+        "default": "Enter your email address"
+      },
+      "newsletterButtonText": {
+        "type": "string",
+        "label": "Newsletter Button Text",
+        "labelAr": "نص زر الاشتراك",
+        "description": "Label text for the newsletter subscription button.",
+        "descriptionAr": "نص التسمية لزر الاشتراك في النشرة الإخبارية.",
+        "required": false,
+        "default": "Subscribe to Newsletter"
+      },
+      "companyLinks": {
+        "type": "array",
+        "label": "Company Links",
+        "labelAr": "روابط الشركة",
+        "description": "List of company-related navigation links shown in the footer.",
+        "descriptionAr": "قائمة روابط متعلقة بالشركة معروضة في التذييل.",
+        "default": [
+          {
+            "label": "About",
+            "url": "/about"
+          },
+          {
+            "label": "Features",
+            "url": "/features"
+          },
+          {
+            "label": "Works",
+            "url": "/works"
+          },
+          {
+            "label": "Career",
+            "url": "/career"
+          }
+        ],
+        "itemSchema": {
+          "label": {
+            "type": "string",
+            "label": "Link Label",
+            "labelAr": "نص الرابط",
+            "description": "Visible text for this footer link.",
+            "descriptionAr": "النص الظاهر لهذا الرابط في التذييل."
+          },
+          "url": {
+            "type": "string",
+            "label": "Link URL",
+            "labelAr": "رابط الصفحة",
+            "description": "URL the footer link navigates to.",
+            "descriptionAr": "عنوان URL الذي ينتقل إليه هذا الرابط في التذييل."
+          }
+        }
+      },
+      "helpLinks": {
+        "type": "array",
+        "label": "Help Links",
+        "labelAr": "روابط المساعدة",
+        "description": "Support and help links for customers in the footer.",
+        "descriptionAr": "روابط الدعم والمساعدة للعملاء في التذييل.",
+        "default": [
+          {
+            "label": "Customer Support",
+            "url": "/contact"
+          },
+          {
+            "label": "Delivery Details",
+            "url": "/delivery"
+          },
+          {
+            "label": "Terms & Conditions",
+            "url": "/terms"
+          },
+          {
+            "label": "Privacy Policy",
+            "url": "/privacy"
+          }
+        ],
+        "itemSchema": {
+          "label": {
+            "type": "string",
+            "label": "Link Label",
+            "labelAr": "نص الرابط",
+            "description": "Visible text for this help link.",
+            "descriptionAr": "النص الظاهر لهذا الرابط في المساعدة."
+          },
+          "url": {
+            "type": "string",
+            "label": "Link URL",
+            "labelAr": "رابط الصفحة",
+            "description": "URL for the help link.",
+            "descriptionAr": "عنوان URL لهذا الرابط المساعد."
+          }
+        }
+      },
+      "faqLinks": {
+        "type": "array",
+        "label": "FAQ Links",
+        "labelAr": "روابط الأسئلة الشائعة",
+        "description": "Frequently asked questions links displayed in the footer.",
+        "descriptionAr": "روابط الأسئلة الشائعة المعروضة في التذييل.",
+        "default": [
+          {
+            "label": "Account",
+            "url": "/account"
+          },
+          {
+            "label": "Manage Deliveries",
+            "url": "/deliveries"
+          },
+          {
+            "label": "Orders",
+            "url": "/orders"
+          },
+          {
+            "label": "Payments",
+            "url": "/payments"
+          }
+        ],
+        "itemSchema": {
+          "label": {
+            "type": "string",
+            "label": "Link Label",
+            "labelAr": "نص الرابط",
+            "description": "Visible text for this FAQ link.",
+            "descriptionAr": "النص الظاهر لهذا الرابط في الأسئلة الشائعة."
+          },
+          "url": {
+            "type": "string",
+            "label": "Link URL",
+            "labelAr": "رابط الصفحة",
+            "description": "URL for the FAQ link.",
+            "descriptionAr": "عنوان URL لهذا الرابط في الأسئلة الشائعة."
+          }
+        }
+      },
+      "resourcesLinks": {
+        "type": "array",
+        "label": "Resources Links",
+        "labelAr": "روابط الموارد",
+        "description": "External resource links shown in the footer.",
+        "descriptionAr": "روابط موارد خارجية معروضة في التذييل.",
+        "default": [
+          {
+            "label": "Free eBooks",
+            "url": "/free-ebooks"
+          },
+          {
+            "label": "Development Tutorial",
+            "url": "/development-tutorial"
+          },
+          {
+            "label": "How to - Blog",
+            "url": "/how-to-blog"
+          },
+          {
+            "label": "Youtube Playlist",
+            "url": "/youtube-playlist"
+          }
+        ],
+        "itemSchema": {
+          "label": {
+            "type": "string",
+            "label": "Link Label",
+            "labelAr": "نص الرابط",
+            "description": "Visible text for this resource link.",
+            "descriptionAr": "النص الظاهر لهذا الرابط للموارد."
+          },
+          "url": {
+            "type": "string",
+            "label": "Link URL",
+            "labelAr": "رابط الصفحة",
+            "description": "URL for the resource link.",
+            "descriptionAr": "عنوان URL لهذا الرابط الخاص بالموارد."
+          }
+        }
+      },
+      "socialLinks": {
+        "type": "array",
+        "label": "Social Media Links",
+        "labelAr": "روابط وسائل التواصل الاجتماعي",
+        "description": "Social media profiles and links to display in the footer.",
+        "descriptionAr": "حسابات وروابط وسائل التواصل الاجتماعي للعرض في التذييل.",
+        "default": [
+          {
+            "platform": "twitter",
+            "url": "/twitter"
+          },
+          {
+            "platform": "facebook",
+            "url": "/facebook"
+          },
+          {
+            "platform": "instagram",
+            "url": "/instagram"
+          },
+          {
+            "platform": "github",
+            "url": "/github"
+          }
+        ],
+        "itemSchema": {
+          "platform": {
+            "type": "string",
+            "label": "Platform",
+            "labelAr": "المنصة",
+            "description": "Identifier for the social platform (e.g., twitter).",
+            "descriptionAr": "معرّف المنصة الاجتماعية (مثل تويتر)."
+          },
+          "url": {
+            "type": "string",
+            "label": "URL",
+            "labelAr": "الرابط",
+            "description": "Profile or page URL for the social platform.",
+            "descriptionAr": "عنوان URL للملف الشخصي أو الصفحة الخاصة بالمنصة."
+          }
+        }
+      },
+      "copyrightText": {
+        "type": "string",
+        "label": "Copyright Text",
+        "labelAr": "نص حقوق النشر",
+        "description": "Copyright and trademark text displayed in the footer.",
+        "descriptionAr": "نص حقوق النشر والعلامات التجارية المعروض في التذييل.",
+        "required": false,
+        "default": "Shop.co © 2000-2023, All Rights Reserved"
+      },
+      "paymentMethods": {
+        "type": "array",
+        "label": "Payment Methods",
+        "labelAr": "طرق الدفع",
+        "description": "List of accepted payment methods shown in the footer.",
+        "descriptionAr": "قائمة طرق الدفع المقبولة المعروضة في التذييل.",
+        "required": false,
+        "default": [
+          {
+            "name": "VISA",
+            "image": "",
+            "url": "#"
+          },
+          {
+            "name": "Mastercard",
+            "image": "",
+            "url": "#"
+          },
+          {
+            "name": "PayPal",
+            "image": "",
+            "url": "#"
+          },
+          {
+            "name": "Apple Pay",
+            "image": "",
+            "url": "#"
+          },
+          {
+            "name": "Google Pay",
+            "image": "",
+            "url": "#"
+          }
+        ],
+        "itemSchema": {
+          "name": {
+            "type": "string",
+            "label": "Payment Method Name",
+            "labelAr": "اسم طريقة الدفع",
+            "description": "Display name of the payment method.",
+            "descriptionAr": "الاسم المعروض لطريقة الدفع."
+          },
+          "image": {
+            "type": "image",
+            "label": "Payment Method Image",
+            "labelAr": "صورة طريقة الدفع",
+            "description": "Optional logo/image for the payment method.",
+            "descriptionAr": "شعار/صورة اختيارية لطريقة الدفع.",
+            "required": false
+          },
+          "url": {
+            "type": "string",
+            "label": "Payment Method URL",
+            "labelAr": "رابط طريقة الدفع",
+            "description": "Optional URL linking to payment provider information.",
+            "descriptionAr": "عنوان URL اختياري يربط إلى معلومات مزود الدفع.",
+            "required": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "componentKey": "footertheme5-fl",
+    "name": "Footer",
+    "nameAr": "تذييل الصفحة",
+    "description": "Footer with brand, links and newsletter subscription",
+    "descriptionAr": "تذييل الصفحة مع العلامة التجارية والروابط ونموذج الاشتراك",
+    "previewImage": "https://i.postimg.cc/SswrQy2V/footer-(1).jpg",
+    "contexts": [
+      "flow",
+      "landing"
+    ],
+    "sectionSlugs": [
+      "footers"
+    ],
+    "props": {
+      "brandName": {
+        "type": "string",
+        "label": "Brand Name",
+        "labelAr": "اسم العلامة التجارية",
+        "description": "Display name of the brand shown in the footer.",
+        "descriptionAr": "اسم العلامة التجارية المعروض في تذييل الصفحة.",
+        "required": false,
+        "default": "Funiro."
+      },
+      "companyAddressLine1": {
+        "type": "string",
+        "label": "Company Address Line 1",
+        "labelAr": "عنوان الشركة السطر الأول",
+        "description": "First line of the company address shown in the footer.",
+        "descriptionAr": "السطر الأول من عنوان الشركة المعروض في التذييل.",
+        "required": false,
+        "default": "400 University Drive Suite 200 Coral Gables,"
+      },
+      "companyAddressLine2": {
+        "type": "string",
+        "label": "Company Address Line 2",
+        "labelAr": "عنوان الشركة السطر الثاني",
+        "description": "Second line of the company address shown in the footer.",
+        "descriptionAr": "السطر الثاني من عنوان الشركة المعروض في التذييل.",
+        "required": false,
+        "default": "FL 33134 USA"
+      },
+      "links": {
+        "type": "array",
+        "label": "Links",
+        "labelAr": "الروابط",
+        "description": "List of primary footer navigation links.",
+        "descriptionAr": "قائمة روابط التنقل الأساسية في التذييل.",
+        "required": false,
+        "default": [
+          {
+            "label": "Home",
+            "url": "/"
+          },
+          {
+            "label": "Shop",
+            "url": "/products"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          },
+          {
+            "label": "Contact",
+            "url": "/contact"
+          }
+        ]
+      },
+      "helpLinks": {
+        "type": "array",
+        "label": "Help Links",
+        "labelAr": "روابط المساعدة",
+        "description": "Support and help-related links displayed in the footer.",
+        "descriptionAr": "روابط الدعم والمساعدة المعروضة في التذييل.",
+        "required": false,
+        "default": [
+          {
+            "label": "Payment Options",
+            "url": "/payment-options"
+          },
+          {
+            "label": "Returns",
+            "url": "/returns"
+          },
+          {
+            "label": "Privacy Policies",
+            "url": "/privacy"
+          }
+        ]
+      },
+      "newsletterPlaceholder": {
+        "type": "string",
+        "label": "Newsletter Placeholder",
+        "labelAr": "نص حقل النشرة الإخبارية",
+        "description": "Placeholder text inside the newsletter email input.",
+        "descriptionAr": "النص الافتراضي داخل حقل بريد النشرة الإخبارية.",
+        "required": false,
+        "default": "Enter Your Email Address"
+      },
+      "subscribeButtonText": {
+        "type": "string",
+        "label": "Subscribe Button Text",
+        "labelAr": "نص زر الاشتراك",
+        "description": "Label text for the newsletter subscribe button.",
+        "descriptionAr": "نص التسمية لزر الاشتراك في النشرة الإخبارية.",
+        "required": false,
+        "default": "SUBSCRIBE"
+      },
+      "copyrightText": {
+        "type": "string",
+        "label": "Copyright Text",
+        "labelAr": "نص حقوق النشر",
+        "description": "Copyright and legal text shown in the footer.",
+        "descriptionAr": "نص حقوق النشر والنصوص القانونية المعروض في التذييل.",
+        "required": false,
+        "default": "2023 furino. All rights reverved"
       }
     }
   }
