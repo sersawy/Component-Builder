@@ -7,6 +7,9 @@ import type {
   ComponentsListResponse,
   ExistingComponent,
   UpdateResult,
+  ThemeItem,
+  LandingItem,
+  FlowItem,
 } from '../types';
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api.orderlek.com';
@@ -171,4 +174,40 @@ export async function updateComponents(
   }
 
   return results;
+}
+
+// Themes
+export async function getThemes(): Promise<ApiResponse<{ items: ThemeItem[] }>> {
+  return fetchWithAuth<{ items: ThemeItem[] }>('/api/v1/owner/themes');
+}
+
+export async function updateTheme(id: string, payload: unknown): Promise<ApiResponse<{ id: string }>> {
+  return fetchWithAuth<{ id: string }>(`/api/v1/owner/themes/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(payload),
+  });
+}
+
+// Landings
+export async function getLandings(): Promise<ApiResponse<{ items: LandingItem[] }>> {
+  return fetchWithAuth<{ items: LandingItem[] }>('/api/v1/owner/landings');
+}
+
+export async function updateLanding(id: string, payload: unknown): Promise<ApiResponse<{ id: string }>> {
+  return fetchWithAuth<{ id: string }>(`/api/v1/owner/landings/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(payload),
+  });
+}
+
+// Flows
+export async function getFlows(): Promise<ApiResponse<{ items: FlowItem[] }>> {
+  return fetchWithAuth<{ items: FlowItem[] }>('/api/v1/owner/flows');
+}
+
+export async function updateFlow(id: string, payload: unknown): Promise<ApiResponse<{ id: string }>> {
+  return fetchWithAuth<{ id: string }>(`/api/v1/owner/flows/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(payload),
+  });
 }

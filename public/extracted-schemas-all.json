@@ -4724,6 +4724,7 @@
               ""
             ],
             "default": "",
+            "itemSchema": {},
             "propertySchema": {
               "backgroundColor": {
                 "type": "color",
@@ -4843,6 +4844,7 @@
                   ""
                 ],
                 "default": "",
+                "itemSchema": {},
                 "propertySchema": {
                   "backgroundColor": {
                     "type": "color",
@@ -4927,7 +4929,8 @@
                   "footer",
                   ""
                 ],
-                "default": []
+                "default": [],
+                "itemSchema": {}
               },
               "gap": {
                 "type": "string",
@@ -6853,6 +6856,7 @@
           "oldPriceFontSize": "",
           "oldPriceFontWeight": ""
         },
+        "itemSchema": {},
         "propertySchema": {
           "oldPriceEnabled": {
             "type": "boolean",
@@ -6920,7 +6924,8 @@
               "oldPrice",
               "currentPrice",
               "badge"
-            ]
+            ],
+            "itemSchema": {}
           },
           "gap": {
             "type": "string",
@@ -7124,6 +7129,7 @@
           "averageRating": "{\n          color: '',\n          fontSize: '14px',\n          fontWeight: '500',\n          textDecoration: 'none',\n        }",
           "separator": "{\n          enabled: true,\n          color: '#d1d5db',\n          spacing: '10px',\n          height: '16px',\n        }"
         },
+        "itemSchema": {},
         "propertySchema": {
           "justifyContent": {
             "type": "select",
@@ -7174,7 +7180,8 @@
               "stars",
               "reviewCount",
               "averageRating"
-            ]
+            ],
+            "itemSchema": {}
           },
           "container": {
             "type": "object",
@@ -7861,6 +7868,9 @@
             }
           }
         }
+      },
+      "slots": {
+        "required": false
       }
     }
   },
@@ -14302,6 +14312,9 @@
         "min": 0,
         "max": 64,
         "default": 16
+      },
+      "slots": {
+        "required": false
       }
     }
   },
@@ -14437,12 +14450,14 @@
     "nameAr": "Payment",
     "description": "Payment component",
     "descriptionAr": "مكون Payment",
-    "region": "homepage",
+    "previewImage": "https://i.postimg.cc/R0ZF00Wp/Screenshot-56.png",
     "contexts": [
-      "homepage"
+      "theme",
+      "landing",
+      "flow"
     ],
     "sectionSlugs": [
-      "other"
+      "info-accordion"
     ],
     "props": {
       "sectionPadding": {
@@ -14789,6 +14804,9 @@
         "min": 1,
         "max": 6,
         "default": 4
+      },
+      "slots": {
+        "required": false
       }
     }
   },
@@ -14836,6 +14854,9 @@
           "stretch"
         ],
         "default": "start"
+      },
+      "slots": {
+        "required": false
       }
     }
   },
@@ -15866,7 +15887,8 @@
         "labelAr": "إعدادات المنتج",
         "description": "General product display settings used in the sticky cart.",
         "descriptionAr": "إعدادات عرض المنتج العامة المستخدمة في الشريط الثابت.",
-        "default": {}
+        "default": {},
+        "propertySchema": {}
       },
       "pricing": {
         "type": "object",
@@ -16178,7 +16200,8 @@
         "labelAr": "إعدادات المنتج",
         "description": "General product display settings used in the sticky cart.",
         "descriptionAr": "إعدادات عرض المنتج العامة المستخدمة في الشريط الثابت.",
-        "default": {}
+        "default": {},
+        "propertySchema": {}
       },
       "pricing": {
         "type": "object",
@@ -32305,12 +32328,14 @@
     "nameAr": "عنوان الدفع (مسار 4)",
     "description": "Centered checkout headline with a pill badge above the title.",
     "descriptionAr": "عنوان صفحة الدفع مع شارة صغيرة فوق العنوان الرئيسي.",
-    "region": "homepage",
+    "previewImage": "https://i.postimg.cc/hvF32fxx/Screenshot-55.png",
     "contexts": [
-      "homepage"
+      "flow",
+      "theme",
+      "landing"
     ],
     "sectionSlugs": [
-      "other"
+      "tagline"
     ],
     "props": {
       "badgeText": {
@@ -48934,13 +48959,14 @@
     "nameAr": "شريط الإحصائيات",
     "description": "Responsive counters section with mobile marquee and desktop grid.",
     "descriptionAr": "قسم إحصائيات متجاوب مع سلايدر بالموبايل وشبكة في الشاشات الأكبر.",
+    "previewImage": "https://i.postimg.cc/yxjYmJrZ/Screenshot-57.png",
     "contexts": [
-      "theme",
       "flow",
+      "theme",
       "landing"
     ],
     "sectionSlugs": [
-      "other"
+      "stats-counters"
     ],
     "props": {
       "sectionBackgroundColor": {
@@ -91407,7 +91433,8 @@
         "labelAr": "التخطيط",
         "description": "Navbar container layout settings.",
         "descriptionAr": "إعدادات تخطيط حاوية شريط التنقل.",
-        "default": {}
+        "default": {},
+        "propertySchema": {}
       },
       "headerFeatures": {
         "type": "object",

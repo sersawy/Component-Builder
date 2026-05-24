@@ -12094,12 +12094,14 @@
     "nameAr": "Payment",
     "description": "Payment component",
     "descriptionAr": "مكون Payment",
-    "region": "homepage",
+    "previewImage": "https://i.postimg.cc/R0ZF00Wp/Screenshot-56.png",
     "contexts": [
-      "homepage"
+      "theme",
+      "landing",
+      "flow"
     ],
     "sectionSlugs": [
-      "other"
+      "info-accordion"
     ],
     "props": {
       "sectionPadding": {

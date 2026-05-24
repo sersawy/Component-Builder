@@ -14134,12 +14134,14 @@
     "nameAr": "عنوان الدفع (مسار 4)",
     "description": "Centered checkout headline with a pill badge above the title.",
     "descriptionAr": "عنوان صفحة الدفع مع شارة صغيرة فوق العنوان الرئيسي.",
-    "region": "homepage",
+    "previewImage": "https://i.postimg.cc/hvF32fxx/Screenshot-55.png",
     "contexts": [
-      "homepage"
+      "flow",
+      "theme",
+      "landing"
     ],
     "sectionSlugs": [
-      "other"
+      "tagline"
     ],
     "props": {
       "badgeText": {
@@ -30763,13 +30765,14 @@
     "nameAr": "شريط الإحصائيات",
     "description": "Responsive counters section with mobile marquee and desktop grid.",
     "descriptionAr": "قسم إحصائيات متجاوب مع سلايدر بالموبايل وشبكة في الشاشات الأكبر.",
+    "previewImage": "https://i.postimg.cc/yxjYmJrZ/Screenshot-57.png",
     "contexts": [
-      "theme",
       "flow",
+      "theme",
       "landing"
     ],
     "sectionSlugs": [
-      "other"
+      "stats-counters"
     ],
     "props": {
       "sectionBackgroundColor": {

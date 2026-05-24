@@ -1,6 +1,7 @@
 import { create } from 'zustand';
-import type { ComponentSchemaPayload, SubmitResult, ExistingComponent, UpdateResult, LogEntry, LogLevel } from '../types';
+import type { ComponentSchemaPayload, SubmitResult, ExistingComponent, UpdateResult, LogEntry, LogLevel, ThemeItem, LandingItem, FlowItem, ValidationReport, ValidationItem, EntityUpdateResult } from '../types';
 import { createComponent, getAllComponents, updateComponent } from '../api/client';
+import { getThemes, updateTheme, getLandings, updateLanding, getFlows, updateFlow } from '../api/client';
 
 interface ComponentState {
   rawJson: string;
@@ -40,6 +41,36 @@ interface ComponentState {
   clearLogs: () => void;
   setUpdateProgress: (progress: { current: number; total: number } | null) => void;
   clearAutoMatchReport: () => void;
+
+  // Entity panel (themes, landings, flows)
+  entityType: 'component' | 'theme' | 'landing' | 'flow';
+  existingThemes: ThemeItem[];
+  existingLandings: LandingItem[];
+  existingFlows: FlowItem[];
+  selectedTheme: ThemeItem | null;
+  selectedLanding: LandingItem | null;
+  selectedFlow: FlowItem | null;
+  isLoadingThemes: boolean;
+  isLoadingLandings: boolean;
+  isLoadingFlows: boolean;
+  targetEntityJson: string;
+  targetParseError: string | null;
+  validationReport: ValidationReport | null;
+  isValidating: boolean;
+  isUpdatingEntity: boolean;
+  entityUpdateResults: EntityUpdateResult[];
+
+  setEntityType: (type: 'component' | 'theme' | 'landing' | 'flow') => void;
+  loadThemes: () => Promise<void>;
+  loadLandings: () => Promise<void>;
+  loadFlows: () => Promise<void>;
+  selectTheme: (theme: ThemeItem | null) => void;
+  selectLanding: (landing: LandingItem | null) => void;
+  selectFlow: (flow: FlowItem | null) => void;
+  setTargetEntityJson: (json: string) => void;
+  validateTargetEntity: () => Promise<void>;
+  updateTargetEntity: (force: boolean) => Promise<void>;
+  clearEntityState: () => void;
 }
 
 export const useComponentStore = create<ComponentState>((set, get) => ({
@@ -59,6 +90,23 @@ export const useComponentStore = create<ComponentState>((set, get) => ({
   autoMatchReport: null,
   logs: [] as LogEntry[],
   updateProgress: null as { current: number; total: number } | null,
+
+  entityType: 'component' as const,
+  existingThemes: [],
+  existingLandings: [],
+  existingFlows: [],
+  selectedTheme: null,
+  selectedLanding: null,
+  selectedFlow: null,
+  isLoadingThemes: false,
+  isLoadingLandings: false,
+  isLoadingFlows: false,
+  targetEntityJson: '',
+  targetParseError: null,
+  validationReport: null,
+  isValidating: false,
+  isUpdatingEntity: false,
+  entityUpdateResults: [],
 
   setRawJson: (rawJson) => set({ rawJson, parseError: null }),
 
@@ -335,4 +383,199 @@ export const useComponentStore = create<ComponentState>((set, get) => ({
 
     set({ updateResults: results, isUpdating: false, updateProgress: null });
   },
+
+  // Entity panel actions
+  setEntityType: (entityType) => set({ entityType }),
+
+  loadThemes: async () => {
+    const { addLog } = get();
+    set({ isLoadingThemes: true });
+    addLog('Fetching themes from API...', 'info');
+    try {
+      const res = await getThemes();
+      if (res.success && res.data) {
+        const items = Array.isArray(res.data) ? res.data : (res.data as { items: unknown[] }).items ?? [];
+        set({ existingThemes: items as ThemeItem[] });
+        addLog(`Loaded ${items.length} themes`, 'success');
+      } else {
+        addLog(`Failed to load themes: ${res.message}`, 'error');
+      }
+    } catch (e) {
+      addLog(`Theme load error: ${(e as Error).message}`, 'error');
+    } finally {
+      set({ isLoadingThemes: false });
+    }
+  },
+
+  loadLandings: async () => {
+    const { addLog } = get();
+    set({ isLoadingLandings: true });
+    addLog('Fetching landings from API...', 'info');
+    try {
+      const res = await getLandings();
+      if (res.success && res.data) {
+        const data = res.data as unknown;
+        const items = Array.isArray(data) ? data : ((data as { items?: unknown[] }).items ?? []);
+        set({ existingLandings: items as LandingItem[] });
+        addLog(`Loaded ${items.length} landings`, 'success');
+      } else {
+        addLog(`Failed to load landings: ${res.message}`, 'error');
+      }
+    } catch (e) {
+      addLog(`Landing load error: ${(e as Error).message}`, 'error');
+    } finally {
+      set({ isLoadingLandings: false });
+    }
+  },
+
+  loadFlows: async () => {
+    const { addLog } = get();
+    set({ isLoadingFlows: true });
+    addLog('Fetching flows from API...', 'info');
+    try {
+      const res = await getFlows();
+      if (res.success && res.data) {
+        const data = res.data as unknown;
+        const items = Array.isArray(data) ? data : ((data as { items?: unknown[] }).items ?? []);
+        set({ existingFlows: items as FlowItem[] });
+        addLog(`Loaded ${items.length} flows`, 'success');
+      } else {
+        addLog(`Failed to load flows: ${res.message}`, 'error');
+      }
+    } catch (e) {
+      addLog(`Flow load error: ${(e as Error).message}`, 'error');
+    } finally {
+      set({ isLoadingFlows: false });
+    }
+  },
+
+  selectTheme: (theme) => set({ selectedTheme: theme, validationReport: null }),
+  selectLanding: (landing) => set({ selectedLanding: landing, validationReport: null }),
+  selectFlow: (flow) => set({ selectedFlow: flow, validationReport: null }),
+
+  setTargetEntityJson: (targetEntityJson) => set({ targetEntityJson, targetParseError: null, validationReport: null }),
+
+  validateTargetEntity: async () => {
+    const { targetEntityJson, existingComponents, addLog } = get();
+    set({ isValidating: true });
+    addLog('Validating entity JSON...', 'info');
+
+    try {
+      const parsed = JSON.parse(targetEntityJson);
+
+      const defaultComponents = parsed.defaultComponents || parsed.defaultHomepageComponents || [];
+
+      if (!Array.isArray(defaultComponents) || defaultComponents.length === 0) {
+        set({ targetParseError: 'No defaultComponents or defaultHomepageComponents found in JSON', isValidating: false });
+        addLog('Validation failed: no components found in JSON', 'error');
+        return;
+      }
+
+      const componentIdMap = new Map(existingComponents.map((c) => [c.id, c]));
+      const componentKeyMap = new Map(existingComponents.map((c) => [c.componentKey, c]));
+
+      type FlatComponent = { componentKey: string; componentId: string; path: string };
+      const flatComponents: FlatComponent[] = [];
+
+      function flatten(items: unknown[], path: string) {
+        for (let i = 0; i < items.length; i++) {
+          const item = items[i] as Record<string, unknown>;
+          if (!item || typeof item !== 'object') continue;
+          const key = item.componentKey as string;
+          const id = item.componentId as string;
+          if (key) {
+            flatComponents.push({ componentKey: key, componentId: id || '', path: `${path}[${i}]` });
+          }
+          const slots = item.slots as Record<string, unknown[]> | undefined;
+          if (slots) {
+            for (const [slotName, slotItems] of Object.entries(slots)) {
+              if (Array.isArray(slotItems)) {
+                flatten(slotItems, `${path}[${i}].slots.${slotName}`);
+              }
+            }
+          }
+        }
+      }
+
+      flatten(defaultComponents, parsed.defaultComponents ? 'defaultComponents' : 'defaultHomepageComponents');
+
+      const items: ValidationItem[] = [];
+      for (const fc of flatComponents) {
+        const { componentKey, componentId, path } = fc;
+        const existingById = componentId ? componentIdMap.get(componentId) : undefined;
+        const existingByKey = componentKeyMap.get(componentKey);
+
+        if (existingById && existingById.componentKey === componentKey) {
+          items.push({ defaultComponentId: componentId, componentKey, apiComponentId: componentId, status: 'matched', message: 'Component key and ID match', path });
+        } else if (existingById && existingById.componentKey !== componentKey) {
+          items.push({ defaultComponentId: componentId, componentKey, apiComponentId: existingById.id, status: 'mismatch', message: `Key mismatch: JSON="${componentKey}" API="${existingById.componentKey}"`, suggestedId: existingById.id, path });
+        } else if (existingByKey && !componentId) {
+          items.push({ defaultComponentId: componentId || '', componentKey, apiComponentId: existingByKey.id, status: 'missing_id', message: 'Component key found — componentId missing in JSON', suggestedId: existingByKey.id, path });
+        } else if (existingByKey) {
+          items.push({ defaultComponentId: componentId || '', componentKey, apiComponentId: existingByKey.id, status: 'matched', message: 'Component key matched — componentId completed from API', suggestedId: existingByKey.id, path });
+        } else {
+          items.push({ defaultComponentId: componentId || '', componentKey, apiComponentId: null, status: 'missing_api', message: 'Component key not found in loaded components', path });
+        }
+      }
+
+      const matched = items.filter((i) => i.status === 'matched').length;
+      const errors = items.filter((i) => ['mismatch', 'missing_api'].includes(i.status)).length;
+      const missingIds = items.filter((i) => i.status === 'missing_id').length;
+
+      const report: ValidationReport = { items, summary: { total: items.length, matched, errors, missingIds } };
+      set({ validationReport: report, targetParseError: null });
+      const warn = errors > 0 || missingIds > 0;
+      addLog(`Validation: ${matched}/${items.length} matched, ${errors} errors, ${missingIds} missing IDs`, warn ? 'warn' : 'success');
+    } catch (e) {
+      set({ targetParseError: `Invalid JSON: ${(e as Error).message}`, isValidating: false });
+      addLog(`Validation parse error: ${(e as Error).message}`, 'error');
+      return;
+    }
+
+    set({ isValidating: false });
+  },
+
+  updateTargetEntity: async (_force) => {
+    const { entityType, selectedTheme, selectedLanding, selectedFlow, targetEntityJson, addLog } = get();
+    set({ isUpdatingEntity: true });
+    addLog(`Updating ${entityType}...`, 'info');
+
+    try {
+      const parsed = JSON.parse(targetEntityJson);
+      let id: string | null = null;
+      let updater: (id: string, payload: unknown) => Promise<unknown> = async () => { throw new Error('No updater'); };
+
+      if (entityType === 'theme') { id = selectedTheme?.id ?? null; updater = updateTheme; }
+      else if (entityType === 'landing') { id = selectedLanding?.id ?? null; updater = updateLanding; }
+      else if (entityType === 'flow') { id = selectedFlow?.id ?? null; updater = updateFlow; }
+
+      if (!id) {
+        addLog(`No ${entityType} selected`, 'error');
+        set({ isUpdatingEntity: false });
+        return;
+      }
+
+      const res = await (updater as (id: string, payload: unknown) => Promise<{ success: boolean; message: string }>)(id, parsed);
+
+      const result: EntityUpdateResult = { success: res.success, message: res.message };
+      set({ entityUpdateResults: [result] });
+
+      if (res.success) {
+        addLog(`${entityType} updated successfully`, 'success');
+      } else {
+        addLog(`Failed to update ${entityType}: ${res.message}`, 'error');
+      }
+    } catch (e) {
+      addLog(`Update error: ${(e as Error).message}`, 'error');
+      set({ entityUpdateResults: [{ success: false, message: (e as Error).message }] });
+    }
+
+    set({ isUpdatingEntity: false });
+  },
+
+  clearEntityState: () => set({
+    selectedTheme: null, selectedLanding: null, selectedFlow: null,
+    targetEntityJson: '', targetParseError: null, validationReport: null,
+    entityUpdateResults: [],
+  }),
 }));

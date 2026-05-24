@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(node scripts/read-schemas.cjs landing])",
-      "Bash(node scripts/read-schemas.cjs all)"
+      "Bash(node scripts/read-schemas.cjs all)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)"
     ]
   }
 }

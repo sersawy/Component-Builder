@@ -8,6 +8,86 @@ export interface ApiResponse<T = unknown> {
   timestamp: string;
 }
 
+export interface ThemeItem {
+  id: string;
+  key: string;
+  name: string;
+  nameAr: string | null;
+  version: string;
+  description: string;
+  previewImage: string;
+  sortOrder: number;
+  isActive: boolean;
+  isDefault: boolean;
+  isDefaultAr: boolean;
+  isDefaultEn: boolean;
+  isPremium: boolean;
+  price: number;
+}
+
+export interface DefaultComponent {
+  id: string;
+  componentId: string;
+  componentKey: string;
+  region: string;
+  sortOrder: number;
+  config: Record<string, unknown>;
+  slot?: string;
+  parentId?: string;
+}
+
+export interface LandingItem {
+  id: string;
+  name: string;
+  nameAr: string;
+  description: string;
+  descriptionAr: string;
+  previewImage: string;
+  previewLink: string | null;
+  isActive: boolean;
+  isPremium: boolean;
+  price: string;
+  createdAt: string;
+  updatedAt: string;
+  defaultComponents?: DefaultComponent[];
+}
+
+export interface FlowItem {
+  id: string;
+  key: string;
+  name: string;
+  nameAr: string;
+  description: string;
+  descriptionAr: string;
+  previewImage: string;
+  previewLink: string | null;
+  isActive: boolean;
+  isPremium: boolean;
+  price: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ValidationItem {
+  defaultComponentId: string;
+  componentKey: string;
+  apiComponentId: string | null;
+  status: 'matched' | 'missing_api' | 'mismatch' | 'missing_id' | 'extra';
+  message: string;
+  suggestedId?: string;
+  path: string; // e.g. "defaultHomepageComponents[2].slots.items[0]"
+}
+
+export interface ValidationReport {
+  items: ValidationItem[];
+  summary: { total: number; matched: number; errors: number; missingIds: number };
+}
+
+export interface EntityUpdateResult {
+  success: boolean;
+  message: string;
+}
+
 export interface LoginResponse {
   access_token: string;
   refresh_token: string;
